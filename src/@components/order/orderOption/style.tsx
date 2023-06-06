@@ -17,7 +17,7 @@ export const BoxWrapper = styled.section`
   display: flex;
 `;
 
-export const Box = styled.article`
+export const Box = styled.article<{ isClick: boolean }>`
   display: flex;
   align-items: center;
 
@@ -27,9 +27,11 @@ export const Box = styled.article`
   padding-left: 29px;
   margin: 0 10px;
 
-  background-color: ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.gray5};
+  background-color: ${({ isClick, theme }) => (isClick ? theme.colors.sub1 : theme.colors.gray1)};
 
-  border: 2px solid ${({ theme }) => theme.colors.gray2};
+  border: 2px solid ${({ isClick, theme }) => (isClick ? theme.colors.primary1 : theme.colors.gray2)};
+
   border-radius: 45px;
 
   cursor: pointer;
