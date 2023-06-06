@@ -18,6 +18,8 @@ export const NavBar = styled.nav`
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.white};
   ${({ theme }) => theme.fonts.nav}
+
+  cursor: pointer;
 `;
 
 export const ProfileImage = styled.img`
@@ -40,4 +42,6 @@ export const ProfileImageWrapper = styled.div`
   border-radius: 50%;
 
   overflow: hidden;
+
+  cursor: pointer;
 `;

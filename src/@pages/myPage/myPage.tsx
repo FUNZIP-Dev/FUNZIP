@@ -1,3 +1,9 @@
+import Nav from "../../@components/common/nav/nav";
+
 export default function MyPage() {
-  return <div>myPage</div>;
+  return (
+    <>
+      <Nav />
+    </>
+  );
 }

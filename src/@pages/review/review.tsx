@@ -1,3 +1,9 @@
+import Nav from "../../@components/common/nav/nav";
+
 export default function Review() {
-  return <div>review</div>;
+  return (
+    <>
+      <Nav />
+    </>
+  );
 }
