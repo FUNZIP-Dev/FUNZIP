@@ -12,7 +12,7 @@ export default function Order() {
     <OrderPageWrapper>
       <Nav />
       <OrderHeader step={step} />
-      <OrderMain step={step} />
+      <OrderMain step={step} setStep={setStep} />
       <OrderFooter step={step} setStep={setStep} />
     </OrderPageWrapper>
   );

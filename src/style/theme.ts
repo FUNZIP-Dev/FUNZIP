@@ -39,6 +39,10 @@ const fonts = {
   medium: FONT({ weight: 500, size: 16, lineHeight: 19 }),
   regular: FONT({ weight: 400, size: 16, lineHeight: 19 }),
   nav: FONT({ weight: 600, size: 18, lineHeight: 29 }),
+  tutorial_head: FONT({ weight: 700, size: 24, lineHeight: 24 }),
+  tutorial_strong: FONT({ weight: 700, size: 20, lineHeight: 20 }),
+  tutorial_sub: FONT({ weight: 500, size: 18, lineHeight: 18 }),
+  tutorial_text: FONT({ weight: 500, size: 13, lineHeight: 20 }),
 };
 
 export type FontsTypes = typeof fonts;
