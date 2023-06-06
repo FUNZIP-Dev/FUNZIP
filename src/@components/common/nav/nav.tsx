@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { USER } from "../../../core/user/user";
 import * as S from "./style";
 
 export default function Nav() {
@@ -17,10 +18,7 @@ export default function Nav() {
       <S.Text onClick={() => handleMoveToPage("/faq")}>FAQ</S.Text>
       <S.Text onClick={() => handleMoveToPage("/review")}>후기</S.Text>
       <S.ProfileImageWrapper onClick={() => handleMoveToPage("/mypage")}>
-        <S.ProfileImage
-          src="https://item.kakaocdn.net/do/dbcd799aac800f6a680f1d2b04cee5688f324a0b9c48f77dbce3a43bd11ce785"
-          alt="프로필 이미지"
-        />
+        <S.ProfileImage src={USER.image} alt="프로필 이미지" />
       </S.ProfileImageWrapper>
     </S.NavBar>
   );

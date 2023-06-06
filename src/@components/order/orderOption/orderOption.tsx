@@ -40,8 +40,6 @@ export default function OrderOption() {
     }
   };
 
-  console.log(selectOption.plus);
-
   const handleSelectCam = (id: number) => {
     setSelectOption({ ...selectOption, cam: id });
   };
