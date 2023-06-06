@@ -3,19 +3,35 @@ import { OrderOptionCheckActiveIc, OrderOptionCheckIc } from "../../../assets";
 import { BASIC_OPTIONS, CAM_OPTIONS, PLUS_OPTIONS } from "../../../core/order/optionList";
 import * as S from "./style";
 
+interface SelectOptionTypes {
+  basic: number[];
+  plus: number[];
+  cam: number;
+}
+
 export default function OrderOption() {
-  const [selectOption, setSelectOption] = useState({
-    basic: -1,
-    plus: -1,
+  const [selectOption, setSelectOption] = useState<SelectOptionTypes>({
+    basic: [],
+    plus: [],
     cam: -1,
   });
 
   const handleSelectBasic = (id: number) => {
-    setSelectOption({ ...selectOption, basic: id });
+    if (selectOption.basic.includes(id)) {
+      const newBasic = selectOption.basic.filter((option) => option !== id);
+      setSelectOption({ ...selectOption, basic: [...newBasic] });
+    } else {
+      setSelectOption({ ...selectOption, basic: [...selectOption.basic, id] });
+    }
   };
 
   const handleSelectPlus = (id: number) => {
-    setSelectOption({ ...selectOption, plus: id });
+    if (selectOption.plus.includes(id)) {
+      const newPlus = selectOption.plus.filter((option) => option !== id);
+      setSelectOption({ ...selectOption, plus: [...newPlus] });
+    } else {
+      setSelectOption({ ...selectOption, plus: [...selectOption.plus, id] });
+    }
   };
 
   const handleSelectCam = (id: number) => {
@@ -23,11 +39,11 @@ export default function OrderOption() {
   };
 
   const checkSelectBasic = (id: number) => {
-    return selectOption.basic === id;
+    return selectOption.basic.includes(id);
   };
 
   const checkSelectPlus = (id: number) => {
-    return selectOption.plus === id;
+    return selectOption.plus.includes(id);
   };
 
   const checkSelectCam = (id: number) => {
