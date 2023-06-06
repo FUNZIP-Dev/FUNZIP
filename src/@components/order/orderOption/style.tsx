@@ -27,7 +27,7 @@ export const Box = styled.article<{ isClick: boolean }>`
   padding-left: 29px;
   margin: 0 10px;
 
-  color: ${({ theme }) => theme.colors.gray5};
+  color: ${({ isClick, theme }) => (isClick ? theme.colors.black : theme.colors.gray5)};
   background-color: ${({ isClick, theme }) => (isClick ? theme.colors.sub1 : theme.colors.gray1)};
 
   border: 2px solid ${({ isClick, theme }) => (isClick ? theme.colors.primary1 : theme.colors.gray2)};
