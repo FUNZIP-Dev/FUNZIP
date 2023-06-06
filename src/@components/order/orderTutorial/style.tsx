@@ -17,4 +17,6 @@ export const OrderTutorialWrapper = styled.section`
 
 export const OrderTutorialXIcon = styled(OrderTutorialXIc)`
   margin: -15px 0 15px 410px;
+
+  cursor: pointer;
 `;
