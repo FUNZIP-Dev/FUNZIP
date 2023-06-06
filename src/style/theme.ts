@@ -43,6 +43,8 @@ const fonts = {
   tutorial_strong: FONT({ weight: 700, size: 20, lineHeight: 20 }),
   tutorial_sub: FONT({ weight: 500, size: 18, lineHeight: 18 }),
   tutorial_text: FONT({ weight: 500, size: 13, lineHeight: 20 }),
+  category_strong: FONT({ weight: 800, size: 20, lineHeight: 28 }),
+  category_sub: FONT({ weight: 500, size: 20, lineHeight: 28 }),
 };
 
 export type FontsTypes = typeof fonts;
