@@ -1,3 +1,9 @@
+import Nav from "../../@components/common/nav/nav";
+
 export default function Faq() {
-  return <div>faq</div>;
+  return (
+    <>
+      <Nav />
+    </>
+  );
 }
