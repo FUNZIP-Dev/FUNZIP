@@ -1,8 +1,9 @@
 import { NavLogoIc } from "../../../assets";
+import * as S from "./style";
 
 export default function Nav() {
   return (
-    <nav>
+    <S.NavBar>
       <NavLogoIc />
       <p>서비스 소개</p>
       <p>주문하기</p>
@@ -15,6 +16,6 @@ export default function Nav() {
           alt="프로필 이미지"
         />
       </div>
-    </nav>
+    </S.NavBar>
   );
 }
