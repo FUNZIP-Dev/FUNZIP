@@ -8,7 +8,7 @@ interface CategoryType {
 
 export const CATEGORY_LIST: CategoryType[] = [
   { id: 1, text: "예능 / \n엔터테인먼트", size: 169, marginTop: 520, marginLeft: 16 },
-  { id: 2, text: "ASMR", size: 139, marginTop: 299, marginLeft: 185 },
+  { id: 2, text: "ASMR", size: 139, marginTop: 424, marginLeft: 185 },
   { id: 3, text: "뷰티", size: 102, marginTop: 433, marginLeft: 385 },
   { id: 4, text: "여행\n브이로그", size: 169, marginTop: 492, marginLeft: 519 },
   { id: 5, text: "경제", size: 63, marginTop: 717, marginLeft: 0 },
