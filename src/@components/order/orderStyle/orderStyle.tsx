@@ -1,3 +1,9 @@
+import Step1 from "../step1/step1";
+
 export default function OrderStyle() {
-  return <div>category</div>;
+  return (
+    <>
+      <Step1 />
+    </>
+  );
 }
