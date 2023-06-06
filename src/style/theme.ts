@@ -12,6 +12,7 @@ const colors = {
   gray3: "#DEDFE5",
   gray4: "#AEAFB9",
   gray5: "#606067",
+  gray6: "#E4E4E4",
   black: "#282828",
 };
 
@@ -33,6 +34,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 }
 
 const fonts = {
+  extra_bold: FONT({ weight: 800, size: 20, lineHeight: 32 }),
   bold: FONT({ weight: 700, size: 16, lineHeight: 19 }),
   medium: FONT({ weight: 500, size: 16, lineHeight: 19 }),
   regular: FONT({ weight: 400, size: 16, lineHeight: 19 }),
