@@ -6,18 +6,26 @@ import * as S from "./style";
 export default function OrderHeader(props: StepProp) {
   const { step } = props;
 
-  const checkCircle = (id: number) => {
-    switch (id) {
-      case 1:
-        return <OrderStep1Ic />;
-      case 2:
-        return <OrderStep2Ic />;
-      case 3:
-        return <OrderStep3Ic />;
-      case 4:
-        return <OrderStep4Ic />;
-      default:
-        return <OrderStepBlankIc />;
+  const checkStep = (stepName: string) => {
+    return step === stepName;
+  };
+
+  const checkCircle = (id: number, stepActive: boolean) => {
+    if (stepActive) {
+      switch (id) {
+        case 1:
+          return <OrderStep1Ic />;
+        case 2:
+          return <OrderStep2Ic />;
+        case 3:
+          return <OrderStep3Ic />;
+        case 4:
+          return <OrderStep4Ic />;
+        default:
+          return <OrderStepBlankIc />;
+      }
+    } else {
+      return <OrderStepBlankIc />;
     }
   };
 
@@ -38,12 +46,18 @@ export default function OrderHeader(props: StepProp) {
 
   return (
     <>
-      {ORDER_PROGRESS.map(({ id, text }) => (
-        <S.StepWrapper key={id}>
-          {checkCircle(id)}
-          <S.Text width={checkWidth(id)}>{text}</S.Text>
-        </S.StepWrapper>
-      ))}
+      <S.StepContainer>
+        {ORDER_PROGRESS.map(({ id, text, stepName }) => (
+          <>
+            <S.StepWrapper key={id} active={checkStep(stepName)}>
+              {checkCircle(id, checkStep(stepName))}
+              <S.Text width={checkWidth(id)} active={checkStep(stepName)}>
+                {text}
+              </S.Text>
+            </S.StepWrapper>
+          </>
+        ))}
+      </S.StepContainer>
       <S.Line />
     </>
   );
