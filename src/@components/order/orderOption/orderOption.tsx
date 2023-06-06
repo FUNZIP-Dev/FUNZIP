@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { OrderOptionCheckActiveIc, OrderOptionCheckIc } from "../../../assets";
 import { BASIC_OPTIONS, CAM_OPTIONS, PLUS_OPTIONS } from "../../../core/order/optionList";
+import { selectOptions } from "../../../recoil/order/selectOptions";
 import * as S from "./style";
 
-interface SelectOptionTypes {
+export interface SelectOptionTypes {
   basic: number[];
   plus: number[];
   cam: number;
 }
 
 export default function OrderOption() {
-  const [selectOption, setSelectOption] = useState<SelectOptionTypes>({
-    basic: [],
-    plus: [],
-    cam: -1,
-  });
+  const [selectOption, setSelectOption] = useRecoilState<SelectOptionTypes>(selectOptions);
 
   const handleSelectBasic = (id: number) => {
     if (selectOption.basic.includes(id)) {
