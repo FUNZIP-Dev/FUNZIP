@@ -23,13 +23,24 @@ export default function OrderOption() {
   };
 
   const handleSelectPlus = (id: number) => {
-    if (selectOption.plus.includes(id)) {
-      const newPlus = selectOption.plus.filter((option) => option !== id);
-      setSelectOption({ ...selectOption, plus: [...newPlus] });
+    if (id === 1) {
+      if (selectOption.plus.includes(1)) {
+        setSelectOption({ ...selectOption, plus: [] });
+      } else {
+        setSelectOption({ ...selectOption, plus: [1] });
+      }
     } else {
-      setSelectOption({ ...selectOption, plus: [...selectOption.plus, id] });
+      const resetPlus = selectOption.plus.filter((option) => option !== 1);
+      if (selectOption.plus.includes(id)) {
+        const newPlus = resetPlus.filter((option) => option !== id);
+        setSelectOption({ ...selectOption, plus: [...newPlus] });
+      } else {
+        setSelectOption({ ...selectOption, plus: [...resetPlus, id] });
+      }
     }
   };
+
+  console.log(selectOption.plus);
 
   const handleSelectCam = (id: number) => {
     setSelectOption({ ...selectOption, cam: id });
