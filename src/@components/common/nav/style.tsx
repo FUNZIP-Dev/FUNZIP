@@ -1,4 +1,9 @@
 import { styled } from "styled-components";
+import { NavLogoIc } from "../../../assets";
+
+export const NavLogoIcon = styled(NavLogoIc)`
+  cursor: pointer;
+`;
 
 export const NavBar = styled.nav`
   display: flex;

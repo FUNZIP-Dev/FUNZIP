@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { NavLogoIc } from "../../../assets";
 import * as S from "./style";
 
 export default function Nav() {
@@ -11,7 +10,7 @@ export default function Nav() {
 
   return (
     <S.NavBar>
-      <NavLogoIc />
+      <S.NavLogoIcon onClick={() => handleMoveToPage("/")} />
       <S.Text onClick={() => handleMoveToPage("/")}>서비스 소개</S.Text>
       <S.Text onClick={() => handleMoveToPage("/order")}>주문하기</S.Text>
       <S.Text onClick={() => handleMoveToPage("/tutorial")}>튜토리얼</S.Text>
