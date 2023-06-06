@@ -12,7 +12,7 @@ export const Title = styled.h1`
   ${({ theme }) => theme.fonts.tutorial_head}
 `;
 
-export const Circle = styled.article<{ size: number; marginLeft: number; marginTop: number }>`
+export const Circle = styled.article<{ size: number; marginLeft: number; marginTop: number; isClick: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,9 +23,17 @@ export const Circle = styled.article<{ size: number; marginLeft: number; marginT
   margin-left: ${({ marginLeft }) => marginLeft}px;
   margin-top: ${({ marginTop }) => marginTop}px;
 
-  border: 1px solid ${({ theme }) => theme.colors.gray3};
-  background-color: ${({ theme }) => theme.colors.gray1};
+  color: ${({ isClick, theme }) => (isClick ? theme.colors.white : "rgba(40, 40, 40, 0.8)")};
+  border: 1px solid ${({ isClick, theme }) => (isClick ? theme.colors.primary1 : theme.colors.gray3)};
+  background-color: ${({ isClick, theme }) => (isClick ? theme.colors.primary1 : theme.colors.gray1)};
   border-radius: 50%;
+
+  ${({ isClick, theme }) => (isClick ? theme.fonts.category_strong : theme.fonts.category_sub)};
+
+  white-space: pre-wrap;
+  text-align: center;
+
+  cursor: pointer;
 `;
 
 export const CircleWrapper = styled.section`
