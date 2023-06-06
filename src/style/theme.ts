@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 const colors = {
   primary1: "#FF5D47",
-  primary2: "##7230FF",
+  primary2: "#7230FF",
   sub1: "#FFF3F1",
   sub2: "#F1EAFF",
 
@@ -13,6 +13,7 @@ const colors = {
   gray4: "#AEAFB9",
   gray5: "#606067",
   gray6: "#E4E4E4",
+  gray7: "#E2E2E2",
   black: "#282828",
 };
 
