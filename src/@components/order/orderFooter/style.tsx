@@ -4,9 +4,7 @@ export const ButtonWrapper = styled.section`
   display: flex;
   justify-content: space-between;
 
-  position: absolute;
-  width: 1392px;
-  bottom: 44px;
+  /* width: 1392px; */
 `;
 
 export const PreviousButton = styled.button`
@@ -15,6 +13,10 @@ export const PreviousButton = styled.button`
   align-items: center;
 
   border: 1px solid ${({ theme }) => theme.colors.gray7};
+
+  position: fixed;
+  left: 264px;
+  bottom: 44px;
 
   width: 209px;
   height: 128px;
@@ -38,6 +40,10 @@ export const NextButton = styled.button`
   align-items: center;
 
   border: 1px solid ${({ theme }) => theme.colors.gray7};
+
+  position: fixed;
+  right: 264px;
+  bottom: 44px;
 
   width: 209px;
   height: 128px;
