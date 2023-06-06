@@ -1,3 +1,7 @@
+### ### 🔥 Related Issues
+
+close #issue
+
 ### ✅ 구현기능 명세
 
 ### 📝 이렇게 구현해봣어요
