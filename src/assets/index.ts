@@ -1,1 +1,1 @@
-// export { ReactComponent as Track1Ic } from "./icon/trackOneIc.svg";
+export { ReactComponent as NavLogoIc } from "./icon/navLogoIc.svg";
