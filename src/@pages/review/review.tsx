@@ -181,8 +181,10 @@ export default function Review() {
       <S.ReviewHeader>후기 목록</S.ReviewHeader>
       {reviews.map((review) => (
   <div key={review.id}>
+    
     {editingReviewId === review.id ? (
       <>
+      <p>{review.userId}</p>
         <input
           type="text"
           value={updatedTitle}
@@ -205,6 +207,7 @@ export default function Review() {
     ) : (
       <>
         <h3 style={{ color: "black", fontSize: "40px" }}>{review.title}</h3>
+        <p>{review.userId}</p>
         <p>{review.content}</p>
         {review.imageUrl && (
           <img src={review.imageUrl} style={{ width: 100 }} alt="Review Image" />
