@@ -1,6 +1,14 @@
 import { useContext, useState, useEffect } from "react";
 import * as S from "./style";
-import { getFirestore, collection, addDoc, onSnapshot } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Nav from "../../@components/common/nav/nav";
 import { AuthContext } from "../../context/authContext";
@@ -13,7 +21,6 @@ export default function Review() {
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [reviews, setReviews] = useState<any[]>([]);
-
 
   useEffect(() => {
     const db = getFirestore();
@@ -60,7 +67,10 @@ export default function Review() {
       let imageUrl: string | null = null;
       // Upload the image to Firebase Storage if an image is selected
       if (image) {
-        const storageRef = ref(storageService, `review_images/${image.name}`);
+        const storageRef = ref(
+          storageService,
+          `review_images/${image.name}`
+        );
         await uploadBytes(storageRef, image);
 
         // Get the download URL of the uploaded image
@@ -86,6 +96,23 @@ export default function Review() {
     setTitle("");
     setContent("");
     setImage(null);
+  };
+
+  const handleDelete = async (reviewId: string) => {
+    if (window.confirm("정말로 리뷰를 삭제하시겠습니까?")) {
+      try {
+        const db = getFirestore();
+        const reviewDoc = doc(db, "reviews", reviewId);
+
+        // Delete the review document
+        await deleteDoc(reviewDoc);
+
+        alert("리뷰가 성공적으로 삭제되었습니다.");
+      } catch (error) {
+        console.error("Error deleting document: ", error);
+        alert("리뷰 삭제 중 오류가 발생했습니다.");
+      }
+    }
   };
 
   return (
@@ -124,12 +151,18 @@ export default function Review() {
       {/* Display the reviews */}
       <S.ReviewHeader>후기 목록</S.ReviewHeader>
       {reviews.map((review) => (
-        
         <div key={review.id}>
-          
-          <h3 style={{color:"black",fontSize:"40px"}}>{review.title}</h3>
+          <h3 style={{ color: "black", fontSize: "40px" }}>{review.title}</h3>
           <p>{review.content}</p>
-          {review.imageUrl && <img src={review.imageUrl} style={{width:100}} alt="Review Image" />}
+          {review.imageUrl && (
+            <img src={review.imageUrl} style={{ width: 100 }} alt="Review Image" />
+          )}
+          {userInfo && userInfo.uid === review.userId && (
+            <div>
+              <button onClick={() => handleDelete(review.id)}>삭제</button>
+              {/* Add an update button or action here */}
+            </div>
+          )}
         </div>
       ))}
     </>
