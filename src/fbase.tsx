@@ -24,11 +24,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
-
-export const firebaseInstance = firebase;
-
-// 로그인은 참조 할것이니 export 진행
-export const authService = firebase.auth();
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
+export const authService = getAuth(app);
 
 // firestore 공유
 export const dbService = getFirestore();

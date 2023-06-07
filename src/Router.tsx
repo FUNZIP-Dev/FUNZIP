@@ -5,6 +5,7 @@ import MyPage from "./@pages/myPage/myPage";
 import Order from "./@pages/order/order";
 import Review from "./@pages/review/review";
 import Tutorial from "./@pages/tutorial/tutorial";
+import Login from "./@pages/Auth/login";
 
 export default function Router() {
   return (
@@ -16,6 +17,7 @@ export default function Router() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/review" element={<Review />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
