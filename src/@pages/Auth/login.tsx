@@ -3,7 +3,7 @@ import Nav from "../../@components/common/nav/nav";
 import * as S from "./style";
 import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export default function Login() {
   const userInfo = useContext(AuthContext);
@@ -49,22 +49,36 @@ export default function Login() {
       });
     }
   };
+  // 로그아웃 기능 
+  const handleLogout = () => {
+    signOut(authService);
+  };
 
   return (
     <>
       <Nav />
       <S.AuthWrapper>
-      <S.AuthForm onSubmit={handleSubmit}>
-        <S.AuthInputWrapper>
-          <S.AuthInput required style={{border:"1px solid black"}} placeholder="이메일" type="email" name="email" onChange={handleEmail} value={email} />
-          <S.AuthInput required style={{border:"1px solid black"}} placeholder="비밀번호" type="password" name="pwd" onChange={handlePwd} value={pwd} />
-        </S.AuthInputWrapper>
-        <S.AuthButtonWrapper>
-          <S.AuthButton type="submit"> {isCreate ? "회원가입" : "로그인"}</S.AuthButton>
-          <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>{isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}</S.AuthSignUpButton>
-          
-        </S.AuthButtonWrapper>
-      </S.AuthForm>
+        {
+          userInfo ?
+          (
+            <>
+              <S.AuthText> {userInfo.email}님 환영합니다. </S.AuthText>
+              <S.AuthButton onClick={handleLogout}> 로그아웃 </S.AuthButton>
+            </>
+          ):
+          <S.AuthForm onSubmit={handleSubmit}>
+          <S.AuthInputWrapper>
+            <S.AuthInput required style={{border:"1px solid black"}} placeholder="이메일" type="email" name="email" onChange={handleEmail} value={email} />
+            <S.AuthInput required style={{border:"1px solid black"}} placeholder="비밀번호" type="password" name="pwd" onChange={handlePwd} value={pwd} />
+          </S.AuthInputWrapper>
+          <S.AuthButtonWrapper>
+            <S.AuthButton type="submit"> {isCreate ? "회원가입" : "로그인"}</S.AuthButton>
+            <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>{isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}</S.AuthSignUpButton>
+            
+          </S.AuthButtonWrapper>
+        </S.AuthForm>
+        }
+
       </S.AuthWrapper>
     </>
   );

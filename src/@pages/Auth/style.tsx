@@ -9,6 +9,11 @@ export const AuthWrapper = styled.div`
   padding-top: 100px;
 `;
 
+export const AuthText = styled.div`
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 100px;
+`
 export const AuthForm = styled.form`
     display: flex;
     flex-direction: column;
