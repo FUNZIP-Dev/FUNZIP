@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const {
@@ -21,7 +23,15 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-// social login
-const auth = getAuth(app); // 추가
+export const firebaseInstance = firebase;
+
+// 로그인은 참조 할것이니 export 진행
+export const authService = firebase.auth();
+
+// firestore 공유
+export const dbService = getFirestore();
+
+// storage 공유
+export const storageService = getStorage();
