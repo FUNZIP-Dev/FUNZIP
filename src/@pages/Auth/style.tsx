@@ -28,9 +28,10 @@ export const AuthInput = styled.input`
     margin: 5px;
     width: 557px;
     height: 80px;
+    font-weight: 700;
     padding-left: 31px;
     font-size: 18px;
-    color: #AEAFB9;
+    color: #FF5D47;
     border-radius: 24px;
     background: #F8F8FA;
     border-radius: 24px;
