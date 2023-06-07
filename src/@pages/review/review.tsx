@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import * as S from "./style";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import {ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getFirestore, collection, addDoc, onSnapshot } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Nav from "../../@components/common/nav/nav";
 import { AuthContext } from "../../context/authContext";
 import { storageService } from "../../fbase";
@@ -12,21 +12,39 @@ export default function Review() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [reviews, setReviews] = useState<any[]>([]);
 
 
-  const handleTitleChange = (e:any) => {
+  useEffect(() => {
+    const db = getFirestore();
+    const reviewRef = collection(db, "reviews");
+
+    // Fetch the initial reviews data
+    const unsubscribe = onSnapshot(reviewRef, (snapshot) => {
+      const reviewsData: any[] = [];
+      snapshot.forEach((doc) => {
+        reviewsData.push({ id: doc.id, ...doc.data() });
+      });
+      setReviews(reviewsData);
+    });
+
+    // Clean up the listener
+    return () => unsubscribe();
+  }, []);
+
+  const handleTitleChange = (e: any) => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (e:any) => {
+  const handleContentChange = (e: any) => {
     setContent(e.target.value);
   };
 
-  const handleImageChange = (e:any) => {
+  const handleImageChange = (e: any) => {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!userInfo) {
@@ -40,16 +58,14 @@ export default function Review() {
 
     try {
       let imageUrl: string | null = null;
-       // Upload the image to Firebase Storage if an image is selected
-       if (image) {
+      // Upload the image to Firebase Storage if an image is selected
+      if (image) {
         const storageRef = ref(storageService, `review_images/${image.name}`);
         await uploadBytes(storageRef, image);
 
         // Get the download URL of the uploaded image
         imageUrl = await getDownloadURL(storageRef);
       }
-
-
 
       // Save the review data including the image URL
       await addDoc(reviewRef, {
@@ -104,6 +120,18 @@ export default function Review() {
           <S.ReviewHeader>로그인 후에 후기를 작성할 수 있습니다.</S.ReviewHeader>
         </>
       )}
+
+      {/* Display the reviews */}
+      <S.ReviewHeader>후기 목록</S.ReviewHeader>
+      {reviews.map((review) => (
+        
+        <div key={review.id}>
+          
+          <h3 style={{color:"black",fontSize:"40px"}}>{review.title}</h3>
+          <p>{review.content}</p>
+          {review.imageUrl && <img src={review.imageUrl} style={{width:100}} alt="Review Image" />}
+        </div>
+      ))}
     </>
   );
 }
