@@ -1,40 +1,45 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import * as S from "./style";
 import { authService } from "../../fbase";
+import { AuthContext } from "../../context/authContext";
 
 export default function Login() {
+  const userInfo = useContext(AuthContext);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [isCreate, setIsCreate] = useState(false);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handlePwd = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPwd(e.target.value);
   };
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try {
-      console.log(authService);
-      // await authService.signInWithEmailAndPassword(email, password);
-      // 로그인 성공 후 리다이렉트 또는 다음 작업 수행
-    } catch (error) {
-      // 로그인 실패 시 에러 처리
-    }
+    setIsCreate(pre => !pre);
   };
 
   return (
     <>
       <Nav />
       <S.AuthWrapper>
-        <form onSubmit={handleLogin}>
-          <input type="email" value={email} onChange={handleEmailChange} placeholder="이메일" />
-          <input type="password" value={password} onChange={handlePasswordChange} placeholder="비밀번호" />
-          <button type="submit">로그인</button>
-        </form>
+      <S.AuthForm>
+        <S.AuthInputWrapper>
+          <S.AuthInput style={{border:"1px solid black"}} placeholder="이메일" type="email" name="email" onChange={handleEmail} value={email} />
+          <S.AuthInput style={{border:"1px solid black"}} placeholder="비밀번호" type="password" name="pwd" onChange={handlePwd} value={pwd} />
+        </S.AuthInputWrapper>
+        <S.AuthButtonWrapper>
+          <S.AuthButton type="button"> {isCreate ? "만들기" : "로그인"}</S.AuthButton>
+          <S.AuthButton type="button" onClick={handleClickCreate}>{isCreate ? "취소" : "회원가입"}</S.AuthButton>
+          
+        </S.AuthButtonWrapper>
+      </S.AuthForm>
       </S.AuthWrapper>
     </>
   );

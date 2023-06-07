@@ -8,3 +8,47 @@ export const AuthWrapper = styled.div`
   flex-grow: 1;
   padding-top: 100px;
 `;
+
+export const AuthForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    
+
+    
+`
+
+export const AuthInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+`
+export const AuthInput = styled.input`
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 557px;
+    height: 80px;
+    padding-left: 31px;
+    font-size: 18px;
+    color: #AEAFB9;
+    border-radius: 24px;
+    background: #F8F8FA;
+    border-radius: 24px;
+    &:focus {
+    border: 2px solid #FF5D47;
+    
+}
+`
+
+export const AuthButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+`
+export const AuthButton = styled.button`
+    display: flex;
+    flex-direction: row;
+
+    
+
+`
