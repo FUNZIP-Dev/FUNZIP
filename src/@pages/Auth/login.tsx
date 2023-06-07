@@ -36,7 +36,7 @@ export default function Login() {
         </S.AuthInputWrapper>
         <S.AuthButtonWrapper>
           <S.AuthButton type="button"> {isCreate ? "만들기" : "로그인"}</S.AuthButton>
-          <S.AuthButton type="button" onClick={handleClickCreate}>{isCreate ? "취소" : "회원가입"}</S.AuthButton>
+          <S.AuthSignUpButton type="button" onClick={handleClickCreate}>{isCreate ? "취소" : "Fun.zip이 처음이신가요?"}</S.AuthSignUpButton>
           
         </S.AuthButtonWrapper>
       </S.AuthForm>

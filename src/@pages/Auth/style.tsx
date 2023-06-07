@@ -42,13 +42,37 @@ export const AuthInput = styled.input`
 
 export const AuthButtonWrapper = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 export const AuthButton = styled.button`
     display: flex;
-    flex-direction: row;
+    /* Orange */
+    padding: 30px;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
 
-    
-
+    background: #FF5D47;
+    /* orange */
+    width: 562px;
+    height: 75px;
+    font-weight: 700;
+    font-size: 24px;
+    color : #ffffff;
+    box-shadow: 0px 1px 10px rgba(255, 93, 71, 0.7);
+    border-radius: 44px;
+    margin-bottom: 41px;
+    `
+export const AuthSignUpButton = styled.button`
+    display: flex;
+    /* Orange */
+    padding: 30px;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: cente    r; /* 수직 가운데 정렬 */
+    width: 562px;
+    height: 75px;
+    font-weight: 700;
+    font-size: 24px;
+    color : #606067;
 `
