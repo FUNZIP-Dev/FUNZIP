@@ -47,6 +47,7 @@ const fonts = {
   category_strong: FONT({ weight: 800, size: 20, lineHeight: 28 }),
   category_sub: FONT({ weight: 500, size: 20, lineHeight: 28 }),
   option_content: FONT({ weight: 500, size: 13, lineHeight: 13 }),
+  user: FONT({ weight: 500, size: 18, lineHeight: 18 }),
 };
 
 export type FontsTypes = typeof fonts;
