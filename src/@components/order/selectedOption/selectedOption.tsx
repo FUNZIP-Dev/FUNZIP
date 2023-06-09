@@ -12,8 +12,8 @@ export default function SelectedOption() {
       <h1>
         <strong>{USER?.name}</strong>님이 선택한 옵션
       </h1>
-      {/* <p>기본옵션</p>
-      {selectOption.basic.map((basic) => (
+      <p>기본옵션</p>
+      {/* {selectOption.basic.map((basic) => (
         <div>{BASIC_OPTIONS[basic]?.title}</div>
       ))}
       <p>BGM & SFX</p>
