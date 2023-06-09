@@ -1,9 +1,9 @@
-import Step1 from "../step1/step1";
+import SelectedOption from "../selectedOption/selectedOption";
 
 export default function OrderStyle() {
   return (
     <>
-      <Step1 />
+      <SelectedOption />
     </>
   );
 }
