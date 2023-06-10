@@ -1,7 +1,14 @@
 import { MOOD } from "../../../../core/order/styleMood";
+import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
 import * as S from "./style";
 
-export default function Step2() {
+export default function Step2(props: OrderStyleStepProps) {
+  const { setOrderStyleData } = props;
+
+  const handleSelectMood = (text: string) => {
+    setOrderStyleData((prev) => ({ ...prev, mood: text }));
+  };
+
   return (
     <>
       <S.TitleWrapper>
@@ -11,7 +18,9 @@ export default function Step2() {
       </S.TitleWrapper>
       <S.MoodBoxWrapper>
         {MOOD?.map(({ id, text }) => (
-          <S.MoodBox key={id}>{text}</S.MoodBox>
+          <S.MoodBox key={id} onClick={() => handleSelectMood(text)}>
+            {text}
+          </S.MoodBox>
         ))}
       </S.MoodBoxWrapper>
     </>
