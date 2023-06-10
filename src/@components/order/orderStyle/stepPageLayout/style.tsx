@@ -15,4 +15,6 @@ export const StepWrapper = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  margin-bottom: 80px;
 `;
