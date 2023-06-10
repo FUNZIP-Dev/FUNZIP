@@ -14,6 +14,22 @@ export default function Step1(props: OrderStyleStepProps) {
     setOrderStyleData({ ...orderStyleData, size: Number(e.target.value) });
   };
 
+  const getTextColorOption = (e: ChangeEvent<HTMLInputElement>) => {
+    setOrderStyleData({ ...orderStyleData, textColor: e.target.value });
+  };
+
+  const getBorderColorOption = (e: ChangeEvent<HTMLInputElement>) => {
+    setOrderStyleData({ ...orderStyleData, borderColor: e.target.value });
+  };
+
+  const getBackgroundColorOption = (e: ChangeEvent<HTMLInputElement>) => {
+    setOrderStyleData({ ...orderStyleData, backgroundColor: e.target.value });
+  };
+
+  const getShadowColorOption = (e: ChangeEvent<HTMLInputElement>) => {
+    setOrderStyleData({ ...orderStyleData, shadowColor: e.target.value });
+  };
+
   return (
     <>
       <StepPageLayout
@@ -34,6 +50,10 @@ export default function Step1(props: OrderStyleStepProps) {
             </option>
           ))}
         </select>
+        <input type="color" name="textColor" onChange={getTextColorOption} />
+        <input type="color" name="borderColor" onChange={getBorderColorOption} />
+        <input type="color" name="backgroundColor" onChange={getBackgroundColorOption} />
+        <input type="color" name="shadowColor" onChange={getShadowColorOption} />
       </StepPageLayout>
     </>
   );
