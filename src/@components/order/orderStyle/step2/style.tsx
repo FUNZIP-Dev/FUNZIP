@@ -27,3 +27,7 @@ export const MoodBox = styled.button`
 
   background-color: ${({ theme }) => theme.colors.gray1};
 `;
+
+export const MoodBoxWrapper = styled.section`
+  display: flex;
+`;
