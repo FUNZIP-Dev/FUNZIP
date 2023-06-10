@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { FONT } from "../../../../core/order/styleFonts";
+import { FONT, SIZE } from "../../../../core/order/styleFonts";
 import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
 
@@ -8,6 +8,10 @@ export default function Step1(props: OrderStyleStepProps) {
 
   const getFontOption = (e: ChangeEvent<HTMLSelectElement>) => {
     setOrderStyleData({ ...orderStyleData, font: e.target.value });
+  };
+
+  const getSizeOption = (e: ChangeEvent<HTMLSelectElement>) => {
+    setOrderStyleData({ ...orderStyleData, size: Number(e.target.value) });
   };
 
   return (
@@ -20,6 +24,13 @@ export default function Step1(props: OrderStyleStepProps) {
           {FONT?.map(({ id, fontFamily, fontName }) => (
             <option key={id} value={fontFamily}>
               {fontName}
+            </option>
+          ))}
+        </select>
+        <select name="size" onChange={getSizeOption}>
+          {SIZE?.map(({ id, size }) => (
+            <option key={id} value={size}>
+              {size}
             </option>
           ))}
         </select>
