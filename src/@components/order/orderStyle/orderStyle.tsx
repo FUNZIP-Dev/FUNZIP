@@ -18,7 +18,7 @@ export default function OrderStyle() {
   return (
     <>
       <SelectedOption />
-      <Step2 setOrderStyleData={setOrderStyleData} />
+      <Step2 orderStyleData={orderStyleData} setOrderStyleData={setOrderStyleData} />
     </>
   );
 }

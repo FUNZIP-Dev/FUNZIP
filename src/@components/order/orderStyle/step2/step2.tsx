@@ -3,11 +3,15 @@ import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps"
 import * as S from "./style";
 
 export default function Step2(props: OrderStyleStepProps) {
-  const { setOrderStyleData } = props;
+  const { orderStyleData, setOrderStyleData } = props;
 
   const handleSelectMood = (text: string) => {
     setOrderStyleData((prev) => ({ ...prev, mood: text }));
   };
+
+  const checkIsSelected=(text: string)=>{
+    return text====
+  }
 
   return (
     <>
