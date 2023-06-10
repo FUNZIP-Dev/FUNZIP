@@ -1,21 +1,21 @@
 import { styled } from "styled-components";
 
-export const Title = styled.h1`
-  margin-bottom: 15px;
+// export const Title = styled.h1`
+//   margin-bottom: 15px;
 
-  ${({ theme }) => theme.fonts.tutorial_head}
-`;
+//   ${({ theme }) => theme.fonts.tutorial_head}
+// `;
 
-export const Sub = styled.p`
-  color: ${({ theme }) => theme.colors.gray5};
-  ${({ theme }) => theme.fonts.option_content};
-`;
+// export const Sub = styled.p`
+//   color: ${({ theme }) => theme.colors.gray5};
+//   ${({ theme }) => theme.fonts.option_content};
+// `;
 
-export const Step2Wrapper = styled.header`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
+// export const Step2Wrapper = styled.header`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+// `;
 
 export const MoodBox = styled.button<{ $isSelected: boolean }>`
   width: 200px;
