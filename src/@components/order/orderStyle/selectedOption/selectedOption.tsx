@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
-import { USER } from "../../../core/user/user";
-import { selectOptions } from "../../../recoil/order/selectOptions";
-import { SelectOptionTypes } from "../orderOption/orderOption";
+import { USER } from "../../../../core/user/user";
+import { selectOptions } from "../../../../recoil/order/selectOptions";
+import { SelectOptionTypes } from "../../orderOption/orderOption";
 import * as S from "./style";
 
 export default function SelectedOption() {
