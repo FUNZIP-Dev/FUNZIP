@@ -1,5 +1,5 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { SketchPicker } from "react-color";
 import { BackgroundColorIc, BorderColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
 import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
@@ -11,6 +11,8 @@ import * as S from "./style";
 export default function Step1(props: OrderStyleStepProps) {
   const { orderStyleData, setOrderStyleData } = props;
   const [selectedColor, setSelectedColor] = useState<string>("");
+  const colorModalRef = useRef<HTMLDivElement>(null);
+  const [colorModalShow, setColorModalShow] = useState(false);
 
   const getFontOption = (e: ChangeEvent<HTMLSelectElement>) => {
     setOrderStyleData({ ...orderStyleData, font: e.target.value });
@@ -42,6 +44,7 @@ export default function Step1(props: OrderStyleStepProps) {
 
   const handleSelectColorStyle = (color: string) => {
     setSelectedColor(color);
+    setColorModalShow(true);
   };
 
   const showSelectColorStyle = (color: string) => {
@@ -121,6 +124,13 @@ export default function Step1(props: OrderStyleStepProps) {
     }
   };
 
+  const handleClickModalOutSide = (e: any) => {
+    console.log("djfkdjfkd");
+    if (colorModalRef.current === e.target) {
+      setColorModalShow(false);
+    }
+  };
+
   return (
     <>
       <StepPageLayout
@@ -149,9 +159,13 @@ export default function Step1(props: OrderStyleStepProps) {
           ))}
         </S.ColorBoxWrapper>
         {SELECT_COLOR.map(({ id, color }) => (
-          <div key={id}>
-            {checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}
-          </div>
+          <>
+            {colorModalShow && (
+              <div key={id} ref={colorModalRef} onClick={handleClickModalOutSide}>
+                {checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}
+              </div>
+            )}
+          </>
         ))}
       </StepPageLayout>
     </>
