@@ -1,4 +1,7 @@
+import "@toast-ui/editor/dist/toastui-editor.css";
 import { ChangeEvent } from "react";
+import { SketchPicker } from "react-color";
+import { COLOR_PALETTE } from "../../../../core/order/colorPicker";
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
 import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
@@ -14,9 +17,11 @@ export default function Step1(props: OrderStyleStepProps) {
     setOrderStyleData({ ...orderStyleData, size: Number(e.target.value) });
   };
 
-  const getTextColorOption = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderStyleData({ ...orderStyleData, textColor: e.target.value });
+  const getTextColorOption = (color: any) => {
+    setOrderStyleData({ ...orderStyleData, textColor: color.hex });
   };
+
+  //   console.log(orderStyleData);
 
   const getBorderColorOption = (e: ChangeEvent<HTMLInputElement>) => {
     setOrderStyleData({ ...orderStyleData, borderColor: e.target.value });
@@ -50,6 +55,12 @@ export default function Step1(props: OrderStyleStepProps) {
             </option>
           ))}
         </select>
+        <SketchPicker
+          color={orderStyleData.textColor}
+          onChangeComplete={getTextColorOption}
+          presetColors={COLOR_PALETTE}
+          width="300px"
+        />
         <input type="color" name="textColor" onChange={getTextColorOption} />
         <input type="color" name="borderColor" onChange={getBorderColorOption} />
         <input type="color" name="backgroundColor" onChange={getBackgroundColorOption} />
