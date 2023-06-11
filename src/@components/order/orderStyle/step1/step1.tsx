@@ -90,13 +90,32 @@ export default function Step1(props: OrderStyleStepProps) {
   const showSelectColorBox = (color: string) => {
     switch (color) {
       case "textColor":
-        return <TextColorIc />;
+        return (
+          <>
+            <TextColorIc />
+            <S.ColorPreview color={orderStyleData.textColor} />
+          </>
+        );
       case "borderColor":
-        return <BorderColorIc />;
+        return (
+          <>
+            <BorderColorIc /> <S.ColorPreview color={orderStyleData.borderColor} />
+          </>
+        );
       case "backgroundColor":
-        return <BackgroundColorIc />;
+        return (
+          <>
+            <BackgroundColorIc />
+            <S.ColorPreview color={orderStyleData.backgroundColor} />
+          </>
+        );
       case "shadowColor":
-        return <ShadowColorIc />;
+        return (
+          <>
+            <ShadowColorIc />
+            <S.ColorPreview color={orderStyleData.shadowColor} />
+          </>
+        );
       default:
         return;
     }
@@ -122,11 +141,17 @@ export default function Step1(props: OrderStyleStepProps) {
             </option>
           ))}
         </select>
+        <S.ColorBoxWrapper>
+          {SELECT_COLOR.map(({ id, color }) => (
+            <S.ColorBox key={id} onClick={() => handleSelectColorStyle(color)}>
+              {showSelectColorBox(color)}
+            </S.ColorBox>
+          ))}
+        </S.ColorBoxWrapper>
         {SELECT_COLOR.map(({ id, color }) => (
-          <S.ColorBox onClick={() => handleSelectColorStyle(color)}>{showSelectColorBox(color)}</S.ColorBox>
-        ))}
-        {SELECT_COLOR.map(({ id, color }) => (
-          <>{checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}</>
+          <div key={id}>
+            {checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}
+          </div>
         ))}
       </StepPageLayout>
     </>

@@ -9,10 +9,10 @@ export default function OrderStyle() {
   const [orderStyleData, setOrderStyleData] = useState<orderStyleDataType>({
     font: "",
     size: 0,
-    textColor: "",
-    borderColor: "",
-    backgroundColor: "",
-    shadowColor: "",
+    textColor: "#000000",
+    borderColor: "#000000",
+    backgroundColor: "#000000",
+    shadowColor: "#000000",
     mood: "",
     link: "",
   });
