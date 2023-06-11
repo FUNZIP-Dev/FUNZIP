@@ -1,13 +1,16 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { SketchPicker } from "react-color";
-import { COLOR_PALETTE } from "../../../../core/order/colorPicker";
+import { BackgroundColorIc, BorderColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
+import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
 import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
+import * as S from "./style";
 
 export default function Step1(props: OrderStyleStepProps) {
   const { orderStyleData, setOrderStyleData } = props;
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
   const getFontOption = (e: ChangeEvent<HTMLSelectElement>) => {
     setOrderStyleData({ ...orderStyleData, font: e.target.value });
@@ -21,18 +24,82 @@ export default function Step1(props: OrderStyleStepProps) {
     setOrderStyleData({ ...orderStyleData, textColor: color.hex });
   };
 
-  //   console.log(orderStyleData);
-
-  const getBorderColorOption = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderStyleData({ ...orderStyleData, borderColor: e.target.value });
+  const getBorderColorOption = (color: any) => {
+    setOrderStyleData({ ...orderStyleData, borderColor: color.hex });
   };
 
-  const getBackgroundColorOption = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderStyleData({ ...orderStyleData, backgroundColor: e.target.value });
+  const getBackgroundColorOption = (color: any) => {
+    setOrderStyleData({ ...orderStyleData, backgroundColor: color.hex });
   };
 
-  const getShadowColorOption = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderStyleData({ ...orderStyleData, shadowColor: e.target.value });
+  const getShadowColorOption = (color: any) => {
+    setOrderStyleData({ ...orderStyleData, shadowColor: color.hex });
+  };
+
+  const checkIsSelected = (color: string) => {
+    return color === selectedColor;
+  };
+
+  const handleSelectColorStyle = (color: string) => {
+    setSelectedColor(color);
+  };
+
+  const showSelectColorStyle = (color: string) => {
+    switch (color) {
+      case "textColor":
+        return (
+          <SketchPicker
+            color={orderStyleData.textColor}
+            onChangeComplete={getTextColorOption}
+            presetColors={COLOR_PALETTE}
+            width="300px"
+          />
+        );
+      case "borderColor":
+        return (
+          <SketchPicker
+            color={orderStyleData.borderColor}
+            onChangeComplete={getBorderColorOption}
+            presetColors={COLOR_PALETTE}
+            width="300px"
+          />
+        );
+      case "backgroundColor":
+        return (
+          <SketchPicker
+            color={orderStyleData.backgroundColor}
+            onChangeComplete={getBackgroundColorOption}
+            presetColors={COLOR_PALETTE}
+            width="300px"
+          />
+        );
+      case "shadowColor":
+        return (
+          <SketchPicker
+            color={orderStyleData.shadowColor}
+            onChangeComplete={getShadowColorOption}
+            presetColors={COLOR_PALETTE}
+            width="300px"
+          />
+        );
+      default:
+        return;
+    }
+  };
+
+  const showSelectColorBox = (color: string) => {
+    switch (color) {
+      case "textColor":
+        return <TextColorIc />;
+      case "borderColor":
+        return <BorderColorIc />;
+      case "backgroundColor":
+        return <BackgroundColorIc />;
+      case "shadowColor":
+        return <ShadowColorIc />;
+      default:
+        return;
+    }
   };
 
   return (
@@ -55,16 +122,12 @@ export default function Step1(props: OrderStyleStepProps) {
             </option>
           ))}
         </select>
-        <SketchPicker
-          color={orderStyleData.textColor}
-          onChangeComplete={getTextColorOption}
-          presetColors={COLOR_PALETTE}
-          width="300px"
-        />
-        <input type="color" name="textColor" onChange={getTextColorOption} />
-        <input type="color" name="borderColor" onChange={getBorderColorOption} />
-        <input type="color" name="backgroundColor" onChange={getBackgroundColorOption} />
-        <input type="color" name="shadowColor" onChange={getShadowColorOption} />
+        {SELECT_COLOR.map(({ id, color }) => (
+          <S.ColorBox onClick={() => handleSelectColorStyle(color)}>{showSelectColorBox(color)}</S.ColorBox>
+        ))}
+        {SELECT_COLOR.map(({ id, color }) => (
+          <>{checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}</>
+        ))}
       </StepPageLayout>
     </>
   );

@@ -22,7 +22,6 @@ export const COLOR_PALETTE: string[] = [
   "#BADC94",
   "#EBF29B",
   "#F8DA85",
-  "#F8DA85",
   "#F1A984",
   "#F09286",
   "#DE789D",
@@ -40,4 +39,16 @@ export const COLOR_PALETTE: string[] = [
   "#D5E1FB",
   "#D2EFFD",
   "#FFFFFF",
+];
+
+interface selectColorType {
+  id: number;
+  color: string;
+}
+
+export const SELECT_COLOR: selectColorType[] = [
+  { id: 1, color: "textColor" },
+  { id: 2, color: "borderColor" },
+  { id: 3, color: "backgroundColor" },
+  { id: 4, color: "shadowColor" },
 ];
