@@ -61,7 +61,7 @@ export default function OrderOption() {
       <S.Title>기본 옵션</S.Title>
       <S.BoxWrapper>
         {BASIC_OPTIONS.map(({ id, title, content }) => (
-          <S.Box key={id} onClick={() => handleSelectBasic(title)} isClick={checkSelectBasic(title)}>
+          <S.Box key={id} onClick={() => handleSelectBasic(title)} $isClick={checkSelectBasic(title)}>
             {checkSelectBasic(title) ? <OrderOptionCheckActiveIc /> : <OrderOptionCheckIc />}
             <S.TextWrapper>
               <S.SubTitle>{title}</S.SubTitle>
@@ -73,7 +73,7 @@ export default function OrderOption() {
       <S.Title>BGM & SFX</S.Title>
       <S.BoxWrapper>
         {PLUS_OPTIONS.map(({ id, title, content }) => (
-          <S.Box key={id} onClick={() => handleSelectPlus(title)} isClick={checkSelectPlus(title)}>
+          <S.Box key={id} onClick={() => handleSelectPlus(title)} $isClick={checkSelectPlus(title)}>
             {checkSelectPlus(title) ? <OrderOptionCheckActiveIc /> : <OrderOptionCheckIc />}
             <S.TextWrapper>
               <S.SubTitle>{title}</S.SubTitle>
@@ -85,7 +85,7 @@ export default function OrderOption() {
       <S.Title>원본 영상 촬영캠</S.Title>
       <S.BoxWrapper>
         {CAM_OPTIONS.map(({ id, title, content }) => (
-          <S.Box key={id} onClick={() => handleSelectCam(title)} isClick={checkSelectCam(title)}>
+          <S.Box key={id} onClick={() => handleSelectCam(title)} $isClick={checkSelectCam(title)}>
             {checkSelectCam(title) ? <OrderOptionCheckActiveIc /> : <OrderOptionCheckIc />}
             <S.TextWrapper>
               <S.SubTitle>{title}</S.SubTitle>

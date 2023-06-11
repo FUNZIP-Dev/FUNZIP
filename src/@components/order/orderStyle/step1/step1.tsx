@@ -159,13 +159,13 @@ export default function Step1(props: OrderStyleStepProps) {
           ))}
         </S.ColorBoxWrapper>
         {SELECT_COLOR.map(({ id, color }) => (
-          <>
+          <section key={id}>
             {colorModalShow && (
-              <div key={id} ref={colorModalRef} onClick={handleClickModalOutSide}>
+              <div ref={colorModalRef} onClick={handleClickModalOutSide}>
                 {checkIsSelected(color) && <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>}
               </div>
             )}
-          </>
+          </section>
         ))}
       </StepPageLayout>
     </>

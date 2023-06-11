@@ -20,11 +20,11 @@ export default function OrderCategory() {
         {CATEGORY_LIST.map(({ id, text, size, marginLeft, marginTop }) => (
           <S.Circle
             key={id}
-            size={size}
-            marginLeft={marginLeft}
-            marginTop={marginTop}
+            $size={size}
+            $marginLeft={marginLeft}
+            $marginTop={marginTop}
             onClick={() => handleSelectCategory(id, text)}
-            isClick={checkIsClickId(id)}>
+            $isClick={checkIsClickId(id)}>
             {text}
           </S.Circle>
         ))}
