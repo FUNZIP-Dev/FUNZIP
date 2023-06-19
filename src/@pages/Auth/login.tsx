@@ -18,6 +18,9 @@ export default function Login() {
   const [confirmPwd, setConfirmPwd] = useState("");
   const [nickname, setNickname] = useState("");
   const [phone, setPhone] = useState("");
+  const [pwdStrengthMessage, setPwdStrengthMessage] = useState("");
+  const [pwdMatchMessage, setPwdMatchMessage] = useState("");
+  const [isPhoneFormatValid, setPhoneFormatValid] = useState(true);
 
   // 이메일 입력
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +31,32 @@ export default function Login() {
   // 비밀번호 입력
   const handlePwd = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setPwd(e.target.value);
+    const password = e.target.value;
+    setPwd(password);
+  
+    // Password strength validation
+    const hasMinLength = password.length >= 8;
+    const hasValidCombination = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()]).{2,}$/.test(password);
+    if (hasMinLength && hasValidCombination) {
+      setPwdStrengthMessage("✓ 8자 이상 입력\n\n✓ 숫자, 영문, 특수문자 포함하여, 2개 이상 조합");
+    } else {
+      setPwdStrengthMessage("︎✓ 8자 이상 입력\n✓ 숫자, 영문, 특수문자 포함하여, 2개 이상 조합");
+    }
   };
 
+
     // 비밀번호 확인 입력
-    const handleConfirmPwd = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleConfirmPwd = (e: React.ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
-      setConfirmPwd(e.target.value);
+      const confirmedPassword = e.target.value;
+      setConfirmPwd(confirmedPassword);
+    
+      // Password confirmation validation
+      if (confirmedPassword !== pwd) {
+        setPwdMatchMessage("동일하지 않은 비밀번호입니다 :(");
+      } else {
+        setPwdMatchMessage("확인 완료되었습니다 :)");
+      }
     };
 
  // 닉네임 입력
@@ -43,14 +65,37 @@ export default function Login() {
     setNickname(e.target.value);
   };
 
-    // 휴대폰 번호 입력
-    const handlePhone = (e:React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      setPhone(e.target.value);
-    };
-  
+ // 휴대폰 번호 입력
+ const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+  e.preventDefault();
+  const phoneNumber = e.target.value;
+  const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+  setPhone(formattedPhoneNumber);
+  setPhoneFormatValid(checkPhoneFormat(formattedPhoneNumber));
+};
 
+// Helper function to format phone number
+const formatPhoneNumber = (phoneNumber: string) => {
+  // Remove any non-digit characters from the input
+  const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
 
+  // Split the phone number into groups of 4 digits
+  const groups = cleanedPhoneNumber.match(/^(\d{3})(\d{4})(\d{4})$/);
+
+  if (groups) {
+    // Format the phone number as "000-0000-0000"
+    const formattedPhoneNumber = `${groups[1]}-${groups[2]}-${groups[3]}`;
+    return formattedPhoneNumber;
+  }
+
+  // Return the original phone number if it doesn't match the format
+  return phoneNumber;
+};
+
+// Helper function to check phone number format validity
+const checkPhoneFormat = (phoneNumber: string) => {
+  return /^\d{3}-\d{4}-\d{4}$/.test(phoneNumber);
+};
 
 
   // 회원가입, 로그인 페이지 전환
@@ -109,6 +154,8 @@ export default function Login() {
               <>
               <S.AuthText>회원가입</S.AuthText>
               <SignUpForm
+                pwdStrengthMessage={pwdStrengthMessage}
+                pwdMatchMessage={pwdMatchMessage}
                 handleEmail={handleEmail}
                 handlePwd={handlePwd}
                 handleConfirmPwd={handleConfirmPwd}
@@ -119,6 +166,7 @@ export default function Login() {
                 confirmPwd={confirmPwd}
                 nickname={nickname}
                 phone={phone}
+                isPhoneFormatValid={isPhoneFormatValid}
               />
               </>
               
