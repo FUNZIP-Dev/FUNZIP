@@ -25,3 +25,22 @@ export const AuthInput = styled.input`
     
 }
 `
+export const SignUpInputTitleText = styled.h2`
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 35px;
+`
+
+export const SignUpInput = styled.input`
+    border: none;
+    border-bottom: 2px solid #AEAFB9;
+    outline: none;
+    padding: 5px;
+`;
+
+export const SignUpInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+`
+

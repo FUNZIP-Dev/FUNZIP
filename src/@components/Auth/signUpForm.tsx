@@ -8,15 +8,34 @@ export default function SignUpForm(props: any) {
   return (
     <>
     <S.AuthInputWrapper>
-        <S.AuthInput
-            required
-            style={{ border: "1px solid black" }}
-            placeholder="이메일"
-            type="email"
-            name="email"
-            onChange={handleEmail}
-            value={email}
-        />
+        
+        {/* 이메일 */}
+        <S.SignUpInputWrapper>
+            <S.SignUpInputTitleText>이메일</S.SignUpInputTitleText>
+            <S.SignUpInput
+                    required
+                    placeholder="이메일을 입력하세요."
+                    type="email"
+                    name="email"
+                    onChange={handleEmail}
+                    value={email}
+            />
+        </S.SignUpInputWrapper>
+
+
+        {/* 비밀번호 */}
+        <S.SignUpInputWrapper>
+            <S.SignUpInputTitleText>이메일</S.SignUpInputTitleText>
+            <S.SignUpInput
+                    required
+                    placeholder="이메일을 입력하세요."
+                    type="email"
+                    name="email"
+                    onChange={handleEmail}
+                    value={email}
+            />
+        </S.SignUpInputWrapper>
+
         <S.AuthInput
             required
             style={{ border: "1px solid black" }}
