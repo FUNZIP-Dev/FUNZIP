@@ -5,6 +5,7 @@ import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "../../@components/Auth/loginForm";
 
 export default function Login() {
 
@@ -80,10 +81,27 @@ export default function Login() {
             </>
           ):
           <S.AuthForm onSubmit={handleSubmit}>
-          <S.AuthInputWrapper>
-            <S.AuthInput required style={{border:"1px solid black"}} placeholder="이메일" type="email" name="email" onChange={handleEmail} value={email} />
-            <S.AuthInput required style={{border:"1px solid black"}} placeholder="비밀번호" type="password" name="pwd" onChange={handlePwd} value={pwd} />
-          </S.AuthInputWrapper>
+
+          
+          {
+            isCreate ?
+            (
+              // 회원 가입 컴포넌트 
+              <S.AuthText> 회원가입 </S.AuthText>
+            )
+            :
+            (
+              <LoginForm
+                handleEmail={handleEmail}
+                handlePwd={handlePwd}
+                email={email}
+                pwd={pwd}
+              />
+            )
+          }
+          
+          
+
           <S.AuthButtonWrapper>
             <S.AuthButton type="submit"> {isCreate ? "회원가입" : "로그인"}</S.AuthButton>
             <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>{isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}</S.AuthSignUpButton>
