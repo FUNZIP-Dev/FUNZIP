@@ -18,7 +18,7 @@ export default function Login() {
   const [confirmPwd, setConfirmPwd] = useState("");
   const [nickname, setNickname] = useState("");
   const [phone, setPhone] = useState("");
-  const [pwdStrengthMessage, setPwdStrengthMessage] = useState("");
+  const [passwordIsVaild, setpasswordIsVaild] = useState(false);
   const [pwdMatchMessage, setPwdMatchMessage] = useState("");
   const [isPhoneFormatValid, setPhoneFormatValid] = useState(true);
 
@@ -38,9 +38,9 @@ export default function Login() {
     const hasMinLength = password.length >= 8;
     const hasValidCombination = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()]).{2,}$/.test(password);
     if (hasMinLength && hasValidCombination) {
-      setPwdStrengthMessage("✓ 8자 이상 입력\n\n✓ 숫자, 영문, 특수문자 포함하여, 2개 이상 조합");
+      setpasswordIsVaild(true);
     } else {
-      setPwdStrengthMessage("︎✓ 8자 이상 입력\n✓ 숫자, 영문, 특수문자 포함하여, 2개 이상 조합");
+      setpasswordIsVaild(false);
     }
   };
 
@@ -154,7 +154,7 @@ const checkPhoneFormat = (phoneNumber: string) => {
               <>
               <S.AuthText>회원가입</S.AuthText>
               <SignUpForm
-                pwdStrengthMessage={pwdStrengthMessage}
+                passwordIsVaild={passwordIsVaild}
                 pwdMatchMessage={pwdMatchMessage}
                 handleEmail={handleEmail}
                 handlePwd={handlePwd}

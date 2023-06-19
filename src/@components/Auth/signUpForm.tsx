@@ -14,7 +14,7 @@ interface SignUpFormProps {
     nickname: string;
     phone: string;
     pwdMatchMessage: string;
-    pwdStrengthMessage : string;
+    passwordIsVaild : boolean;
     isPhoneFormatValid: boolean;
 }
 
@@ -29,9 +29,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     confirmPwd,
     nickname,
     phone,
-    pwdMatchMessage,
-    pwdStrengthMessage,
-    isPhoneFormatValid
+    isPhoneFormatValid,
+    passwordIsVaild
 }) => {
   return (
     <>
@@ -62,7 +61,16 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             value={pwd}
             isValid={true}
           />
-            <S.MessageText >{pwdStrengthMessage}</S.MessageText>
+            {
+                pwd ? 
+                (
+                    <S.MessageText isValid={passwordIsVaild} >︎✓ 8자 이상 입력
+                    <br/>✓ 숫자, 영문, 특수문자 포함하여, 2개 이상 조합 </S.MessageText>    
+                ) : ""
+            }
+
+            
+            {/* <S.MessageText >{pwdStrengthMessage}</S.MessageText> */}
         </S.SignUpInputWrapper>
 
 
@@ -113,7 +121,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                 value={phone}
                 isValid={isPhoneFormatValid}
                 />
-        {!isPhoneFormatValid && <S.MessageText>000-0000-0000 형식으로 입력해주세요!</S.MessageText>}
+        {phone ? <S.MessageText isValid={isPhoneFormatValid}>000-0000-0000 형식으로 입력해주세요!</S.MessageText> : ""}
 
         </S.SignUpInputWrapper>
     
