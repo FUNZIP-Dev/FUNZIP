@@ -10,9 +10,10 @@ export const AuthWrapper = styled.div`
 `;
 
 export const AuthText = styled.div`
+    text-align: center;
     font-size: 36px;
     font-weight: 700;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 `
 export const AuthForm = styled.form`
     display: flex;

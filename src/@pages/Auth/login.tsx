@@ -6,15 +6,18 @@ import { AuthContext } from "../../context/authContext";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../@components/Auth/loginForm";
+import SignUpForm from "../../@components/Auth/signUpForm";
 
 export default function Login() {
 
   const navigate = useNavigate();
-
   const userInfo = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [isCreate, setIsCreate] = useState(false);
+  const [confirmPwd, setConfirmPwd] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [phone, setPhone] = useState("");
 
   // 이메일 입력
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +30,28 @@ export default function Login() {
     e.preventDefault();
     setPwd(e.target.value);
   };
+
+    // 비밀번호 확인 입력
+    const handleConfirmPwd = (e:React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setConfirmPwd(e.target.value);
+    };
+
+ // 닉네임 입력
+  const handleNickname = (e:React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setNickname(e.target.value);
+  };
+
+    // 휴대폰 번호 입력
+    const handlePhone = (e:React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setPhone(e.target.value);
+    };
+  
+
+
+
 
   // 회원가입, 로그인 페이지 전환
   const handleClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -68,48 +93,53 @@ export default function Login() {
 
 
 
+  
   return (
     <>
       <Nav />
       <S.AuthWrapper>
-        {
-          userInfo ?
-          (
-            <>
-              <S.AuthText> {userInfo.email}님 환영합니다. </S.AuthText>
-              <S.AuthButton onClick={handleLogout}> 로그아웃 </S.AuthButton>
-            </>
-          ):
+        {userInfo ? (
+          <>
+            <S.AuthText> {userInfo.email}님 환영합니다. </S.AuthText>
+            <S.AuthButton onClick={handleLogout}> 로그아웃 </S.AuthButton>
+          </>
+        ) : (
           <S.AuthForm onSubmit={handleSubmit}>
-
-          
-          {
-            isCreate ?
-            (
-              // 회원 가입 컴포넌트 
-              <S.AuthText> 회원가입 </S.AuthText>
-            )
-            :
-            (
+            {isCreate ? (
+              <>
+              <S.AuthText>회원가입</S.AuthText>
+              <SignUpForm
+                handleEmail={handleEmail}
+                handlePwd={handlePwd}
+                handleConfirmPwd={handleConfirmPwd}
+                handleNickname={handleNickname}
+                handlePhone={handlePhone}
+                email={email}
+                pwd={pwd}
+                confirmPwd={confirmPwd}
+                nickname={nickname}
+                phone={phone}
+              />
+              </>
+              
+            ) : (
               <LoginForm
                 handleEmail={handleEmail}
                 handlePwd={handlePwd}
                 email={email}
                 pwd={pwd}
               />
-            )
-          }
-          
-          
-
-          <S.AuthButtonWrapper>
-            <S.AuthButton type="submit"> {isCreate ? "회원가입" : "로그인"}</S.AuthButton>
-            <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>{isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}</S.AuthSignUpButton>
-            
-          </S.AuthButtonWrapper>
-        </S.AuthForm>
-        }
-
+            )}
+            <S.AuthButtonWrapper>
+              <S.AuthButton type="submit">
+                {isCreate ? "회원가입" : "로그인"}
+              </S.AuthButton>
+              <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>
+                {isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}
+              </S.AuthSignUpButton>
+            </S.AuthButtonWrapper>
+          </S.AuthForm>
+        )}
       </S.AuthWrapper>
     </>
   );

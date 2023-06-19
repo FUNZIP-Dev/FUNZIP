@@ -13,9 +13,8 @@ export default function App() {
     const [loading, setLoading] = useState(true); // State variable for loading status
   
     useEffect(() => {
-      if (userInfo) {
         setLoading(false); // Set loading to false once userInfo is available
-      }
+
     }, [userInfo]);
   
 
