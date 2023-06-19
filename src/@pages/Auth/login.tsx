@@ -103,7 +103,11 @@ const checkPhoneFormat = (phoneNumber: string) => {
   // 회원가입, 로그인 페이지 전환
   const handleClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     setIsCreate(pre => !pre);
+
+      // Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // 회원가입, 로그인 기능
