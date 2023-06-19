@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../@components/Auth/loginForm";
 import SignUpForm from "../../@components/Auth/signUpForm";
+import {GoogleIcon, LoginLogo} from "../../assets";
+import LoginTitle from "../../@components/Auth/loginTitle";
 
 export default function Login() {
 
@@ -171,12 +173,16 @@ const checkPhoneFormat = (phoneNumber: string) => {
               </>
               
             ) : (
-              <LoginForm
-                handleEmail={handleEmail}
-                handlePwd={handlePwd}
-                email={email}
-                pwd={pwd}
-              />
+              <>
+                <LoginTitle/>
+                <LoginForm
+                  handleEmail={handleEmail}
+                  handlePwd={handlePwd}
+                  email={email}
+                  pwd={pwd}
+                />
+              </>
+
             )}
             <S.AuthButtonWrapper>
               <S.AuthButton type="submit">
@@ -185,6 +191,13 @@ const checkPhoneFormat = (phoneNumber: string) => {
               <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>
                 {isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}
               </S.AuthSignUpButton>
+              <S.AuthSocialButton>
+                <GoogleIcon/>
+                <S.AuthSocialButtonText style={{margin:"0 auto"}}>
+                  Google 로그인
+                </S.AuthSocialButtonText>
+              </S.AuthSocialButton>
+              {/* 구글 로그인 */}
             </S.AuthButtonWrapper>
           </S.AuthForm>
         )}

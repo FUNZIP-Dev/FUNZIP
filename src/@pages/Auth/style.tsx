@@ -7,6 +7,7 @@ export const AuthWrapper = styled.div`
   justify-content: center;
   flex-grow: 1;
   padding-top: 100px;
+  margin-bottom: 100px;
 `;
 
 export const AuthText = styled.div`
@@ -18,10 +19,8 @@ export const AuthText = styled.div`
 export const AuthForm = styled.form`
     display: flex;
     flex-direction: column;
-    
-
-    
 `
+
 
 export const AuthInputWrapper = styled.div`
     display: flex;
@@ -52,6 +51,7 @@ export const AuthButtonWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 `
 export const AuthButton = styled.button`
     display: flex;
@@ -76,10 +76,28 @@ export const AuthSignUpButton = styled.button`
     /* Orange */
     padding: 30px;
     justify-content: center; /* 수평 가운데 정렬 */
-    align-items: cente    r; /* 수직 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
     width: 562px;
     height: 75px;
     font-weight: 700;
     font-size: 24px;
     color : #606067;
+`
+
+export const AuthSocialButton = styled.button`
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0px 12px 0px 24px;
+    width: 398px;
+    height: 64px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 24px;
+`
+
+export const AuthSocialButtonText = styled.p`
+    margin : 0 auto;
 `
