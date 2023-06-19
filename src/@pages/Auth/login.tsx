@@ -4,37 +4,44 @@ import * as S from "./style";
 import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const userInfo = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [isCreate, setIsCreate] = useState(false);
 
+  // 이메일 입력
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setEmail(e.target.value);
   };
 
+  // 비밀번호 입력
   const handlePwd = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setPwd(e.target.value);
   };
 
+  // 회원가입, 로그인 페이지 전환
   const handleClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsCreate(pre => !pre);
   };
 
+  // 회원가입, 로그인 기능
   const handleSubmit = (e: React.FormEvent) => {
-    console.log("submit");
     e.preventDefault();
 
     // 회원 가입일때
     if (isCreate) {
       createUserWithEmailAndPassword(authService, email, pwd)
         .then(() => {
-          alert("회원가입 성공");
+          alert("회원가입 하셨습니다.");
         })
         .catch(e => {
           alert(e);
@@ -42,7 +49,7 @@ export default function Login() {
     }else{
       signInWithEmailAndPassword(authService, email, pwd)
       .then(() => {
-        alert("로그인 성공");
+        alert("로그인 하셨습니다.");
       })
       .catch(e => {
         alert(e);
@@ -53,6 +60,12 @@ export default function Login() {
   const handleLogout = () => {
     signOut(authService);
   };
+
+  if (userInfo) {
+    navigate("/mypage"); // Redirect to "mypage" route if userInfo exists
+  }
+
+
 
   return (
     <>
