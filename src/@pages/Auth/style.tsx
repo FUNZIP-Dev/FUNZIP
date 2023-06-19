@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 
+
+
+
 export const AuthWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,9 +44,10 @@ export const AuthInput = styled.input`
     background: #F8F8FA;
     border-radius: 24px;
     &:focus {
-    border: 2px solid #FF5D47;
+    border: 2px solid #FF5D47;   
+    }
+
     
-}
 `
 
 export const AuthButtonWrapper = styled.div`

@@ -9,21 +9,22 @@ export default function LoginForm(props: any) {
     <S.AuthInputWrapper>
       <S.AuthInput
         required
-        style={{ border: "1px solid black" }}
-        placeholder="이메일"
+        placeholder="이메일을 입력하세요."
         type="email"
         name="email"
         onChange={handleEmail}
         value={email}
+        isValid={email ? true : false} // <-- Update prop name to "isValid"
       />
+
       <S.AuthInput
         required
-        style={{ border: "1px solid black" }}
-        placeholder="비밀번호"
+        placeholder="비밀번호를 입력하세요."
         type="password"
         name="pwd"
         onChange={handlePwd}
         value={pwd}
+        isValid={pwd ? true : false} // <-- Update prop name to "isValid"
       />
     </S.AuthInputWrapper>
   );

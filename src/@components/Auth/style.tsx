@@ -1,6 +1,10 @@
 
 import styled from 'styled-components';
 
+interface AuthInputProps {
+    isValid: boolean;
+}
+
 /* ------- 회원가입 인풋 인터페이스------- */
 interface SignUpInputProps {
   isValid: boolean;
@@ -17,24 +21,28 @@ export const AuthInputWrapper = styled.div`
     margin-bottom: 30px;
 `
 
-export const AuthInput = styled.input`
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    width: 557px;
-    height: 80px;
-    font-weight: 700;
-    padding-left: 31px;
-    font-size: 18px;
-    color: #FF5D47;
-    border-radius: 24px;
-    background: #F8F8FA;
-    border-radius: 24px;
-    &:focus {
-    border: 2px solid #FF5D47;
-    
-}
-`
+export const AuthInput = styled.input<AuthInputProps>`
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 557px;
+  height: 80px;
+  font-weight: 500;
+  padding-left: 31px;
+  font-size: 18px;
+  color: #ff5d47;
+  border-radius: 24px;
+  background: #f8f8fa;
+  border: none;
+  outline: none;
+  transition: border 0.3s;
+
+  &:focus,
+  &:not(:placeholder-shown) {
+    border: 2px solid #ff5d47;
+  }
+`;
+
 
 /* ------- 회원 가입 컴포넌트 스타일 ------- */
 export const SignUpInputTitleText = styled.h2`
