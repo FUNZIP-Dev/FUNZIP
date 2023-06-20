@@ -44,7 +44,7 @@ export default function MyPage() {
   const handleLogout = () => {
     signOut(authService)
       .then(() => {
-        alert('로그아웃 성공');
+        navigate("/login");
       })
       .catch(error => {
         console.log(error);
@@ -73,6 +73,7 @@ export default function MyPage() {
       };
       fetchUserProfile();
     }else {
+      navigate("/login");
       setLoading(false); // Set loading to false if userInfo is null
     }
   }, [userInfo]);
