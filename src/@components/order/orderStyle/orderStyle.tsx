@@ -8,7 +8,7 @@ import Step3 from "./step3/step3";
 
 export default function OrderStyle() {
   const [orderStyleData, setOrderStyleData] = useState<orderStyleDataType>({
-    font: "",
+    font: "Pretendard Medium",
     size: 0,
     textColor: "#000000",
     borderColor: "#000000",

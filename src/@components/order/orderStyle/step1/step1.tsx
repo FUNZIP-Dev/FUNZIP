@@ -1,5 +1,5 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { SketchPicker } from "react-color";
 import { BackgroundColorIc, BorderColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
 import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
@@ -13,11 +13,11 @@ export default function Step1(props: OrderStyleStepProps) {
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [colorModalShow, setColorModalShow] = useState(false);
 
-  const getFontOption = (e: ChangeEvent<HTMLSelectElement>) => {
-    setOrderStyleData({ ...orderStyleData, font: e.target.value });
+  const getFontOption = (fontFmaily: string) => {
+    setOrderStyleData({ ...orderStyleData, font: fontFmaily });
   };
 
-  const getSizeOption = (e: ChangeEvent<HTMLSelectElement>) => {
+  const getSizeOption = (e: any) => {
     setOrderStyleData({ ...orderStyleData, size: Number(e.target.value) });
   };
 
@@ -129,36 +129,52 @@ export default function Step1(props: OrderStyleStepProps) {
         num={1}
         title="자막 스타일을 직접 선택해주세요."
         sub="왼쪽 미리보기 화면에서 디자인을 확인하세요 :)">
-        <S.Select name="font" onChange={getFontOption}>
-          {FONT?.map(({ id, fontFamily, fontName }) => (
-            <option key={id} value={fontFamily}>
-              {fontName}
-            </option>
-          ))}
-        </S.Select>
-        <select name="size" onChange={getSizeOption}>
-          {SIZE?.map(({ id, size }) => (
-            <option key={id} value={size}>
-              {size}
-            </option>
-          ))}
-        </select>
-        <S.ColorBoxWrapper>
-          {SELECT_COLOR.map(({ id, color }) => (
-            <S.ColorBox key={id} onClick={() => handleSelectColorStyle(color)}>
-              {showSelectColorBox(color)}
-            </S.ColorBox>
-          ))}
-        </S.ColorBoxWrapper>
-        {SELECT_COLOR.map(({ id, color }) => (
-          <section key={id}>
-            <>
-              {checkIsSelected(color) && colorModalShow && (
-                <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>
-              )}
-            </>
-          </section>
-        ))}
+        <S.SelectBoxContainer>
+          <S.SelectBoxWrapper>
+            <S.SelectedBox isSelectFont={true}>
+              {orderStyleData.font}
+              <S.OrderStyleToggleIcon />
+            </S.SelectedBox>
+            <S.BoxWrapper isSelectFont={true}>
+              {FONT?.map(({ id, fontFamily, fontName }) => (
+                <S.Box key={id} onClick={() => getFontOption(fontFamily)} fontFamily={fontFamily}>
+                  {fontName}
+                </S.Box>
+              ))}
+            </S.BoxWrapper>
+          </S.SelectBoxWrapper>
+          <S.SelectBoxWrapper>
+            <S.SelectedBox isSelectFont={false}>
+              {orderStyleData.size}
+              <S.OrderStyleToggleIcon />
+            </S.SelectedBox>
+            <S.BoxWrapper isSelectFont={false}>
+              {SIZE?.map(({ id, size }) => (
+                <S.Box key={id} onClick={() => getSizeOption(size)} fontFamily="Pretendard">
+                  {size}
+                </S.Box>
+              ))}
+            </S.BoxWrapper>
+          </S.SelectBoxWrapper>
+          <S.SelectBoxWrapper>
+            <S.ColorBoxWrapper>
+              {SELECT_COLOR.map(({ id, color }) => (
+                <S.ColorBox key={id} onClick={() => handleSelectColorStyle(color)}>
+                  {showSelectColorBox(color)}
+                </S.ColorBox>
+              ))}
+            </S.ColorBoxWrapper>
+            {SELECT_COLOR.map(({ id, color }) => (
+              <section key={id}>
+                <>
+                  {checkIsSelected(color) && colorModalShow && (
+                    <S.SketchPickerWrapper>{showSelectColorStyle(color)}</S.SketchPickerWrapper>
+                  )}
+                </>
+              </section>
+            ))}
+          </S.SelectBoxWrapper>
+        </S.SelectBoxContainer>
       </StepPageLayout>
     </>
   );
