@@ -1,10 +1,14 @@
 import Nav from "../../@components/common/nav/nav";
+import * as S from "./style";
 import { authService } from "../../fbase";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { DocumentData, collection, doc, getDoc, getFirestore } from 'firebase/firestore';
+import MainLogo from "../../@components/myPage/mainLogo";
+import Loading from "../../@components/common/loading";
+import { MypageLogo } from "../../assets";
 
 export default function MyPage() {
   const userInfo = useContext(AuthContext);
@@ -24,9 +28,7 @@ export default function MyPage() {
       });
   };
 
-  if (!userInfo) {
-    navigate('/login'); // Redirect to "login" route if userInfo doesn't exist
-  }
+  
 
 /* 유저 정보 가져오기  */
   useEffect(() => {
@@ -60,15 +62,20 @@ export default function MyPage() {
     <>
       <Nav />
       {userInfo && userProfile ? (
-        <>
-          <div>{userProfile.displayName}님 환영합니다.</div>
+        <S.MypageWrapper>
+          <MainLogo />
+          <S.MypageProfileWrapper>
+            <S.MypageProfileName><strong style={{fontWeight:"700", fontSize:"28px"}}>{userProfile.displayName}</strong>&nbsp;님, 안녕하세요.</S.MypageProfileName>
+            <S.MypageLogoutText>로그아웃</S.MypageLogoutText>
+          </S.MypageProfileWrapper>
           <div>이메일: {userProfile.email}</div>
           <div>전화번호: {userProfile.phone}</div>
           <button onClick={handleLogout}>로그아웃</button>
-        </>
+        </S.MypageWrapper>
       ) : (
         <>
-          <div>로그인이 필요합니다.</div>
+          <Loading />
+          {/* <div>로그인이 필요합니다.</div> */}
         </>
       )}
     </>
