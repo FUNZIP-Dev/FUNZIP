@@ -5,6 +5,8 @@ export const MainLogoWrapper = styled.div`
     /* position: absolute; */
     width: 680px;
     height: 302px;
+    
+    margin: 0 auto;
     margin-bottom: 60px;
     margin-top: 30px;
     

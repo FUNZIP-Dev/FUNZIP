@@ -66,11 +66,13 @@ export default function MyPage() {
           <MainLogo />
           <S.MypageProfileWrapper>
             <S.MypageProfileName><strong style={{fontWeight:"700", fontSize:"28px"}}>{userProfile.displayName}</strong>&nbsp;님, 안녕하세요.</S.MypageProfileName>
-            <S.MypageLogoutText>로그아웃</S.MypageLogoutText>
+            <S.MypageLogoutText onClick={handleLogout}>로그아웃</S.MypageLogoutText>
           </S.MypageProfileWrapper>
-          <div>이메일: {userProfile.email}</div>
-          <div>전화번호: {userProfile.phone}</div>
-          <button onClick={handleLogout}>로그아웃</button>
+          <S.MypageProcessing>
+            {/* 편집 진행 중인 내역으로 서버에서 불러와서 체크해야함 */}
+            <S.MypageProcessingTitle>편집 진행 중인 내역이 없습니다 :(</S.MypageProcessingTitle>
+            <S.goOrderBtn>주문하러 가기</S.goOrderBtn>
+          </S.MypageProcessing>
         </S.MypageWrapper>
       ) : (
         <>
