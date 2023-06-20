@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { AuthContext } from "../../../context/authContext";
 import { useContext } from "react";
+import { ProfileDefaultIcon } from "../../../assets";
 
 export default function Nav() {
   const userInfo = useContext(AuthContext);
@@ -22,10 +23,11 @@ export default function Nav() {
       {
         userInfo ? (<>
       <S.ProfileImageWrapper onClick={() => handleMoveToPage("/mypage")}>
-        <S.ProfileImage
+      <ProfileDefaultIcon/>
+        {/* <S.ProfileImage
           src="https://item.kakaocdn.net/do/dbcd799aac800f6a680f1d2b04cee5688f324a0b9c48f77dbce3a43bd11ce785"
           alt="프로필 이미지"
-        />
+        /> */}
       </S.ProfileImageWrapper>
         </>):
         (
