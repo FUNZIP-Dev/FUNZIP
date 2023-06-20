@@ -15,7 +15,7 @@ export default function MyPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); // State variable for loading status
   const [userProfile, setUserProfile] = useState<DocumentData | null>(null); // State variable for user profile
-
+  const [isDoing, setIsDoing] = useState(false); // State variable for loading status
 
   // Logout function
   const handleLogout = () => {
@@ -54,6 +54,8 @@ export default function MyPage() {
     }
   }, [userInfo]);
 
+  // isDoing 체크하기
+
   if (loading) {
     return <div>404NOTFOUND...</div>;
   }
@@ -65,16 +67,52 @@ export default function MyPage() {
         <S.MypageWrapper>
           <MainLogo />
           <S.MypageProfileWrapper>
-            <S.MypageProfileName><strong style={{fontWeight:"700", fontSize:"28px"}}>{userProfile.displayName}</strong>&nbsp;님, 안녕하세요.</S.MypageProfileName>
+            <S.MypageProfileName onClick={()=>{
+              setIsDoing(!isDoing);
+            }}><strong style={{fontWeight:"700", fontSize:"28px"}}>{userProfile.displayName}</strong>&nbsp;님, 안녕하세요.</S.MypageProfileName>
             <S.MypageLogoutText onClick={handleLogout}>로그아웃</S.MypageLogoutText>
           </S.MypageProfileWrapper>
-          <S.MypageProcessingWrapper>
 
-              {/* 편집 진행 중인 내역으로 서버에서 불러와서 체크해야함 */}
-            <S.MypageProcessingBar></S.MypageProcessingBar>
-            <S.MypageProcessing>
-              <S.MypageProcessingTitle>편집 진행 중인 내역이 없습니다 :(</S.MypageProcessingTitle>
-              <S.goOrderBtn>주문하러 가기</S.goOrderBtn>
+          {/* 편집중일때와 아닐때 서로 다른 화면 뜨게 만들기 */}
+          
+          <S.MypageProcessingWrapper>
+          <S.MypageProcessingBar isDone={!isDoing}></S.MypageProcessingBar> 
+          <S.MypageProcessing isDone={!isDoing}>
+          {
+              isDoing ? (
+                <S.MypageProcessingContentContainer>
+                  <S.MypageProcessingTitle>
+                      <S.ProgressText isDone={!isDoing}>편집 진행 중</S.ProgressText>인 내역입니다 :)
+                  </S.MypageProcessingTitle>
+                  <S.MypageProcessingTitleWrapper>
+                    <S.MypageProcessingContentTitle>카테고리</S.MypageProcessingContentTitle>
+                    <S.MypageProcessingContentTitle>등록 일시</S.MypageProcessingContentTitle>
+                    <S.MypageProcessingContentTitle>결제 정보</S.MypageProcessingContentTitle>
+                  </S.MypageProcessingTitleWrapper>
+                  <S.MypageProcessingSeparator/>
+                    {/* 밑에 이제 map으로 진행상태 인 것들 나열 해야함 */}
+                  <S.MypageProcessingContentWrapper>
+                    <S.ProcessName>브이로그</S.ProcessName>
+                    <S.ProcessName>2023/01/01  23:00</S.ProcessName>
+                    <S.ProcessName>60,000 원</S.ProcessName>
+                  </S.MypageProcessingContentWrapper>
+
+                </S.MypageProcessingContentContainer>
+                // 진행중이라면
+                
+              ) : (
+                // 진행하는게 없다면
+                <>
+                    <S.MypageProcessingTitle>
+                      <S.ProgressText isDone={!isDoing}>편집 진행 중</S.ProgressText>인 내역이 없습니다 :(
+                    </S.MypageProcessingTitle>
+                
+                  <S.goOrderBtn>주문하러 가기</S.goOrderBtn>
+                </>
+              )
+          }
+          
+
             </S.MypageProcessing>
 
           </S.MypageProcessingWrapper>
