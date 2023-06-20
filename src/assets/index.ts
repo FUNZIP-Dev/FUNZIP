@@ -11,3 +11,6 @@ export { ReactComponent as OrderStepBlankIc } from "./icon/orderStepBlankIc.svg"
 export { ReactComponent as OrderSuccessBtnIc } from "./icon/orderSuccessBtnIc.svg";
 export { ReactComponent as OrderTutorialXIc } from "./icon/orderTutorialXIc.svg";
 export { ReactComponent as TutorialMainIc } from "./icon/tutorialMainIc.svg";
+export { ReactComponent as LoginLogo } from "./icon/loginLogo.svg";
+export { ReactComponent as GoogleIcon } from "./icon/googleIcon.svg";
+export { ReactComponent as ProfileDefaultIcon } from "./icon/profileDefaultIcon.svg";
