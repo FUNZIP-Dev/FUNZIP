@@ -129,13 +129,13 @@ export default function Step1(props: OrderStyleStepProps) {
         num={1}
         title="자막 스타일을 직접 선택해주세요."
         sub="왼쪽 미리보기 화면에서 디자인을 확인하세요 :)">
-        <select name="font" onChange={getFontOption}>
+        <S.Select name="font" onChange={getFontOption}>
           {FONT?.map(({ id, fontFamily, fontName }) => (
             <option key={id} value={fontFamily}>
               {fontName}
             </option>
           ))}
-        </select>
+        </S.Select>
         <select name="size" onChange={getSizeOption}>
           {SIZE?.map(({ id, size }) => (
             <option key={id} value={size}>

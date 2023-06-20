@@ -28,3 +28,9 @@ export const ColorPreview = styled.div<{ color: string }>`
 export const ColorBoxWrapper = styled.section`
   display: flex;
 `;
+
+export const Select = styled.select`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+`;

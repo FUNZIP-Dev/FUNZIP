@@ -1,4 +1,5 @@
 import { useState } from "react";
+import background from "../../../assets/image/orderStylePreviewImg.png";
 import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import SelectedOption from "./selectedOption/selectedOption";
 import Step1 from "./step1/step1";
@@ -19,6 +20,7 @@ export default function OrderStyle() {
 
   return (
     <>
+      <img src={background} alt="미리보기-배경화면" />
       <SelectedOption />
       <Step1 orderStyleData={orderStyleData} setOrderStyleData={setOrderStyleData} />
       <Step2 orderStyleData={orderStyleData} setOrderStyleData={setOrderStyleData} />
