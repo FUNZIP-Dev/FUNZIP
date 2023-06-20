@@ -30,7 +30,12 @@ export const MypageLogoutText = styled.h1`
     color: #AEAFB9;
     cursor: pointer;
 `
+/* PROCESSING STYLE */
 
+export const MypageProcessingWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 export const MypageProcessing = styled.div`
     display: flex;
     flex-direction: row;
@@ -62,4 +67,11 @@ export const goOrderBtn = styled.button`
     /* black */
     background: #282828;
     border-radius: 44px;
+`
+export const MypageProcessingBar = styled.div`
+    height: 8px;
+    display: flex;
+    /* grey1 */
+    background: #606067;
+    border-radius: 8px 8px 0px 0px;
 `
