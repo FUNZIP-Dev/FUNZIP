@@ -1,9 +1,22 @@
-import { styled } from "styled-components";
+import { styled,keyframes } from "styled-components";
+
+
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 
 
 
 export const AuthWrapper = styled.div`
+animation: ${fadeInAnimation} 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,6 +64,7 @@ export const AuthInput = styled.input`
 `
 
 export const AuthButtonWrapper = styled.div`
+
     display: flex;
     flex-direction: column;
     justify-content: center;
