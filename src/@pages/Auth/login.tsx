@@ -100,7 +100,6 @@ const formatPhoneNumber = (phoneNumber: string) => {
 };
 
 
-
 const handleGoogleLogin = () => {
   const db = getFirestore();
   const auth = getAuth();
@@ -133,13 +132,13 @@ const handleGoogleLogin = () => {
               });
             }
           })
-          .catch((error) => {
-            alert(error);
+          .catch((err) => {
+            alertError(err);
           });
       }
     })
-    .catch((error) => {
-      alert(error);
+    .catch((err) => {
+      alertError(err);
     });
 };
 
@@ -149,7 +148,21 @@ const checkPhoneFormat = (phoneNumber: string) => {
   return /^\d{3}-\d{4}-\d{4}$/.test(phoneNumber);
 };
 
+const alertError = (err:any) => {
+  if (err.code == 'auth/invalid-email') {
+    alert('이메일 형식이 틀립니다.');
+  }
+  if (err.code == 'auth/user-not-found') {
+    alert('아이디가 존재하지 않습니다.');
+  }
+  if (err.code == 'auth/wrong-password') {
+    alert('비밀번호를 다시 확인해주세요');
+  }
+  if (err.code == 'auth/too-many-requests') {
+    alert('잠시 후 다시 시도해 주세요');
+  }
 
+};
   // 회원가입, 로그인 페이지 전환
   const handleClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -181,14 +194,12 @@ const checkPhoneFormat = (phoneNumber: string) => {
             nickname: nickname,
             staff : 0
           };
-  
           // Use the UID as the key for the user document
           await setDoc(doc(userRef, user.uid), userData);
-  
           alert("회원가입 하셨습니다.");
         }
       } catch (error) {
-        alert(error);
+        alertError(error)
       }
     } else {
       signInWithEmailAndPassword(authService, email, pwd)
@@ -196,7 +207,7 @@ const checkPhoneFormat = (phoneNumber: string) => {
           alert("로그인 하셨습니다.");
         })
         .catch(e => {
-          alert(e);
+          alertError(e);
         });
     }
   };
