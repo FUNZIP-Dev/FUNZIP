@@ -6,6 +6,7 @@ import Order from "./@pages/order/order";
 import Review from "./@pages/review/review";
 import Tutorial from "./@pages/tutorial/tutorial";
 import Login from "./@pages/Auth/login";
+import SignUpGoogleForm from "./@components/Auth/signUpGoogleForm";
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
         <Route path="/review" element={<Review />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/google" element={<SignUpGoogleForm />} />
       </Routes>
     </BrowserRouter>
   );

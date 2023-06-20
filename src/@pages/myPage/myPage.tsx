@@ -33,7 +33,7 @@ export default function MyPage() {
   }, [userInfo]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>404NOTFOUND...</div>;
   }
 
   return (

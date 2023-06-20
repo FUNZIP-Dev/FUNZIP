@@ -22,25 +22,25 @@ export const AuthInputWrapper = styled.div`
 `
 
 export const AuthInput = styled.input<AuthInputProps>`
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  width: 557px;
-  height: 80px;
-  font-weight: 500;
-  padding-left: 31px;
-  font-size: 18px;
-  color: #ff5d47;
-  border-radius: 24px;
-  background: #f8f8fa;
-  border: none;
-  outline: none;
-  transition: border 0.3s;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 557px;
+    height: 80px;
+    font-weight: 500;
+    padding-left: 31px;
+    font-size: 18px;
+    color: #ff5d47;
+    border-radius: 24px;
+    background: #f8f8fa;
+    border: none;
+    outline: none;
+    transition: border 0.3s;
 
-  &:focus,
-  &:not(:placeholder-shown) {
-    border: 2px solid #ff5d47;
-  }
+    &:focus,
+    &:not(:placeholder-shown) {
+        border: 2px solid #ff5d47;
+    }
 `;
 
 

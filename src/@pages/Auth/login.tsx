@@ -1,20 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import * as S from "./style";
-import { authService } from "../../fbase";
+import { authService, dbService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,GoogleAuthProvider } from "firebase/auth";
+import { getFirestore,getDoc, collection, setDoc, onSnapshot, doc, deleteDoc, updateDoc } from "firebase/firestore";
+
+
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../@components/Auth/loginForm";
 import SignUpForm from "../../@components/Auth/signUpForm";
 import {GoogleIcon, LoginLogo} from "../../assets";
 import LoginTitle from "../../@components/Auth/loginTitle";
+import SignUpGoogleForm from "../../@components/Auth/signUpGoogleForm";
 
 export default function Login() {
 
   const navigate = useNavigate();
   const userInfo = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
+
   const [pwd, setPwd] = useState("");
   const [isCreate, setIsCreate] = useState(false);
   const [confirmPwd, setConfirmPwd] = useState("");
@@ -94,6 +99,57 @@ const formatPhoneNumber = (phoneNumber: string) => {
   return phoneNumber;
 };
 
+
+
+const handleGoogleLogin = () => {
+  const db = getFirestore();
+  const userRef = collection(db, "users");
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      if (user) {
+      const { email, displayName } = user;
+        // Check if the user already exists in the "users" collection
+        const userRef = doc(collection(db, "users"), user.uid);
+        getDoc(userRef)
+          .then((docSnapshot) => {
+            if (docSnapshot.exists()) {
+              // User already exists, perform login logic
+              signInWithEmailAndPassword(authService, email ?? "", pwd)
+              .then(() => {
+                alert("로그인 하셨습니다.");
+              })
+              .catch(e => {
+                alert(e);
+              });          
+            } else {
+              const userData = {
+                email: email,
+                phone: phone,
+                nickname: displayName || "",
+                staff: 0,
+              };
+
+              setDoc(userRef, userData).then(() => {
+                alert("회원가입 하셨습니다.");
+              });
+              navigate("/google"); // Redirect to "mypage" route if userInfo exists
+            }
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+    })
+    .catch((error) => {
+      alert(error);
+    });
+};
+
+
 // Helper function to check phone number format validity
 const checkPhoneFormat = (phoneNumber: string) => {
   return /^\d{3}-\d{4}-\d{4}$/.test(phoneNumber);
@@ -110,27 +166,44 @@ const checkPhoneFormat = (phoneNumber: string) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // 회원가입, 로그인 기능
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
     // 회원 가입일때
     if (isCreate) {
-      createUserWithEmailAndPassword(authService, email, pwd)
-        .then(() => {
+      const db = getFirestore();
+      const userRef = collection(db, "users");
+  
+      try {
+        const userCredential = await createUserWithEmailAndPassword(authService, email, pwd);
+        const user = userCredential.user;
+        if (user) {
+          // Save additional user data to Firebase database
+          const userData = {
+            email: user.email,
+            phone: phone,
+            nickname: nickname,
+            staff : 0
+          };
+  
+          // Use the UID as the key for the user document
+          await setDoc(doc(userRef, user.uid), userData);
+  
           alert("회원가입 하셨습니다.");
+        }
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      signInWithEmailAndPassword(authService, email, pwd)
+        .then(() => {
+          alert("로그인 하셨습니다.");
         })
         .catch(e => {
           alert(e);
         });
-    }else{
-      signInWithEmailAndPassword(authService, email, pwd)
-      .then(() => {
-        alert("로그인 하셨습니다.");
-      })
-      .catch(e => {
-        alert(e);
-      });
     }
   };
   // 로그아웃 기능 
@@ -195,7 +268,7 @@ const checkPhoneFormat = (phoneNumber: string) => {
               <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>
                 {isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}
               </S.AuthSignUpButton>
-              <S.AuthSocialButton>
+              <S.AuthSocialButton onClick={handleGoogleLogin}>
                 <GoogleIcon/>
                 <S.AuthSocialButtonText style={{margin:"0 auto"}}>
                   Google 로그인
