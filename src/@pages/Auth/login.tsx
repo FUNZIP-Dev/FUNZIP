@@ -103,7 +103,6 @@ const formatPhoneNumber = (phoneNumber: string) => {
 
 const handleGoogleLogin = () => {
   const db = getFirestore();
-  const userRef = collection(db, "users");
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
@@ -111,32 +110,27 @@ const handleGoogleLogin = () => {
     .then((result) => {
       const user = result.user;
       if (user) {
-      const { email, displayName } = user;
+        const { email, displayName } = user;
         // Check if the user already exists in the "users" collection
-        const userRef = doc(collection(db, "users"), user.uid);
+        const userRef = doc(collection(db, 'users'), user.uid);
         getDoc(userRef)
           .then((docSnapshot) => {
             if (docSnapshot.exists()) {
               // User already exists, perform login logic
-              signInWithEmailAndPassword(authService, email ?? "", pwd)
-              .then(() => {
-                alert("로그인 하셨습니다.");
-              })
-              .catch(e => {
-                alert(e);
-              });          
+              alert('로그인 하셨습니다.');
+              navigate('/mypage');
             } else {
               const userData = {
                 email: email,
                 phone: phone,
-                nickname: displayName || "",
+                nickname: displayName || '',
                 staff: 0,
               };
 
               setDoc(userRef, userData).then(() => {
-                alert("회원가입 하셨습니다.");
+                alert('회원가입 하셨습니다.');
+                navigate('/google');
               });
-              navigate("/google"); // Redirect to "mypage" route if userInfo exists
             }
           })
           .catch((error) => {
