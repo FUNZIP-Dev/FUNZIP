@@ -90,7 +90,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                 confirmPwd ? 
                 (pwd === confirmPwd 
                     ? <S.MessageText isValid={true} >확인 완료</S.MessageText> 
-                    : <S.MessageText isValid={false} >동일하지 않은 비밀번호입니다 :(</S.MessageText>
+                    : <S.MessageText isValid={false} >동일하지 않은 비밀번호입니다 :</S.MessageText>
                 ) : ""
                 }
         </S.SignUpInputWrapper>
