@@ -270,6 +270,7 @@ const alertError = (err:any) => {
               <S.AuthButton type="submit">
                 {isCreate ? "회원가입" : "로그인"}
               </S.AuthButton>
+              {/* 구글 로그인 */}
               <S.AuthSignUpButton type="submit" onClick={handleClickCreate}>
                 {isCreate ? "이미 계정이 있으신가요?" : "Fun.zip이 처음이신가요?"}
               </S.AuthSignUpButton>
@@ -279,7 +280,6 @@ const alertError = (err:any) => {
                   Google 로그인
                 </S.AuthSocialButtonText>
               </S.AuthSocialButton>
-              {/* 구글 로그인 */}
             </S.AuthButtonWrapper>
           </S.AuthForm>
         )}
