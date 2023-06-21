@@ -7,7 +7,6 @@ import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker"
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
 import { orderStyle } from "../../../../recoil/order/fontStyle";
 import { orderStyleDataType } from "../../../../type/order/orderStyleData";
-import RandomStyle from "../randomStyle/randomStyle";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
 import * as S from "./style";
 
@@ -193,7 +192,6 @@ export default function Step1() {
           </S.SelectBoxWrapper>
         </S.SelectBoxContainer>
       </StepPageLayout>
-      <RandomStyle />
     </>
   );
 }

@@ -13,7 +13,7 @@ export const SelectBoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-right: 8px;
+  margin: 80px 8px 0 0;
 `;
 
 export const SketchPickerWrapper = styled.section``;

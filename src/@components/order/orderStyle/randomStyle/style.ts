@@ -1,10 +1,13 @@
 import { styled } from "styled-components";
 
-export const RandomStyleBox = styled.section`
+export const RandomStyleBox = styled.section<{ $openToggle: boolean }>`
   width: 637px;
-  height: 104px;
+  height: ${({ $openToggle }) => ($openToggle ? 367 : 104)}px;
 
   padding: 27px 31px;
+
+  margin-bottom: 80px;
+
   /* grey2 */
 
   background: #f8f8fa;
@@ -56,5 +59,20 @@ export const TitleWrapper = styled.aside`
 `;
 
 export const ToggleButton = styled.button`
+  cursor: pointer;
+`;
+
+export const StyleWrapper = styled.section`
+  margin-top: 33px;
+`;
+
+export const StyleBox = styled.article`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  width: 590px;
+  height: 60px;
+
   cursor: pointer;
 `;

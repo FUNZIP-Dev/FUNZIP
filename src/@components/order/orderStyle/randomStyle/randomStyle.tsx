@@ -31,14 +31,16 @@ export default function RandomStyle() {
   const handleSelectedStyle = (selectedId: number) => {
     setSelectRandomOrder(
       selectRandomOrder.map((selectCateg) =>
-        selectCateg.id === selectedId ? { ...selectCateg, isSelected: !selectCateg.isSelected } : selectCateg,
+        selectCateg.id === selectedId
+          ? { ...selectCateg, isSelected: !selectCateg.isSelected }
+          : { ...selectCateg, isSelected: false },
       ),
     );
   };
 
   return (
     <>
-      <S.RandomStyleBox>
+      <S.RandomStyleBox $openToggle={openToggle}>
         <S.Header>
           <S.TitleWrapper>
             <S.SubTitle>직접 디자인을 선택하기 어려우세요?</S.SubTitle>
@@ -48,24 +50,26 @@ export default function RandomStyle() {
             {openToggle ? <OrderRandomOrderStyleOpenToggleIc /> : <OrderRandomOrderStyleToggleIc />}
           </S.ToggleButton>
         </S.Header>
-        <section>
-          <article onClick={() => handleSelectedStyle(1)}>
-            {selectRandomOrder[0].isSelected ? <OrderRandomStyleUncheckedIc /> : <OrderRandomStyleCheckedIc />}
-            <RandomStyle1Ic />
-          </article>
-          <article onClick={() => handleSelectedStyle(2)}>
-            {selectRandomOrder[1].isSelected ? <OrderRandomStyleUncheckedIc /> : <OrderRandomStyleCheckedIc />}
-            <RandomStyle2Ic />
-          </article>
-          <article onClick={() => handleSelectedStyle(3)}>
-            {selectRandomOrder[2].isSelected ? <OrderRandomStyleUncheckedIc /> : <OrderRandomStyleCheckedIc />}
-            <RandomStyle3Ic />
-          </article>
-          <article onClick={() => handleSelectedStyle(4)}>
-            {selectRandomOrder[3].isSelected ? <OrderRandomStyleUncheckedIc /> : <OrderRandomStyleCheckedIc />}
-            <RandomStyle4Ic />
-          </article>
-        </section>
+        {openToggle && (
+          <S.StyleWrapper>
+            <S.StyleBox onClick={() => handleSelectedStyle(1)}>
+              {selectRandomOrder[0].isSelected ? <OrderRandomStyleCheckedIc /> : <OrderRandomStyleUncheckedIc />}
+              <RandomStyle1Ic />
+            </S.StyleBox>
+            <S.StyleBox onClick={() => handleSelectedStyle(2)}>
+              {selectRandomOrder[1].isSelected ? <OrderRandomStyleCheckedIc /> : <OrderRandomStyleUncheckedIc />}
+              <RandomStyle2Ic />
+            </S.StyleBox>
+            <S.StyleBox onClick={() => handleSelectedStyle(3)}>
+              {selectRandomOrder[2].isSelected ? <OrderRandomStyleCheckedIc /> : <OrderRandomStyleUncheckedIc />}
+              <RandomStyle3Ic />
+            </S.StyleBox>
+            <S.StyleBox onClick={() => handleSelectedStyle(4)}>
+              {selectRandomOrder[3].isSelected ? <OrderRandomStyleCheckedIc /> : <OrderRandomStyleUncheckedIc />}
+              <RandomStyle4Ic />
+            </S.StyleBox>
+          </S.StyleWrapper>
+        )}
       </S.RandomStyleBox>
     </>
   );
