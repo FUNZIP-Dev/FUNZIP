@@ -1,15 +1,18 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { useState } from "react";
 import { SketchPicker } from "react-color";
+import { useRecoilState } from "recoil";
 import { BackgroundColorIc, BorderColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
 import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
-import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
+import { orderStyleDataType } from "../../../../type/order/orderStyleData";
+
+import { orderStyle } from "../../../../recoil/order/fontStyle";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
 import * as S from "./style";
 
-export default function Step1(props: OrderStyleStepProps) {
-  const { orderStyleData, setOrderStyleData } = props;
+export default function Step1() {
+  const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [colorModalShow, setColorModalShow] = useState(false);
   const [openedFontToggle, setOpenedFontToggle] = useState<boolean>(false);

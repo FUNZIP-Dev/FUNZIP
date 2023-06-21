@@ -1,9 +1,11 @@
-import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
+import { useRecoilState } from "recoil";
+import { orderStyle } from "../../../../recoil/order/fontStyle";
+import { orderStyleDataType } from "../../../../type/order/orderStyleData";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
 import * as S from "./style";
 
-export default function Step3(props: OrderStyleStepProps) {
-  const { orderStyleData, setOrderStyleData } = props;
+export default function Step3() {
+  const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
 
   const handleInputLink = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrderStyleData({ ...orderStyleData, link: e.target.value });

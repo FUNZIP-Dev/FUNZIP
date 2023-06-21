@@ -1,10 +1,12 @@
+import { useRecoilState } from "recoil";
 import { MOOD } from "../../../../core/order/styleMood";
-import { OrderStyleStepProps } from "../../../../type/order/orderStypeStepProps";
+import { orderStyle } from "../../../../recoil/order/fontStyle";
+import { orderStyleDataType } from "../../../../type/order/orderStyleData";
 import StepPageLayout from "../stepPageLayout/stepPageLayout";
 import * as S from "./style";
 
-export default function Step2(props: OrderStyleStepProps) {
-  const { orderStyleData, setOrderStyleData } = props;
+export default function Step2() {
+  const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
 
   const handleSelectMood = (text: string) => {
     setOrderStyleData({ ...orderStyleData, mood: text });
