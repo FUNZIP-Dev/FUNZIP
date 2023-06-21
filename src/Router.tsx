@@ -7,7 +7,7 @@ import MyPage from "./@pages/myPage/myPage";
 import Order from "./@pages/order/order";
 import OrderSuccess from "./@pages/orderSuccess/orderSuccess";
 import Review from "./@pages/review/review";
-import Tutorial from "./@pages/tutorial/tutorial";
+import TutorialPage from "./@pages/tutorial/tutorialPage";
 
 export default function Router() {
   return (
@@ -16,7 +16,7 @@ export default function Router() {
         <Route path="/" element={<Main />} />
         <Route path="/order" element={<Order />} />
         <Route path="/order-success" element={<OrderSuccess />} />
-        <Route path="/tutorial" element={<Tutorial />} />
+        <Route path="/tutorial" element={<TutorialPage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/review" element={<Review />} />
         <Route path="/mypage" element={<MyPage />} />

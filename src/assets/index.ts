@@ -46,3 +46,4 @@ export { ReactComponent as OrderBuyUnActiveIc } from "./icon/orderBuyUnActiveIc.
 export { ReactComponent as OrderReceiptCheckIc } from "./icon/orderReceiptCheckIc.svg";
 export { ReactComponent as OrderReceiptIc } from "./icon/orderReceiptIc.svg";
 export { ReactComponent as OrderSuccessIc } from "./icon/orderSuccessIc.svg";
+export { ReactComponent as TutorialPageIc } from "./icon/tutorialPageIc.svg";
