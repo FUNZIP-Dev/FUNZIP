@@ -26,7 +26,7 @@ export const StepWrapper = styled.article<{ active: boolean }>`
   flex-direction: column;
   align-items: center;
 
-  margin-top: ${({ active }) => (active ? 0 : 10)}px;
+  margin-top: ${({ active }) => !active && 10}px;
 `;
 
 export const Line = styled.div`
@@ -48,7 +48,7 @@ export const Text = styled.p<{ width: number; active: boolean }>`
   height: 32px;
 
   margin-top: 10px;
-  margin-bottom: ${({ active }) => (active ? 0 : 10)}px;
+  margin-bottom: ${({ active }) => !active && 10}px;
 
   border-bottom: 4px solid ${({ theme, active }) => (active ? theme.colors.gray5 : "transparent")};
 

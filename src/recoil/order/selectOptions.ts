@@ -6,6 +6,6 @@ export const selectOptions = atom<SelectOptionTypes>({
   default: {
     basic: [],
     plus: [],
-    cam: -1,
+    cam: "",
   },
 });

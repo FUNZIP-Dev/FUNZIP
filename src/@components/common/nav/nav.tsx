@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import * as S from "./style";
-import { AuthContext } from "../../../context/authContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ProfileDefaultIcon } from "../../../assets";
+import { AuthContext } from "../../../context/authContext";
+import * as S from "./style";
 
 export default function Nav() {
   const userInfo = useContext(AuthContext);

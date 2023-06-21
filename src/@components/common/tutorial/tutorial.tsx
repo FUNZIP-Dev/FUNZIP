@@ -23,10 +23,10 @@ export default function Tutorial(props: TutorialProp) {
       <S.Content>주문하는 도중 확인하러가는 귀찮은 불상사가 발생할 수 있으니</S.Content>
       <S.Content>펀집이 처음이시라면 지금 당장 보러가기!</S.Content>
       <S.ButtonWrapper>
-        <S.Button isBlack={true} onClick={hanldeMoveToTutorial}>
+        <S.Button $isBlack={true} onClick={hanldeMoveToTutorial}>
           튜토리얼 보러가기
         </S.Button>
-        <S.Button isBlack={false} onClick={onClick}>
+        <S.Button $isBlack={false} onClick={onClick}>
           {comment}
         </S.Button>
       </S.ButtonWrapper>

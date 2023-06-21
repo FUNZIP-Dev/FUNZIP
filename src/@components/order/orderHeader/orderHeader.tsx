@@ -48,14 +48,12 @@ export default function OrderHeader(props: StepProp) {
     <>
       <S.StepContainer>
         {ORDER_PROGRESS.map(({ id, text, stepName }) => (
-          <>
-            <S.StepWrapper key={id} active={checkStep(stepName)}>
-              {checkCircle(id, checkStep(stepName))}
-              <S.Text width={checkWidth(id)} active={checkStep(stepName)}>
-                {text}
-              </S.Text>
-            </S.StepWrapper>
-          </>
+          <S.StepWrapper key={id} active={checkStep(stepName)}>
+            {checkCircle(id, checkStep(stepName))}
+            <S.Text width={checkWidth(id)} active={checkStep(String(stepName))}>
+              {text}
+            </S.Text>
+          </S.StepWrapper>
         ))}
       </S.StepContainer>
       <S.Line />

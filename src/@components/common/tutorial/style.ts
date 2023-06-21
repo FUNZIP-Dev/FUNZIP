@@ -6,7 +6,7 @@ export const Title = styled.h1`
   ${({ theme }) => theme.fonts.tutorial_head}
 `;
 
-export const Sub = styled.p`
+export const Sub = styled.h1`
   display: flex;
 
   margin-top: 16px;
@@ -28,14 +28,14 @@ export const Content = styled.p`
   ${({ theme }) => theme.fonts.tutorial_text}
 `;
 
-export const Button = styled.button<{ isBlack: boolean }>`
+export const Button = styled.button<{ $isBlack: boolean }>`
   width: 260px;
   height: 64px;
 
   border-radius: 44px;
 
-  color: ${({ isBlack, theme }) => (!isBlack ? theme.colors.black : theme.colors.white)};
-  background-color: ${({ isBlack, theme }) => (isBlack ? theme.colors.black : theme.colors.white)};
+  color: ${({ $isBlack, theme }) => (!$isBlack ? theme.colors.black : theme.colors.white)};
+  background-color: ${({ $isBlack, theme }) => ($isBlack ? theme.colors.black : theme.colors.white)};
   ${({ theme }) => theme.fonts.tutorial_strong}
 `;
 
