@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { EmptyColorIc, OrderBuyActiveIc, OrderBuyUnActiveIc, OrderReceiptCheckIc } from "../../../assets";
 import { USER } from "../../../core/user/user";
 import { orderStyle } from "../../../recoil/order/fontStyle";
+import { moveNextPage } from "../../../recoil/order/moveNextPage";
 import { selectOptions } from "../../../recoil/order/selectOptions";
 import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import { SelectOptionTypes } from "../orderOption/orderOption";
@@ -12,6 +13,7 @@ export default function OrderBuy() {
   const selectOption = useRecoilValue<SelectOptionTypes>(selectOptions);
   const orderStyleData = useRecoilValue<orderStyleDataType>(orderStyle);
   const [isCheckedBuy, setIsCheckedBuy] = useState(false);
+  const [isNext, setIsNext] = useRecoilState(moveNextPage);
 
   const handleActiveBuy = () => {
     setIsCheckedBuy(!isCheckedBuy);
@@ -20,6 +22,12 @@ export default function OrderBuy() {
   const checkIsTransparent = (color: string) => {
     return color === "transparent";
   };
+
+  useEffect(() => {
+    if (isCheckedBuy) {
+      setIsNext(true);
+    }
+  }, [isCheckedBuy]);
 
   return (
     <>

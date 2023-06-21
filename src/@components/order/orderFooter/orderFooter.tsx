@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
 import { ORDER_STEP } from "../../../core/order/orderStep";
@@ -11,6 +12,7 @@ export default function OrderFooter(props: StepProps) {
   const { step, setStep } = props;
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
   const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
+  const navigate = useNavigate();
 
   const checkStep = () => {
     return step !== "";
@@ -52,7 +54,8 @@ export default function OrderFooter(props: StepProps) {
           }
           break;
         default:
-          //성공페이지로 이동
+          //결제페이지로 이동
+          navigate("/order-success");
           break;
       }
       setIsNext(false);
