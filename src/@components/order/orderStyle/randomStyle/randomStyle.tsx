@@ -39,11 +39,15 @@ export default function RandomStyle() {
   return (
     <>
       <S.RandomStyleBox>
-        <p>직접 디자인을 선택하기 어려우세요?</p>
-        <h1>펀집이 조합을 추천해드릴게요!</h1>
-        <div onClick={handleOnOffTogle}>
-          {openToggle ? <OrderRandomOrderStyleOpenToggleIc /> : <OrderRandomOrderStyleToggleIc />}
-        </div>
+        <S.Header>
+          <S.TitleWrapper>
+            <S.SubTitle>직접 디자인을 선택하기 어려우세요?</S.SubTitle>
+            <S.Title>펀집이 조합을 추천해드릴게요!</S.Title>
+          </S.TitleWrapper>
+          <S.ToggleButton onClick={handleOnOffTogle}>
+            {openToggle ? <OrderRandomOrderStyleOpenToggleIc /> : <OrderRandomOrderStyleToggleIc />}
+          </S.ToggleButton>
+        </S.Header>
         <section>
           <article onClick={() => handleSelectedStyle(1)}>
             {selectRandomOrder[0].isSelected ? <OrderRandomStyleUncheckedIc /> : <OrderRandomStyleCheckedIc />}
