@@ -4,6 +4,8 @@ import { OrderStyleToggleIc } from "../../../../assets";
 export const SelectBoxContainer = styled.div`
   display: flex;
 
+  position: absolute;
+
   width: 730px;
 `;
 

@@ -5,6 +5,8 @@ export { ReactComponent as OrderNextBtnIc } from "./icon/orderNextBtnIc.svg";
 export { ReactComponent as OrderOptionCheckActiveIc } from "./icon/orderOptionCheckActiveIc.svg";
 export { ReactComponent as OrderOptionCheckIc } from "./icon/orderOptionCheckIc.svg";
 export { ReactComponent as OrderPreviousBtnIc } from "./icon/orderPreviousBtnIc.svg";
+export { ReactComponent as OrderRandomOrderStyleOpenToggleIc } from "./icon/orderRandomOrderStyleOpenToggleIc.svg";
+export { ReactComponent as OrderRandomOrderStyleToggleIc } from "./icon/orderRandomOrderStyleToggleIc.svg";
 export { ReactComponent as OrderStep1Ic } from "./icon/orderStep1Ic.svg";
 export { ReactComponent as OrderStep2Ic } from "./icon/orderStep2Ic.svg";
 export { ReactComponent as OrderStep3Ic } from "./icon/orderStep3Ic.svg";
