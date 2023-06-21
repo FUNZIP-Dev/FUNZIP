@@ -12,13 +12,15 @@ export default function Step1(props: OrderStyleStepProps) {
   const { orderStyleData, setOrderStyleData } = props;
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [colorModalShow, setColorModalShow] = useState(false);
+  const [openedFontToggle, setOpenedFontToggle] = useState<boolean>(false);
+  const [openedSizeToggle, setOpenedSizeToggle] = useState<boolean>(false);
 
   const getFontOption = (fontFmaily: string) => {
     setOrderStyleData({ ...orderStyleData, font: fontFmaily });
   };
 
-  const getSizeOption = (e: any) => {
-    setOrderStyleData({ ...orderStyleData, size: Number(e.target.value) });
+  const getSizeOption = (size: number) => {
+    setOrderStyleData({ ...orderStyleData, size: Number(size) });
   };
 
   const getTextColorOption = (color: any) => {
@@ -123,6 +125,14 @@ export default function Step1(props: OrderStyleStepProps) {
     }
   };
 
+  const checkOpenedFontToggle = () => {
+    setOpenedFontToggle(!openedFontToggle);
+  };
+
+  const checkOpenedSizeToggle = () => {
+    setOpenedSizeToggle(!openedSizeToggle);
+  };
+
   return (
     <>
       <StepPageLayout
@@ -133,28 +143,32 @@ export default function Step1(props: OrderStyleStepProps) {
           <S.SelectBoxWrapper>
             <S.SelectedBox isSelectFont={true}>
               {orderStyleData.font}
-              <S.OrderStyleToggleIcon />
+              <S.OrderStyleToggleIcon onClick={checkOpenedFontToggle} />
             </S.SelectedBox>
-            <S.BoxWrapper isSelectFont={true}>
-              {FONT?.map(({ id, fontFamily, fontName }) => (
-                <S.Box key={id} onClick={() => getFontOption(fontFamily)} fontFamily={fontFamily}>
-                  {fontName}
-                </S.Box>
-              ))}
-            </S.BoxWrapper>
+            {openedFontToggle && (
+              <S.BoxWrapper isSelectFont={true}>
+                {FONT?.map(({ id, fontFamily, fontName }) => (
+                  <S.Box key={id} onClick={() => getFontOption(fontFamily)} fontFamily={fontFamily}>
+                    {fontName}
+                  </S.Box>
+                ))}
+              </S.BoxWrapper>
+            )}
           </S.SelectBoxWrapper>
           <S.SelectBoxWrapper>
             <S.SelectedBox isSelectFont={false}>
               {orderStyleData.size}
-              <S.OrderStyleToggleIcon />
+              <S.OrderStyleToggleIcon onClick={checkOpenedSizeToggle} />
             </S.SelectedBox>
-            <S.BoxWrapper isSelectFont={false}>
-              {SIZE?.map(({ id, size }) => (
-                <S.Box key={id} onClick={() => getSizeOption(size)} fontFamily="Pretendard">
-                  {size}
-                </S.Box>
-              ))}
-            </S.BoxWrapper>
+            {openedSizeToggle && (
+              <S.BoxWrapper isSelectFont={false}>
+                {SIZE?.map(({ id, size }) => (
+                  <S.Box key={id} onClick={() => getSizeOption(size)} fontFamily="Pretendard">
+                    {size}
+                  </S.Box>
+                ))}
+              </S.BoxWrapper>
+            )}
           </S.SelectBoxWrapper>
           <S.SelectBoxWrapper>
             <S.ColorBoxWrapper>

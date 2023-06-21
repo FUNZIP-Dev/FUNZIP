@@ -3,6 +3,8 @@ import { OrderStyleToggleIc } from "../../../../assets";
 
 export const SelectBoxContainer = styled.div`
   display: flex;
+
+  width: 730px;
 `;
 
 export const SelectBoxWrapper = styled.div`
