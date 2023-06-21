@@ -47,4 +47,4 @@ export const FAQ_DATA: FaqType[] = [
   },
 ];
 
-export const FAQ_CATEGORY = ["주문", "수정"];
+export const FAQ_CATEGORY = ["전체", "주문", "수정"];

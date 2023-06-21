@@ -6,6 +6,7 @@ import * as S from "./style";
 
 export default function Faq() {
   const [isOpenId, setIsOpenId] = useState(-1);
+  const [data, setData] = useState(FAQ_DATA);
 
   const handleToggleOpen = (id: number) => {
     if (checkisOpenIdSame(id)) {
@@ -19,6 +20,15 @@ export default function Faq() {
     return isOpenId === id;
   };
 
+  const handleSelectCateg = (categ: string) => {
+    if (categ !== "전체") {
+      const newData = [...FAQ_DATA];
+      setData(newData.filter(({ category }) => category === categ));
+    } else {
+      setData(FAQ_DATA);
+    }
+  };
+
   return (
     <S.OrderTutorialWrapper>
       <Nav />
@@ -27,7 +37,7 @@ export default function Faq() {
       <S.Input type="text" placeholder="궁금한 점을 검색해보세요" />
       <S.CategoryBoxWrapper>
         {FAQ_CATEGORY.map((categ) => (
-          <S.CategoryBox>{categ}</S.CategoryBox>
+          <S.CategoryBox onClick={() => handleSelectCateg(categ)}>{categ}</S.CategoryBox>
         ))}
       </S.CategoryBoxWrapper>
       <S.CategoryTitleBox>
@@ -38,7 +48,7 @@ export default function Faq() {
           질문내용
         </S.CategoryTitle>
       </S.CategoryTitleBox>
-      {FAQ_DATA.map(({ faqId, category, title, comment }) => (
+      {data.map(({ faqId, category, title, comment }) => (
         <>
           <S.QBox key={faqId}>
             <S.Q>Q</S.Q>
