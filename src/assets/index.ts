@@ -7,6 +7,8 @@ export { ReactComponent as OrderOptionCheckIc } from "./icon/orderOptionCheckIc.
 export { ReactComponent as OrderPreviousBtnIc } from "./icon/orderPreviousBtnIc.svg";
 export { ReactComponent as OrderRandomOrderStyleOpenToggleIc } from "./icon/orderRandomOrderStyleOpenToggleIc.svg";
 export { ReactComponent as OrderRandomOrderStyleToggleIc } from "./icon/orderRandomOrderStyleToggleIc.svg";
+export { ReactComponent as OrderRandomStyleCheckedIc } from "./icon/orderRandomStyleCheckedIc.svg";
+export { ReactComponent as OrderRandomStyleUncheckedIc } from "./icon/orderRandomStyleUncheckedIc.svg";
 export { ReactComponent as OrderStep1Ic } from "./icon/orderStep1Ic.svg";
 export { ReactComponent as OrderStep2Ic } from "./icon/orderStep2Ic.svg";
 export { ReactComponent as OrderStep3Ic } from "./icon/orderStep3Ic.svg";
@@ -15,6 +17,10 @@ export { ReactComponent as OrderStepBlankIc } from "./icon/orderStepBlankIc.svg"
 export { ReactComponent as OrderStyleToggleIc } from "./icon/orderStyleToggleIc.svg";
 export { ReactComponent as OrderSuccessBtnIc } from "./icon/orderSuccessBtnIc.svg";
 export { ReactComponent as OrderTutorialXIc } from "./icon/orderTutorialXIc.svg";
+export { ReactComponent as RandomStyle1Ic } from "./icon/randomStyle1Ic.svg";
+export { ReactComponent as RandomStyle2Ic } from "./icon/randomStyle2Ic.svg";
+export { ReactComponent as RandomStyle3Ic } from "./icon/randomStyle3Ic.svg";
+export { ReactComponent as RandomStyle4Ic } from "./icon/randomStyle4Ic.svg";
 export { ReactComponent as ShadowColorIc } from "./icon/shadowColorIc.svg";
 export { ReactComponent as TextColorIc } from "./icon/textColorIc.svg";
 export { ReactComponent as TutorialMainIc } from "./icon/tutorialMainIc.svg";
