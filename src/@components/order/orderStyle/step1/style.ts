@@ -92,7 +92,10 @@ export const BoxWrapper = styled.section<{ isSelectFont: boolean }>`
   overflow: scroll;
 `;
 
-export const Box = styled.article<{ fontFamily: string }>`
+export const Box = styled.article<{ fontFamily: string; $isClicked: boolean }>`
+  display: flex;
+  align-items: center;
+
   width: 270px;
   height: 32px;
   left: 921px;
@@ -103,6 +106,7 @@ export const Box = styled.article<{ fontFamily: string }>`
   font-family: ${({ fontFamily }) => fontFamily};
 
   /* grey2 */
+  background-color: ${({ $isClicked }) => $isClicked && "#f8f8fa"};
 
-  /* background-color: #f8f8fa; */
+  cursor: pointer;
 `;

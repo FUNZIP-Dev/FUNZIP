@@ -19,10 +19,12 @@ export default function Step1() {
 
   const getFontOption = (fontFmaily: string) => {
     setOrderStyleData({ ...orderStyleData, font: fontFmaily });
+    setOpenedFontToggle(false);
   };
 
   const getSizeOption = (size: number) => {
     setOrderStyleData({ ...orderStyleData, size: Number(size) });
+    setOpenedSizeToggle(false);
   };
 
   const getTextColorOption = (color: any) => {
@@ -93,33 +95,41 @@ export default function Step1() {
     }
   };
 
+  const checkIsTrasparent = (color: string) => {
+    if (color === "transparent") {
+      return "#000000";
+    } else {
+      return color;
+    }
+  };
+
   const showSelectColorBox = (color: string) => {
     switch (color) {
       case "textColor":
         return (
           <>
             <TextColorIc />
-            <S.ColorPreview color={orderStyleData.textColor} />
+            <S.ColorPreview color={checkIsTrasparent(orderStyleData.textColor)} />
           </>
         );
       case "borderColor":
         return (
           <>
-            <BorderColorIc /> <S.ColorPreview color={orderStyleData.borderColor} />
+            <BorderColorIc /> <S.ColorPreview color={checkIsTrasparent(orderStyleData.borderColor)} />
           </>
         );
       case "backgroundColor":
         return (
           <>
             <BackgroundColorIc />
-            <S.ColorPreview color={orderStyleData.backgroundColor} />
+            <S.ColorPreview color={checkIsTrasparent(orderStyleData.backgroundColor)} />
           </>
         );
       case "shadowColor":
         return (
           <>
             <ShadowColorIc />
-            <S.ColorPreview color={orderStyleData.shadowColor} />
+            <S.ColorPreview color={checkIsTrasparent(orderStyleData.shadowColor)} />
           </>
         );
       default:
@@ -143,14 +153,18 @@ export default function Step1() {
         sub="왼쪽 미리보기 화면에서 디자인을 확인하세요 :)">
         <S.SelectBoxContainer>
           <S.SelectBoxWrapper>
-            <S.SelectedBox isSelectFont={true}>
+            <S.SelectedBox isSelectFont={true} onClick={checkOpenedFontToggle}>
               {orderStyleData.font}
-              <S.OrderStyleToggleIcon onClick={checkOpenedFontToggle} />
+              <S.OrderStyleToggleIcon />
             </S.SelectedBox>
             {openedFontToggle && (
               <S.BoxWrapper isSelectFont={true}>
                 {FONT?.map(({ id, fontFamily, fontName }) => (
-                  <S.Box key={id} onClick={() => getFontOption(fontFamily)} fontFamily={fontFamily}>
+                  <S.Box
+                    key={id}
+                    onClick={() => getFontOption(fontFamily)}
+                    fontFamily={fontFamily}
+                    $isClicked={fontFamily === orderStyleData.font}>
                     {fontName}
                   </S.Box>
                 ))}
@@ -158,14 +172,18 @@ export default function Step1() {
             )}
           </S.SelectBoxWrapper>
           <S.SelectBoxWrapper>
-            <S.SelectedBox isSelectFont={false}>
+            <S.SelectedBox isSelectFont={false} onClick={checkOpenedSizeToggle}>
               {orderStyleData.size}
-              <S.OrderStyleToggleIcon onClick={checkOpenedSizeToggle} />
+              <S.OrderStyleToggleIcon />
             </S.SelectedBox>
             {openedSizeToggle && (
               <S.BoxWrapper isSelectFont={false}>
                 {SIZE?.map(({ id, size }) => (
-                  <S.Box key={id} onClick={() => getSizeOption(size)} fontFamily="Pretendard">
+                  <S.Box
+                    key={id}
+                    onClick={() => getSizeOption(size)}
+                    fontFamily="Pretendard"
+                    $isClicked={size === orderStyleData.size}>
                     {size}
                   </S.Box>
                 ))}

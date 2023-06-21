@@ -7,4 +7,5 @@ export interface orderStyleDataType {
   shadowColor: string;
   mood: string;
   link: string;
+  price: number;
 }

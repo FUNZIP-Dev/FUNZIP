@@ -5,12 +5,13 @@ export const orderStyle = atom<orderStyleDataType>({
   key: "orderStyle",
   default: {
     font: "Pretendard Medium",
-    size: 0,
+    size: 10,
     textColor: "#000000",
-    borderColor: "#000000",
-    backgroundColor: "#000000",
-    shadowColor: "#000000",
+    borderColor: "transparent",
+    backgroundColor: "transparent",
+    shadowColor: "transparent",
     mood: "",
     link: "",
+    price: 0,
   },
 });
