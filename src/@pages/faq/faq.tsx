@@ -7,12 +7,13 @@ export default function Faq() {
     <S.OrderTutorialWrapper>
       <Nav />
       <S.FaqRepresentativeIcon />
-      <h1>자주 묻는 질문</h1>
-      <input type="text" placeholder="궁금한 점을 검색해보세요" />
-
-      {FAQ_CATEGORY.map((categ) => (
-        <S.CategoryBox>{categ}</S.CategoryBox>
-      ))}
+      <S.FaqTitle>자주 묻는 질문</S.FaqTitle>
+      <S.Input type="text" placeholder="궁금한 점을 검색해보세요" />
+      <S.CategoryBoxWrapper>
+        {FAQ_CATEGORY.map((categ) => (
+          <S.CategoryBox>{categ}</S.CategoryBox>
+        ))}
+      </S.CategoryBoxWrapper>
       {/* {FAQ_DATA.map(()=>())} FAQ_CATEGORY */}
     </S.OrderTutorialWrapper>
   );
