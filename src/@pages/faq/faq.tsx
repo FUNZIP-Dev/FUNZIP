@@ -29,12 +29,18 @@ export default function Faq() {
     }
   };
 
+  const handleInputText = (e: any) => {
+    const input = e.target.value;
+    const newData = [...FAQ_DATA];
+    setData(newData.filter(({ title, comment }) => title.includes(input) || comment.includes(input)));
+  };
+
   return (
     <S.OrderTutorialWrapper>
       <Nav />
       <S.FaqRepresentativeIcon />
       <S.FaqTitle>자주 묻는 질문</S.FaqTitle>
-      <S.Input type="text" placeholder="궁금한 점을 검색해보세요" />
+      <S.Input type="text" placeholder="궁금한 점을 검색해보세요" onChange={handleInputText} />
       <S.CategoryBoxWrapper>
         {FAQ_CATEGORY.map((categ) => (
           <S.CategoryBox onClick={() => handleSelectCateg(categ)}>{categ}</S.CategoryBox>
