@@ -24,7 +24,7 @@ export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
   padding: 2px 13px;
 
   font-family: ${({ orderStyleData }) => orderStyleData.font};
-  font-size: ${({ orderStyleData }) => orderStyleData.size};
+  font-size: ${({ orderStyleData }) => orderStyleData.size}px;
   color: ${({ orderStyleData }) => orderStyleData.textColor};
   text-shadow: -1px 0px ${({ orderStyleData }) => orderStyleData.borderColor},
     0px 1px ${({ orderStyleData }) => orderStyleData.borderColor},
