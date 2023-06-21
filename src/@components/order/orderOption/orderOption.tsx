@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { OrderOptionCheckActiveIc, OrderOptionCheckIc } from "../../../assets";
 import { BASIC_OPTIONS, CAM_OPTIONS, PLUS_OPTIONS } from "../../../core/order/optionList";
+import { moveNextPage } from "../../../recoil/order/moveNextPage";
 import { selectOptions } from "../../../recoil/order/selectOptions";
 import * as S from "./style";
 
@@ -12,6 +14,13 @@ export interface SelectOptionTypes {
 
 export default function OrderOption() {
   const [selectOption, setSelectOption] = useRecoilState<SelectOptionTypes>(selectOptions);
+  const [isNext, setIsNext] = useRecoilState(moveNextPage);
+
+  useEffect(() => {
+    if (selectOption.basic.length !== 0 && selectOption.plus.length !== 0 && selectOption.cam !== "") {
+      setIsNext(true);
+    }
+  }, [selectOption]);
 
   const handleSelectBasic = (title: string) => {
     if (selectOption.basic.includes(title)) {
@@ -45,7 +54,9 @@ export default function OrderOption() {
   };
 
   const checkSelectBasic = (title: string) => {
-    return selectOption.basic.includes(title);
+    if (title !== "스타일 자막(오픈 준비 중)") {
+      return selectOption.basic.includes(title);
+    }
   };
 
   const checkSelectPlus = (title: string) => {
