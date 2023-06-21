@@ -19,7 +19,7 @@ export default function OrderStyle() {
     if (orderStyleData.mood !== "" && orderStyleData.link !== "") {
       setIsNext(true);
     }
-  }, [orderStyleData]);
+  }, [orderStyleData.mood, orderStyleData.link]);
 
   return (
     <S.OrderStyleWrapper>
