@@ -1,13 +1,16 @@
 import { useRecoilState } from "recoil";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
 import { ORDER_STEP } from "../../../core/order/orderStep";
+import { orderStyle } from "../../../recoil/order/fontStyle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
+import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import { StepProps } from "../../../type/order/stepProps";
 import * as S from "./style";
 
 export default function OrderFooter(props: StepProps) {
   const { step, setStep } = props;
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
+  const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
 
   const checkStep = () => {
     return step !== "";
@@ -44,7 +47,9 @@ export default function OrderFooter(props: StepProps) {
           setStep(ORDER_STEP.STYLE);
           break;
         case ORDER_STEP.STYLE:
-          setStep(ORDER_STEP.BUY);
+          if (orderStyleData.link !== "") {
+            setStep(ORDER_STEP.BUY);
+          }
           break;
         default:
           //성공페이지로 이동
