@@ -1,8 +1,24 @@
+import { useState } from "react";
 import Nav from "../../@components/common/nav/nav";
-import { FAQ_CATEGORY } from "../../core/faq/faqData";
+import { FaqToggleIc, FaqToggleOpenIc } from "../../assets";
+import { FAQ_CATEGORY, FAQ_DATA } from "../../core/faq/faqData";
 import * as S from "./style";
 
 export default function Faq() {
+  const [isOpenId, setIsOpenId] = useState(-1);
+
+  const handleToggleOpen = (id: number) => {
+    if (checkisOpenIdSame(id)) {
+      setIsOpenId(-1);
+    } else {
+      setIsOpenId(id);
+    }
+  };
+
+  const checkisOpenIdSame = (id: number) => {
+    return isOpenId === id;
+  };
+
   return (
     <S.OrderTutorialWrapper>
       <Nav />
@@ -14,7 +30,27 @@ export default function Faq() {
           <S.CategoryBox>{categ}</S.CategoryBox>
         ))}
       </S.CategoryBoxWrapper>
-      {/* {FAQ_DATA.map(()=>())} FAQ_CATEGORY */}
+      <S.CategoryTitleBox>
+        <S.CategoryTitle width={210} paddingLeft={40}>
+          카테고리
+        </S.CategoryTitle>
+        <S.CategoryTitle width={820} paddingLeft={90}>
+          질문내용
+        </S.CategoryTitle>
+      </S.CategoryTitleBox>
+      {FAQ_DATA.map(({ faqId, category, title, comment }) => (
+        <>
+          <S.QBox key={faqId}>
+            <S.Q>Q</S.Q>
+            <S.Category>{category}</S.Category>
+            <S.TitleWrapper onClick={() => handleToggleOpen(faqId)}>
+              <S.Title>{title}</S.Title>
+              {checkisOpenIdSame(faqId) ? <FaqToggleOpenIc /> : <FaqToggleIc />}
+            </S.TitleWrapper>
+          </S.QBox>
+          {checkisOpenIdSame(faqId) && <S.Comment>{comment}</S.Comment>}
+        </>
+      ))}
     </S.OrderTutorialWrapper>
   );
 }
