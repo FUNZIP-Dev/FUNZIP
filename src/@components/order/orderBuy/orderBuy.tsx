@@ -126,8 +126,12 @@ export default function OrderBuy() {
           </S.PriceWrapper>
         </S.TotalPriceWrapper>
       </S.ReceiptWrapper>
-      <p>바로 결제할게요</p>
-      <div onClick={handleActiveBuy}>{isCheckedBuy ? <OrderBuyActiveIc /> : <OrderBuyUnActiveIc />}</div>
+      <S.PayNow>
+        <S.PayNowTitle>바로 결제할게요</S.PayNowTitle>
+        <S.PayButton onClick={handleActiveBuy}>
+          {isCheckedBuy ? <OrderBuyActiveIc /> : <OrderBuyUnActiveIc />}
+        </S.PayButton>
+      </S.PayNow>
     </>
   );
 }

@@ -235,3 +235,28 @@ export const Won = styled.p`
 export const PriceTitleWrapper = styled.div`
   display: flex;
 `;
+
+export const PayNow = styled.h1`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 734px;
+  height: 400px;
+`;
+
+export const PayNowTitle = styled.p`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+
+  color: #606067;
+
+  margin: 39px 0 29px 15px;
+`;
+
+export const PayButton = styled.button`
+  cursor: pointer;
+`;
