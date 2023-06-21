@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { CATEGORY_LIST } from "../../../core/order/categoryCircle";
+import { moveNextPage } from "../../../recoil/order/moveNextPage";
 import * as S from "./style";
 
 export default function OrderCategory() {
   const [clickId, setClickId] = useState<number>(-1);
+  const [isNext, setIsNext] = useRecoilState(moveNextPage);
+
   const handleSelectCategory = (id: number, text: string) => {
     setClickId(id);
+    setIsNext(true);
     //text를 저장하는 로직 필요
   };
 
