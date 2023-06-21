@@ -1,5 +1,18 @@
+import { styled,keyframes } from "styled-components";
 
-import styled from 'styled-components';
+
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+
 
 interface AuthInputProps {
     isValid: boolean;
@@ -16,6 +29,7 @@ interface MessageTextProps {
 }
 /* ------- 회원 관리 통합 스타일 ------- */
 export const AuthInputWrapper = styled.div`
+    animation: ${fadeInAnimation} 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
@@ -90,6 +104,7 @@ export const LoginSybTitleText = styled.h2`
     margin: 25px 0px 20px 0px;
 `
 export const LoginTitleWrapper = styled.div`
+animation: ${fadeInAnimation} 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;

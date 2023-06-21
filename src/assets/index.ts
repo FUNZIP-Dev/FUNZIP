@@ -14,3 +14,15 @@ export { ReactComponent as TutorialMainIc } from "./icon/tutorialMainIc.svg";
 export { ReactComponent as LoginLogo } from "./icon/loginLogo.svg";
 export { ReactComponent as GoogleIcon } from "./icon/googleIcon.svg";
 export { ReactComponent as ProfileDefaultIcon } from "./icon/profileDefaultIcon.svg";
+export { ReactComponent as MypageLogo } from "./icon/mypageLogo.svg";
+/* ---------------- 메인 배경이루는 아이콘들 ---------------- */
+export { ReactComponent as Main1 } from "./icon/MainBackground/main1.svg";
+export { ReactComponent as Main2 } from "./icon/MainBackground/main2.svg";
+export { ReactComponent as Main3 } from "./icon/MainBackground/main3.svg";
+export { ReactComponent as Main4 } from "./icon/MainBackground/main4.svg";
+export { ReactComponent as Main5 } from "./icon/MainBackground/main5.svg";
+export { ReactComponent as Main6 } from "./icon/MainBackground/main6.svg";
+export { ReactComponent as Main7 } from "./icon/MainBackground/main7.svg";
+export { ReactComponent as Main8 } from "./icon/MainBackground/main8.svg";
+export { ReactComponent as Main9 } from "./icon/MainBackground/main9.svg";
+export { ReactComponent as Main10 } from "./icon/MainBackground/main10.svg";

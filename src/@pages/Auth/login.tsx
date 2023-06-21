@@ -122,7 +122,7 @@ const handleGoogleLogin = () => {
               const userData = {
                 email: email,
                 phone: phone,
-                nickname: displayName || '',
+                displayName: displayName || '',
                 staff: 0,
               };
 
@@ -191,7 +191,7 @@ const alertError = (err:any) => {
           const userData = {
             email: user.email,
             phone: phone,
-            nickname: nickname,
+            displayName: nickname,
             staff : 0
           };
           // Use the UID as the key for the user document
