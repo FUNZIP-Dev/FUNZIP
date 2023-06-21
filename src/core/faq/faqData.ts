@@ -46,3 +46,5 @@ export const FAQ_DATA: FaqType[] = [
       "답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용답변내용",
   },
 ];
+
+export const FAQ_CATEGORY = ["주문", "수정"];
