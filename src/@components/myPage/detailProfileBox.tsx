@@ -6,12 +6,17 @@ export default function DetailProfileBox() {
     // navigate
     const navigate = useNavigate();
     
+    const goDetail=(url:string)=>{
+        navigate(url)
+        // scroll up
+        window.scrollTo(0, 0);
+    }
+
+    
   return (
     <S.DetailWrapper>
 
-        <S.DetailProfileBox onClick={()=>{
-            navigate("/myPage/orderList")
-        }}>
+        <S.DetailProfileBox onClick={()=>{goDetail("/myPage/orderList")}}>
             <AlertIcon/>
             <S.DetailText>
                 내 주문 내역
@@ -19,7 +24,8 @@ export default function DetailProfileBox() {
         </S.DetailProfileBox>
 
         <S.DetailProfileBox onClick={()=>{
-            navigate("/myPage/coupon")
+            goDetail("/myPage/coupon");
+            
         }}>
             <CouponIcon/>
             <S.DetailText>
@@ -28,7 +34,7 @@ export default function DetailProfileBox() {
         </S.DetailProfileBox>
 
         <S.DetailProfileBox onClick={()=>{
-            navigate("/myPage/setting")
+            goDetail("/myPage/setting")
         }}>
             <SettingIcon/>
             <S.DetailText>
