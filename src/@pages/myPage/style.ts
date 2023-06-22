@@ -239,3 +239,10 @@ export const MypageDetailWrapper = styled.div`
     height: 100vh;
 `
 
+// 쿠폰
+export const CouponWrapper = styled.div`
+margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼으로 구성 */
+    grid-gap: 20px; /* 아이템 사이의 간격 */
+`;

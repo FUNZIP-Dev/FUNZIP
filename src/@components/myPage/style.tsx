@@ -77,3 +77,46 @@ export const NodataWrapper = styled.div`
 export const ErrorLogoBox = styled(ErrorLogo)`
 margin-bottom : 29px;
 `
+
+export const CouponContainerWrapper = styled.div`
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    padding : 28px 0px 20px 36px;
+    border-radius: 16px;
+    border: 1px solid var(--grey-5, #DEDFE5);
+    background: var(--grey-2, #F8F8FA);
+    font-family: Pretendard;
+    color:#606067;
+
+
+
+`
+
+export const CouponHeader = styled.h1`
+    color: var(--grey-1, #606067);
+    font-size: 40px;
+    
+    font-weight: 700;
+    line-height: 100%;
+    margin-bottom: 16px;
+
+`
+export const CouponContent = styled.p`
+    color: var(--grey-1, #606067);
+    /* M 18 */
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 44px;
+`
+
+export const CouponDate = styled.p`
+    color: var(--grey-3, #AEAFB9);
+    /* M 18 */
+    font-size: 18px;
+    font-family: Pretendard;
+    font-weight: 500;
+    line-height: 100%;
+
+`
