@@ -38,7 +38,9 @@ export default function OrderList() {
       <Nav/>
       <S.MypageDetailWrapper>
     
-        <MypageDetailHeader/>
+        <MypageDetailHeader 
+        title="내 주문 내역"
+        />
         <S.MypageProcessingContentWrapper2>
                     <S.MypageProcessingContentTitle>번호</S.MypageProcessingContentTitle>
                     <S.MypageProcessingContentTitle>카테고리</S.MypageProcessingContentTitle>
