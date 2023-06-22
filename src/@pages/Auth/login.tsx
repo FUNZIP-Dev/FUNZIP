@@ -1,18 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import * as S from "./style";
-import { authService, dbService } from "../../fbase";
+import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,GoogleAuthProvider } from "firebase/auth";
-import { getFirestore,getDoc, collection, setDoc, onSnapshot, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { getFirestore,getDoc, collection, setDoc, doc } from "firebase/firestore";
 
 
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../@components/Auth/loginForm";
 import SignUpForm from "../../@components/Auth/signUpForm";
-import {GoogleIcon, LoginLogo} from "../../assets";
+import {GoogleIcon} from "../../assets";
 import LoginTitle from "../../@components/Auth/loginTitle";
-import SignUpGoogleForm from "../../@components/Auth/signUpGoogleForm";
 
 export default function Login() {
 

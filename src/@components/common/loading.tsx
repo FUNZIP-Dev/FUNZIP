@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import Spinner from '../../assets/spinner.gif'
 
-const LoadingText = styled.div`
-  text-align: center;
-`;
+// const LoadingText = styled.div`
+//   text-align: center;
+// `;
 
 const Background = styled.div`
     position: absolute;
