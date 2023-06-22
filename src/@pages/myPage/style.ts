@@ -31,7 +31,7 @@ export const MypageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100vh;
+    height: 130vh;
     margin: 0 auto;
     
 `
@@ -114,9 +114,18 @@ export const ProgressText = styled.h1<Processing>`
 
 /* 프로세스 진행중일때 */
 export const MypageProcessingTitleWrapper = styled.div`
-    margin-top: 48px;
+  margin-top: 48px;
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 0.7fr;
+`
+
+export const MypageProcessingContentWrapper2 = styled.div`
+
+    padding : 24px 40px 20px 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 2fr 1.2fr;
+    border-bottom: 2px solid #F0F0F0;
+
 `
 
 
@@ -124,6 +133,7 @@ export const MypageProcessingContentTitle = styled.div`
     font-size: 18px;
     display: flex;
     
+    color:#040A04;
     
     margin-bottom: 12px;
 
@@ -219,4 +229,13 @@ export const ProcessDoing = styled.div<Status>`
   }};
 `;
 
-/* MORE BOX */
+export const MypageDetailWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 100vh;
+`
+

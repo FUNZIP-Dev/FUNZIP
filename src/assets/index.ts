@@ -54,3 +54,5 @@ export { ReactComponent as TutorialPageIc } from "./icon/tutorialPageIc.svg";
 export { ReactComponent as SettingIcon } from "./icon/settingIcon.svg";
 export { ReactComponent as CouponIcon } from "./icon/couponIcon.svg";
 export { ReactComponent as AlertIcon } from "./icon/alertIcon.svg";
+export { ReactComponent as BackIcon } from "./icon/backIcon.svg";
+export { ReactComponent as ErrorLogo } from "./icon/errorLogo.svg";
