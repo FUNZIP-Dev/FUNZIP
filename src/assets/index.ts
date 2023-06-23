@@ -50,3 +50,9 @@ export { ReactComponent as OrderReceiptCheckIc } from "./icon/orderReceiptCheckI
 export { ReactComponent as OrderReceiptIc } from "./icon/orderReceiptIc.svg";
 export { ReactComponent as OrderSuccessIc } from "./icon/orderSuccessIc.svg";
 export { ReactComponent as TutorialPageIc } from "./icon/tutorialPageIc.svg";
+/* ---------------- 마이페이지 아이콘  ---------------- */
+export { ReactComponent as SettingIcon } from "./icon/settingIcon.svg";
+export { ReactComponent as CouponIcon } from "./icon/couponIcon.svg";
+export { ReactComponent as AlertIcon } from "./icon/alertIcon.svg";
+export { ReactComponent as BackIcon } from "./icon/backIcon.svg";
+export { ReactComponent as ErrorLogo } from "./icon/errorLogo.svg";

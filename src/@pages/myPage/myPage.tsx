@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { DocumentData, collection, doc, getDoc, getFirestore } from 'firebase/firestore';
 import MainLogo from "../../@components/myPage/mainLogo";
 import Loading from "../../@components/common/loading";
-import { MypageLogo } from "../../assets";
+import DetailProfileBox from "../../@components/myPage/detailProfileBox";
+
 
 export default function MyPage() {
   const userInfo = useContext(AuthContext);
@@ -81,7 +82,7 @@ export default function MyPage() {
   // isDoing 체크하기
 
   if (loading) {
-    return <div>404NOTFOUND...</div>;
+    return <div></div>;
   }
 
   return (
@@ -148,6 +149,9 @@ export default function MyPage() {
             </S.MypageProcessing>
 
           </S.MypageProcessingWrapper>
+          <DetailProfileBox/>
+
+
         </S.MypageWrapper>
       ) : (
         <>
