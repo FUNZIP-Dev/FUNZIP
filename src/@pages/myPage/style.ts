@@ -195,7 +195,7 @@ export const ProcessDoing = styled.div<Status>`
       case 2:
         return '#F8F8FA;';
       default:
-        return '#FFF3F1';
+        return '#F8F8FA';
     }
   }};
   /* Orange */
@@ -211,7 +211,7 @@ export const ProcessDoing = styled.div<Status>`
       case 2:
         return "2px solid #AEAFB9";
       default:
-        return "2px solid #FF5D47";
+        return "2px solid #AEAFB9";
     }
 }};
 

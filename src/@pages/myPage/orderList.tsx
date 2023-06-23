@@ -29,6 +29,12 @@ export default function OrderList() {
           date: "2021/10/10  23:00",
           price: "90,000 원",
           status:2
+        },
+        {
+          category: "으각",
+          date: "2021/10/10  23:00",
+          price: "90,000 원",
+          status:3
         }
     
       ]
@@ -51,15 +57,16 @@ export default function OrderList() {
         
 
         
+        
         {order.length > 0 ? (
             order.map((item, index) => (
                 <S.MypageProcessingContentWrapper2 key={index}>
-                <S.ProcessName>{index+1}</S.ProcessName>
+                <S.ProcessName>{order.length-index}</S.ProcessName>
                 <S.ProcessName>{item.category}</S.ProcessName>
                 <S.ProcessName>{item.date}</S.ProcessName>
                 <S.ProcessName>{item.price}</S.ProcessName>
                 <S.ProcessDoing status={item.status}>
-                    {item.status === 0 ? "편집 대기" : (item.status === 1 ? "편집 중" : "편집완료")}
+                    {item.status === 0 ? "편집 대기" : (item.status === 1 ? "편집 중": (item.status===2 ? "편집완료" : "편집 취소"))}
                 </S.ProcessDoing>
                 </S.MypageProcessingContentWrapper2>
             ))
