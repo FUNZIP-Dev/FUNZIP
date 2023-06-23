@@ -11,6 +11,7 @@ import TutorialPage from "./@pages/tutorial/tutorialPage";
 import OrderList from "./@pages/myPage/orderList";
 import Coupon from "./@pages/myPage/coupon";
 import Setting from "./@pages/myPage/setting";
+import OrderDetail from "./@pages/myPage/orderDetail";
 
 export default function Router() {
   return (
@@ -25,9 +26,10 @@ export default function Router() {
 
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/orderList" element={<OrderList />} />
+          <Route path="/mypage/orderList/:orderId" element={<OrderDetail />} />
           <Route path="/mypage/coupon" element={<Coupon />} />
           <Route path="/mypage/setting" element={<Setting />} />
-          
+
         <Route path="/login" element={<Login />} />
         <Route path="/google" element={<SignUpGoogleForm />} />
       </Routes>

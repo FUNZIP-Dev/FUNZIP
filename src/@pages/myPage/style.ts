@@ -120,12 +120,18 @@ export const MypageProcessingTitleWrapper = styled.div`
 `
 
 export const MypageProcessingContentWrapper2 = styled.div`
-
+cursor: pointer;
     padding : 24px 40px 20px 40px;
     display: grid;
     grid-template-columns: 1fr 2fr 3fr 2fr 1.2fr;
     border-bottom: 2px solid #F0F0F0;
-
+&:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+    > :nth-child(4) {
+      color: #FF5D47;
+    }
+  }
 `
 
 
