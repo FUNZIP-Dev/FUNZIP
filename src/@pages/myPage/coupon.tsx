@@ -51,7 +51,7 @@ export default function Coupon() {
                         title="쿠폰함"
                     />
             {
-            coupon.length < 0 ? (
+            coupon.length > 0 ? (
                 <S.CouponWrapper>
                 {coupon.map((item, index) => (
                     <CouponCard

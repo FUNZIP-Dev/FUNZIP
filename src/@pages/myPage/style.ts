@@ -246,3 +246,68 @@ margin-top: 20px;
     grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼으로 구성 */
     grid-gap: 20px; /* 아이템 사이의 간격 */
 `;
+
+// 마이페이지 수정
+export const MypageEditWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-family: Pretendard;
+  `
+  
+export const MypageEditHedaer = styled.h1`
+      color: #282828;
+      /* B 24 */
+      font-size: 24px;
+      
+      font-weight: 700;
+      line-height: 100%;
+      margin: 30px 0px 0px 0;
+`
+export const MypageEditSubHedaer = styled.h2`
+      color: #282828;
+      /* B 20 */
+      font-size: 20px;
+      font-weight: 700;
+      margin: 50px 0px 20px 0px;
+`
+
+export const PasswordResetForm = styled.div`
+    display: flex;
+    border-radius: 20.5px;
+    border: 2px solid var(--grey-3, #AEAFB9);
+    width: 154px;
+    height: 41px;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    color: var(--grey-3, #AEAFB9);
+  font-size: 15px;
+  font-family: Pretendard;
+  font-weight: 600;
+  line-height: 160%;
+  cursor: pointer;
+  
+    
+    `
+  
+export const Deletebtn = styled.button`
+    display: flex;
+    width: 260px;
+    height: 64px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--orange, #FF5D47);
+    font-size: 15px;
+    font-family: Pretendard;
+    font-weight: 600;
+    line-height: 160%;
+    `
+
+export const NowPhoneNum = styled.div`
+    
+    font-family: Pretendard;
+    font-weight: 500;
+    margin-bottom: 20px;
+`

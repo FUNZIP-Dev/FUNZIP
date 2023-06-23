@@ -160,6 +160,9 @@ const alertError = (err:any) => {
   if (err.code == 'auth/too-many-requests') {
     alert('잠시 후 다시 시도해 주세요');
   }
+  if(err.code == 'auth/email-already-in-use'){
+    alert('이미 존재하는 이메일 주소 입니다.');
+  }
 
 };
   // 회원가입, 로그인 페이지 전환
