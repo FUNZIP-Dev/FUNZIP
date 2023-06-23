@@ -60,11 +60,18 @@ export default function MyPage() {
       // Fetch user profile data from Firestore
       const fetchUserProfile = async () => {
         try {
+
+          // DB 가져오기
           const db = getFirestore();
+          // 'users' collection 정보 가져오기, doc 두번째 인자는 userInfo.uid는 현재 로그인한 유저의 uid
           const userRef = doc(collection(db, 'users'), userInfo.uid);
+          // userRef를 통해 해당 유저의 정보 가져오기
           const userSnapshot = await getDoc(userRef);
+          // 유저 정보가 있다면
           if (userSnapshot.exists()) {
+            // 유저 정보를 userProfile에 저장
             const userData = userSnapshot.data();
+            // userProfile에 저장된 유저 정보를 setUserProfile로 넘겨줌
             setUserProfile(userData);
           }
           setLoading(false); // Set loading to false once user profile is available

@@ -44,14 +44,19 @@ export default function Setting() {
     }, [userInfo]);
   
   const handleResetPassword = async () => {
-    try {
-      if (userInfo && userInfo.email) {
-        await sendPasswordResetEmail(authService, userInfo.email);
-        alert('비밀번호 초기화 이메일이 성공적으로 전송되었습니다.');
+    const confirmed = window.confirm('정말로 비밀번호를 초기화 하시겠습니까?');
+    if(confirmed)
+    {
+      try {
+        if (userInfo && userInfo.email) {
+          await sendPasswordResetEmail(authService, userInfo.email);
+          alert('비밀번호 초기화 이메일이 성공적으로 전송되었습니다.');
+        }
+      } catch (error) {
+        alert('비밀번호 초기화 이메일 전송에 실패하였습니다.');
       }
-    } catch (error) {
-      alert('비밀번호 초기화 이메일 전송에 실패하였습니다.');
     }
+
   };
 
    const handleWithdrawal = () => {

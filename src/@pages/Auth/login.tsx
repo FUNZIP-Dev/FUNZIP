@@ -4,7 +4,7 @@ import * as S from "./style";
 import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,GoogleAuthProvider } from "firebase/auth";
-import { getFirestore,getDoc, collection, setDoc, doc } from "firebase/firestore";
+import { getFirestore,getDoc, collection, setDoc, doc, addDoc } from "firebase/firestore";
 
 
 import { useNavigate } from "react-router-dom";
@@ -184,6 +184,7 @@ const alertError = (err:any) => {
     if (isCreate) {
       const db = getFirestore();
       const userRef = collection(db, "users");
+      
   
       try {
         const userCredential = await createUserWithEmailAndPassword(authService, email, pwd);
@@ -196,6 +197,30 @@ const alertError = (err:any) => {
             displayName: nickname,
             staff : 0
           };
+
+
+          // 디비 끌고오기
+          const db = getFirestore();
+          // order 컬렉션 선택하기 
+          const orderRef = collection(db, "order");
+
+          // order 컬렉션에 추가할 데이터
+          const orderData = {
+            email: user.email,
+            order: basic,
+            price : totalPrice
+          };
+          
+          
+          // order 컬렉션에 orderData 추가하기
+          await addDoc(orderRef, {
+            category:"브이로그",
+            startedAt: "2021/10/10  23:00",
+            price: "60,000 원",
+            
+          })
+
+          // await setDoc(doc(orderRef, ), orderData);
           // Use the UID as the key for the user document
           await setDoc(doc(userRef, user.uid), userData);
           alert("회원가입 하셨습니다.");

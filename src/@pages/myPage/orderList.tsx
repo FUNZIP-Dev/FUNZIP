@@ -51,7 +51,7 @@ export default function OrderList() {
         
 
         
-        {order.length <0 ? (
+        {order.length > 0 ? (
             order.map((item, index) => (
                 <S.MypageProcessingContentWrapper2 key={index}>
                 <S.ProcessName>{index+1}</S.ProcessName>
