@@ -91,10 +91,10 @@ export default function OrderBuy() {
                 <S.Text>{orderStyleData.size}</S.Text>
               </S.FontBox>
               <S.IconsContainer>
-                <S.IconsWrapper width={191}>
+                <S.IconsWrapper pr={false}>
                   <S.OrderBuyStyleIconsIcon />
                 </S.IconsWrapper>
-                <S.IconsWrapper width={191}>
+                <S.IconsWrapper pr={true}>
                   {checkIsTransparent(orderStyleData.textColor) ? (
                     <EmptyColorIc />
                   ) : (

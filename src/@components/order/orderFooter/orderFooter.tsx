@@ -40,7 +40,7 @@ export default function OrderFooter(props: StepProps) {
   };
 
   const handelMoveToNext = () => {
-    if (orderStyleData.driveLink === "" || orderStyleData.link === "") {
+    if (step === ORDER_STEP.STYLE && (orderStyleData.driveLink === "" || orderStyleData.link === "")) {
       alert("링크를 입력해주세요");
     }
     if (isNext) {
@@ -52,7 +52,7 @@ export default function OrderFooter(props: StepProps) {
           setStep(ORDER_STEP.STYLE);
           break;
         case ORDER_STEP.STYLE:
-          if (orderStyleData.link !== "") {
+          if (orderStyleData.link !== "" && orderStyleData.driveLink !== "") {
             setStep(ORDER_STEP.BUY);
           }
           break;

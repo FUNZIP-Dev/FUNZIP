@@ -140,13 +140,15 @@ export const Font = styled.p`
   color: #aeafb9;
 `;
 
-export const IconsWrapper = styled.section<{ width: number }>`
+export const IconsWrapper = styled.section<{ pr: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: ${({ width }) => width}px;
+  width: 191px;
   height: 27px;
+
+  padding-right: ${({ pr }) => pr && 3.3}px;
 `;
 
 export const ColorPreview = styled.div<{ color: string }>`
