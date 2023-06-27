@@ -6,7 +6,13 @@ import { useRecoilState } from "recoil";
 import { ProfileDefaultIcon } from "../../../assets";
 import { AuthContext } from "../../../context/authContext";
 import { ORDER_STEP } from "../../../core/order/orderStep";
+import { orderStyle } from "../../../recoil/order/fontStyle";
+import { orderMoney } from "../../../recoil/order/orderMoney";
 import { orderStep } from "../../../recoil/order/orderStep";
+import { selectCategory } from "../../../recoil/order/selectCatogry";
+import { selectOptions } from "../../../recoil/order/selectOptions";
+import { orderStyleDataType } from "../../../type/order/orderStyleData";
+import { SelectOptionTypes } from "../../order/orderOption/orderOption";
 import * as S from "./style";
 
 export default function Nav() {
@@ -14,6 +20,10 @@ export default function Nav() {
   const navigate = useNavigate();
   const [isStaff, setIsStaff] = useState(false);
   const [step, setStep] = useRecoilState<string>(orderStep);
+  const [category, setCategory] = useRecoilState<string>(selectCategory);
+  const [options, setOptions] = useRecoilState<SelectOptionTypes>(selectOptions);
+  const [style, setStyle] = useRecoilState<orderStyleDataType>(orderStyle);
+  const [price, setPrice] = useRecoilState<number>(orderMoney);
 
   const handleMoveToPage = (route: string) => {
     navigate(route);
@@ -43,6 +53,25 @@ export default function Nav() {
       setStep(ORDER_STEP.TUTORIAL);
     }
     navigate("/order");
+    setCategory("");
+    setOptions({
+      basic: [],
+      plus: [],
+      cam: "",
+    });
+    setStyle({
+      font: "Pretendard Medium",
+      size: 10,
+      textColor: "#000000",
+      borderColor: "transparent",
+      backgroundColor: "transparent",
+      shadowColor: "transparent",
+      mood: "",
+      link: "",
+      driveLink: "",
+      time: "",
+    });
+    setPrice(0);
   };
 
   return (

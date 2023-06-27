@@ -4,6 +4,7 @@ import { EmptyColorIc, OrderBuyActiveIc, OrderBuyUnActiveIc, OrderReceiptCheckIc
 import { USER } from "../../../core/user/user";
 import { orderStyle } from "../../../recoil/order/fontStyle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
+import { orderMoney } from "../../../recoil/order/orderMoney";
 import { selectOptions } from "../../../recoil/order/selectOptions";
 import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import { SelectOptionTypes } from "../orderOption/orderOption";
@@ -14,6 +15,7 @@ export default function OrderBuy() {
   const orderStyleData = useRecoilValue<orderStyleDataType>(orderStyle);
   const [isCheckedBuy, setIsCheckedBuy] = useState(false);
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
+  const [totalPrice, setTotalPrice] = useRecoilState<number>(orderMoney);
 
   const handleActiveBuy = () => {
     setIsCheckedBuy(!isCheckedBuy);
@@ -141,7 +143,7 @@ export default function OrderBuy() {
             </S.Title>
           </S.PriceTitleWrapper>
           <S.PriceWrapper>
-            <S.Price>6000</S.Price>
+            <S.Price>{totalPrice}</S.Price>
             <S.Won>원</S.Won>
           </S.PriceWrapper>
         </S.TotalPriceWrapper>
