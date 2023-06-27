@@ -4,7 +4,7 @@ import { OrderBuyStyleIconsIc, OrderReceiptIc } from "../../../assets";
 export const ReceiptWrapper = styled.section`
   position: absolute;
   width: 734px;
-  height: 576px;
+  height: 600px;
 
   margin-top: 396px;
   padding: 0px 24px;

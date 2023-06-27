@@ -60,6 +60,12 @@ export default function OrderBuy() {
             <S.Tags>
               <S.Sub>참고 링크</S.Sub>
             </S.Tags>
+            <S.Tags>
+              <S.Sub>영상 링크</S.Sub>
+            </S.Tags>
+            <S.Tags>
+              <S.Sub>영상 길이</S.Sub>
+            </S.Tags>
           </S.TitleTags>
           <ul>
             <S.Tags>
@@ -117,6 +123,12 @@ export default function OrderBuy() {
             </S.Tags>
             <S.Tags>
               <S.Tag>{orderStyleData?.link}</S.Tag>
+            </S.Tags>
+            <S.Tags>
+              <S.Tag>{orderStyleData?.driveLink}</S.Tag>
+            </S.Tags>
+            <S.Tags>
+              <S.Tag>{orderStyleData?.time}</S.Tag>
             </S.Tags>
           </ul>
         </S.TagsWrapper>
