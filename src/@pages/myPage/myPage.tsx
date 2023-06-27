@@ -72,7 +72,8 @@ export default function MyPage() {
             // 유저 정보를 userProfile에 저장
             const userData = userSnapshot.data();
             // userProfile에 저장된 유저 정보를 setUserProfile로 넘겨줌
-            if(userData.status != 0){
+            console.log(userData)
+            if(userData.staff != 0){
               navigate("/staff");
             }
             setUserProfile(userData);
@@ -123,7 +124,7 @@ export default function MyPage() {
                     <S.MypageProcessingContentTitle>카테고리</S.MypageProcessingContentTitle>
                     <S.MypageProcessingContentTitle>등록 일시</S.MypageProcessingContentTitle>
                     <S.MypageProcessingContentTitle>결제 정보</S.MypageProcessingContentTitle>
-                    {/* <S.MypageProcessingContentTitle style={{justifyContent:"center"}}>진행 상황</S.MypageProcessingContentTitle> */}
+                    <S.MypageProcessingContentTitle style={{justifyContent:"center"}}>진행 상황</S.MypageProcessingContentTitle>
                   </S.MypageProcessingTitleWrapper>
                   <S.MypageProcessingSeparator/>
 
