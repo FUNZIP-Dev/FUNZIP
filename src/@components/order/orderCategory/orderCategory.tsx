@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { CATEGORY_LIST } from "../../../core/order/categoryCircle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
+import { selectCategory } from "../../../recoil/order/selectCatogry";
 import * as S from "./style";
 
 export default function OrderCategory() {
-  const [clickId, setClickId] = useState<number>(-1);
+  const [clickText, setClickText] = useRecoilState<string>(selectCategory);
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
 
-  const handleSelectCategory = (id: number, text: string) => {
-    setClickId(id);
+  useEffect(() => {
+    clickText === "" ? setIsNext(false) : setIsNext(true);
+  }, []);
+
+  const handleSelectCategory = (text: string) => {
+    setClickText(text);
     setIsNext(true);
     //text를 저장하는 로직 필요
   };
 
-  const checkIsClickId = (id: number) => {
-    return clickId === id;
+  const checkIsClickText = (text: string) => {
+    return clickText === text;
   };
 
   return (
@@ -28,8 +33,8 @@ export default function OrderCategory() {
             $size={size}
             $marginLeft={marginLeft}
             $marginTop={marginTop}
-            onClick={() => handleSelectCategory(id, text)}
-            $isClick={checkIsClickId(id)}>
+            onClick={() => handleSelectCategory(text)}
+            $isClick={checkIsClickText(text)}>
             {text}
           </S.Circle>
         ))}
