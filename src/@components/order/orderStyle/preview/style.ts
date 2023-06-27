@@ -29,7 +29,7 @@ export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
   text-shadow: -1px 0px ${({ orderStyleData }) => orderStyleData.borderColor},
     0px 1px ${({ orderStyleData }) => orderStyleData.borderColor},
     1px 0px ${({ orderStyleData }) => orderStyleData.borderColor},
-    0px -1px ${({ orderStyleData }) => orderStyleData.borderColor};
+    0px -1px ${({ orderStyleData }) => orderStyleData.borderColor}!important;
   background-color: ${({ orderStyleData }) => orderStyleData.backgroundColor};
   text-shadow: 2px 2px 2px ${({ orderStyleData }) => orderStyleData.shadowColor};
 `;

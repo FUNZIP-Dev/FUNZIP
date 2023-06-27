@@ -38,7 +38,7 @@ export const COLOR_PALETTE: string[] = [
   "#E9CBFA",
   "#D5E1FB",
   "#D2EFFD",
-  "#FFFFFF",
+  "transparent",
 ];
 
 interface selectColorType {
