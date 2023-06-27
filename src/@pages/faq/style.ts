@@ -168,3 +168,7 @@ export const TitleWrapper = styled.div`
 
   cursor: pointer;
 `;
+
+export const QBoxWrapper = styled.section`
+  margin-bottom: 200px;
+`;
