@@ -18,10 +18,15 @@ export default function OrderStyle() {
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
 
   useEffect(() => {
-    if (orderStyleData.mood !== "" && orderStyleData.link !== "") {
+    if (
+      orderStyleData.mood !== "" &&
+      orderStyleData.link !== "" &&
+      orderStyleData.driveLink !== "" &&
+      orderStyleData.time !== ""
+    ) {
       setIsNext(true);
     }
-  }, [orderStyleData.mood, orderStyleData.link]);
+  }, [orderStyleData.mood, orderStyleData.link, orderStyleData.driveLink, orderStyleData.time]);
 
   return (
     <S.OrderStyleWrapper>

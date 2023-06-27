@@ -40,6 +40,9 @@ export default function OrderFooter(props: StepProps) {
   };
 
   const handelMoveToNext = () => {
+    if (orderStyleData.driveLink === "" || orderStyleData.link === "") {
+      alert("링크를 입력해주세요");
+    }
     if (isNext) {
       switch (step) {
         case ORDER_STEP.CATEGORY:
