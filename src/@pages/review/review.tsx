@@ -1,21 +1,11 @@
-import { useContext, useState, useEffect } from "react";
+import { addDoc, collection, deleteDoc, doc, getFirestore, onSnapshot, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useContext, useEffect, useState } from "react";
 import * as S from "./style";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  onSnapshot,
-  doc,
-  deleteDoc,
-  updateDoc,
-  getDocs,
-} from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import Nav from "../../@components/common/nav/nav";
 import { AuthContext } from "../../context/authContext";
 import { storageService } from "../../fbase";
-import * as S from "./style";
 
 export default function Review() {
   const userInfo = useContext(AuthContext);
