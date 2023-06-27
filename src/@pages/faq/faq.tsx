@@ -2,12 +2,13 @@ import { collection, getFirestore, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import { FaqToggleIc, FaqToggleOpenIc } from "../../assets";
-import { FAQ_CATEGORY, FAQ_DATA } from "../../core/faq/faqData";
+import { FAQ_CATEGORY } from "../../core/faq/faqData";
 import * as S from "./style";
 
 export default function Faq() {
   const [isOpenId, setIsOpenId] = useState(-1);
   // const [data, setData] = useState(FAQ_DATA);
+  const [fullData, setFullData] = useState<any>();
   const [data, setData] = useState<any>();
 
   const handleToggleOpen = (id: number) => {
@@ -18,22 +19,24 @@ export default function Faq() {
     }
   };
 
+  console.log(isOpenId);
+
   const checkisOpenIdSame = (id: number) => {
     return isOpenId === id;
   };
 
   const handleSelectCateg = (categ: string) => {
     if (categ !== "전체") {
-      const newData = [...FAQ_DATA];
+      const newData = [...fullData];
       setData(newData.filter(({ category }) => category === categ));
     } else {
-      setData(FAQ_DATA);
+      setData(fullData);
     }
   };
 
   const handleInputText = (e: any) => {
     const input = e.target.value;
-    const newData = [...FAQ_DATA];
+    const newData = [...fullData];
     setData(newData.filter(({ title, comment }) => title.includes(input) || comment.includes(input)));
   };
 
@@ -46,13 +49,14 @@ export default function Faq() {
       snapshot.forEach((doc: any) => {
         faqDatas.push({ id: doc.id, ...doc.data() });
       });
+      setFullData(faqDatas);
       setData(faqDatas);
     });
 
     return () => getFaqData();
   }, []);
 
-  // console.log(data);
+  console.log(fullData);
 
   return (
     <S.OrderTutorialWrapper>
