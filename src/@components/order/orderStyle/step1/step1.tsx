@@ -2,6 +2,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import { useState } from "react";
 import { SketchPicker } from "react-color";
 import { useRecoilState } from "recoil";
+import { styled } from "styled-components";
 import { BackgroundColorIc, BorderColorIc, EmptyColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
 import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
@@ -28,18 +29,22 @@ export default function Step1() {
   };
 
   const getTextColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, textColor: color.hex });
   };
 
   const getBorderColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, borderColor: color.hex });
   };
 
   const getBackgroundColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, backgroundColor: color.hex });
   };
 
   const getShadowColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, shadowColor: color.hex });
   };
 
@@ -56,39 +61,47 @@ export default function Step1() {
     switch (color) {
       case "textColor":
         return (
-          <SketchPicker
-            color={orderStyleData.textColor}
-            onChangeComplete={getTextColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.textColor}
+              onChangeComplete={getTextColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "borderColor":
         return (
-          <SketchPicker
-            color={orderStyleData.borderColor}
-            onChangeComplete={getBorderColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.borderColor}
+              onChangeComplete={getBorderColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "backgroundColor":
         return (
-          <SketchPicker
-            color={orderStyleData.backgroundColor}
-            onChangeComplete={getBackgroundColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.backgroundColor}
+              onChangeComplete={getBackgroundColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "shadowColor":
         return (
-          <SketchPicker
-            color={orderStyleData.shadowColor}
-            onChangeComplete={getShadowColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.shadowColor}
+              onChangeComplete={getShadowColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       default:
         return;
@@ -226,3 +239,7 @@ export default function Step1() {
     </>
   );
 }
+
+const SketchPickerWrapper = styled.section`
+  cursor: pointer;
+`;

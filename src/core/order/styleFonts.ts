@@ -20,14 +20,15 @@ interface sizeType {
 }
 
 export const SIZE: sizeType[] = [
-  { id: 1, size: 50 },
-  { id: 2, size: 75 },
-  { id: 3, size: 90 },
-  { id: 4, size: 100 },
-  { id: 5, size: 110 },
-  { id: 6, size: 125 },
-  { id: 7, size: 150 },
-  { id: 8, size: 200 },
-  { id: 9, size: 250 },
-  { id: 10, size: 300 },
+  { id: 1, size: 3 },
+  { id: 2, size: 5 },
+  { id: 3, size: 7 },
+  { id: 4, size: 9 },
+  { id: 5, size: 10 },
+  { id: 6, size: 11 },
+  { id: 7, size: 13 },
+  { id: 8, size: 15 },
+  { id: 9, size: 17 },
+  { id: 10, size: 20 },
+  { id: 11, size: 25 },
 ];

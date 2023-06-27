@@ -14,13 +14,14 @@ export const PreviewImg = styled.img`
 `;
 
 export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  display: flex;
+  align-items: flex-end;
 
   position: absolute;
 
-  margin-top: 210px;
+  width: 480px;
+  bottom: 400px;
+
   padding: 2px 13px;
 
   font-family: ${({ orderStyleData }) => orderStyleData.font};
