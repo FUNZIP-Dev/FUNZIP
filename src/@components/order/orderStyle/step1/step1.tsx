@@ -2,7 +2,8 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import { useState } from "react";
 import { SketchPicker } from "react-color";
 import { useRecoilState } from "recoil";
-import { BackgroundColorIc, BorderColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
+import { styled } from "styled-components";
+import { BackgroundColorIc, BorderColorIc, EmptyColorIc, ShadowColorIc, TextColorIc } from "../../../../assets";
 import { COLOR_PALETTE, SELECT_COLOR } from "../../../../core/order/colorPicker";
 import { FONT, SIZE } from "../../../../core/order/styleFonts";
 import { orderStyle } from "../../../../recoil/order/fontStyle";
@@ -28,18 +29,22 @@ export default function Step1() {
   };
 
   const getTextColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, textColor: color.hex });
   };
 
   const getBorderColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, borderColor: color.hex });
   };
 
   const getBackgroundColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, backgroundColor: color.hex });
   };
 
   const getShadowColorOption = (color: any) => {
+    setColorModalShow(false);
     setOrderStyleData({ ...orderStyleData, shadowColor: color.hex });
   };
 
@@ -56,39 +61,47 @@ export default function Step1() {
     switch (color) {
       case "textColor":
         return (
-          <SketchPicker
-            color={orderStyleData.textColor}
-            onChangeComplete={getTextColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.textColor}
+              onChangeComplete={getTextColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "borderColor":
         return (
-          <SketchPicker
-            color={orderStyleData.borderColor}
-            onChangeComplete={getBorderColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.borderColor}
+              onChangeComplete={getBorderColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "backgroundColor":
         return (
-          <SketchPicker
-            color={orderStyleData.backgroundColor}
-            onChangeComplete={getBackgroundColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.backgroundColor}
+              onChangeComplete={getBackgroundColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       case "shadowColor":
         return (
-          <SketchPicker
-            color={orderStyleData.shadowColor}
-            onChangeComplete={getShadowColorOption}
-            presetColors={COLOR_PALETTE}
-            width="300px"
-          />
+          <SketchPickerWrapper>
+            <SketchPicker
+              color={orderStyleData.shadowColor}
+              onChangeComplete={getShadowColorOption}
+              presetColors={COLOR_PALETTE}
+              width="300px"
+            />
+          </SketchPickerWrapper>
         );
       default:
         return;
@@ -96,11 +109,7 @@ export default function Step1() {
   };
 
   const checkIsTrasparent = (color: string) => {
-    if (color === "transparent") {
-      return "#000000";
-    } else {
-      return color;
-    }
+    return color === "transparent";
   };
 
   const showSelectColorBox = (color: string) => {
@@ -109,27 +118,44 @@ export default function Step1() {
         return (
           <>
             <TextColorIc />
-            <S.ColorPreview color={checkIsTrasparent(orderStyleData.textColor)} />
+            {checkIsTrasparent(orderStyleData.textColor) ? (
+              <EmptyColorIc />
+            ) : (
+              <S.ColorPreview color={orderStyleData.textColor} />
+            )}
           </>
         );
       case "borderColor":
         return (
           <>
-            <BorderColorIc /> <S.ColorPreview color={checkIsTrasparent(orderStyleData.borderColor)} />
+            <BorderColorIc />
+            {checkIsTrasparent(orderStyleData.borderColor) ? (
+              <EmptyColorIc />
+            ) : (
+              <S.ColorPreview color={orderStyleData.borderColor} />
+            )}
           </>
         );
       case "backgroundColor":
         return (
           <>
             <BackgroundColorIc />
-            <S.ColorPreview color={checkIsTrasparent(orderStyleData.backgroundColor)} />
+            {checkIsTrasparent(orderStyleData.backgroundColor) ? (
+              <EmptyColorIc />
+            ) : (
+              <S.ColorPreview color={orderStyleData.backgroundColor} />
+            )}
           </>
         );
       case "shadowColor":
         return (
           <>
             <ShadowColorIc />
-            <S.ColorPreview color={checkIsTrasparent(orderStyleData.shadowColor)} />
+            {checkIsTrasparent(orderStyleData.shadowColor) ? (
+              <EmptyColorIc />
+            ) : (
+              <S.ColorPreview color={orderStyleData.shadowColor} />
+            )}
           </>
         );
       default:
@@ -213,3 +239,7 @@ export default function Step1() {
     </>
   );
 }
+
+const SketchPickerWrapper = styled.section`
+  cursor: pointer;
+`;

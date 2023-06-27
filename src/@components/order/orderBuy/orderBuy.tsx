@@ -4,6 +4,7 @@ import { EmptyColorIc, OrderBuyActiveIc, OrderBuyUnActiveIc, OrderReceiptCheckIc
 import { USER } from "../../../core/user/user";
 import { orderStyle } from "../../../recoil/order/fontStyle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
+import { orderMoney } from "../../../recoil/order/orderMoney";
 import { selectOptions } from "../../../recoil/order/selectOptions";
 import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import { SelectOptionTypes } from "../orderOption/orderOption";
@@ -14,6 +15,7 @@ export default function OrderBuy() {
   const orderStyleData = useRecoilValue<orderStyleDataType>(orderStyle);
   const [isCheckedBuy, setIsCheckedBuy] = useState(false);
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
+  const [totalPrice, setTotalPrice] = useRecoilState<number>(orderMoney);
 
   const handleActiveBuy = () => {
     setIsCheckedBuy(!isCheckedBuy);
@@ -60,6 +62,12 @@ export default function OrderBuy() {
             <S.Tags>
               <S.Sub>참고 링크</S.Sub>
             </S.Tags>
+            <S.Tags>
+              <S.Sub>영상 링크</S.Sub>
+            </S.Tags>
+            <S.Tags>
+              <S.Sub>영상 길이</S.Sub>
+            </S.Tags>
           </S.TitleTags>
           <ul>
             <S.Tags>
@@ -85,10 +93,10 @@ export default function OrderBuy() {
                 <S.Text>{orderStyleData.size}</S.Text>
               </S.FontBox>
               <S.IconsContainer>
-                <S.IconsWrapper width={191}>
+                <S.IconsWrapper pr={false}>
                   <S.OrderBuyStyleIconsIcon />
                 </S.IconsWrapper>
-                <S.IconsWrapper width={191}>
+                <S.IconsWrapper pr={true}>
                   {checkIsTransparent(orderStyleData.textColor) ? (
                     <EmptyColorIc />
                   ) : (
@@ -118,6 +126,12 @@ export default function OrderBuy() {
             <S.Tags>
               <S.Tag>{orderStyleData?.link}</S.Tag>
             </S.Tags>
+            <S.Tags>
+              <S.Tag>{orderStyleData?.driveLink}</S.Tag>
+            </S.Tags>
+            <S.Tags>
+              <S.Tag>{orderStyleData?.time}</S.Tag>
+            </S.Tags>
           </ul>
         </S.TagsWrapper>
         <S.TotalPriceWrapper>
@@ -129,7 +143,7 @@ export default function OrderBuy() {
             </S.Title>
           </S.PriceTitleWrapper>
           <S.PriceWrapper>
-            <S.Price>6000</S.Price>
+            <S.Price>{totalPrice}</S.Price>
             <S.Won>원</S.Won>
           </S.PriceWrapper>
         </S.TotalPriceWrapper>

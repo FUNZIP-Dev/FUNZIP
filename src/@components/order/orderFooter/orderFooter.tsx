@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { styled } from "styled-components";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
 import { ORDER_STEP } from "../../../core/order/orderStep";
 import { orderStyle } from "../../../recoil/order/fontStyle";
@@ -40,6 +41,9 @@ export default function OrderFooter(props: StepProps) {
   };
 
   const handelMoveToNext = () => {
+    if (step === ORDER_STEP.STYLE && (orderStyleData.driveLink === "" || orderStyleData.link === "")) {
+      alert("링크를 입력해주세요");
+    }
     if (isNext) {
       switch (step) {
         case ORDER_STEP.CATEGORY:
@@ -49,7 +53,7 @@ export default function OrderFooter(props: StepProps) {
           setStep(ORDER_STEP.STYLE);
           break;
         case ORDER_STEP.STYLE:
-          if (orderStyleData.link !== "") {
+          if (orderStyleData.link !== "" && orderStyleData.driveLink !== "") {
             setStep(ORDER_STEP.BUY);
           }
           break;
@@ -62,13 +66,21 @@ export default function OrderFooter(props: StepProps) {
     }
   };
 
+  const checkIsTutorialExist = () => {
+    return localStorage.getItem("tutorialOpen") === "false" && step === ORDER_STEP.CATEGORY;
+  };
+
   return (
     <>
       {checkStep() && (
         <S.ButtonWrapper>
-          <S.PreviousButton onClick={handelMoveToPrev}>
-            <OrderPreviousBtnIc />
-          </S.PreviousButton>
+          {!checkIsTutorialExist() ? (
+            <S.PreviousButton onClick={handelMoveToPrev}>
+              <OrderPreviousBtnIc />
+            </S.PreviousButton>
+          ) : (
+            <EmpthyBtn />
+          )}
           <S.NextButton onClick={handelMoveToNext}>
             {!checkFinalStep() ? <OrderNextBtnIc /> : <OrderSuccessBtnIc />}
           </S.NextButton>
@@ -77,3 +89,8 @@ export default function OrderFooter(props: StepProps) {
     </>
   );
 }
+
+const EmpthyBtn = styled.div`
+  width: 209px;
+  height: 128px;
+`;

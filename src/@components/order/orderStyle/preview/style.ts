@@ -14,22 +14,21 @@ export const PreviewImg = styled.img`
 `;
 
 export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
-  /* display: flex;
+  display: flex;
+  /* align-items: flex-end; */
   justify-content: center;
-  align-items: center; */
 
   position: absolute;
 
-  margin-top: 210px;
+  width: 400px;
+  bottom: 400px;
+
   padding: 2px 13px;
 
   font-family: ${({ orderStyleData }) => orderStyleData.font};
   font-size: ${({ orderStyleData }) => orderStyleData.size}px;
   color: ${({ orderStyleData }) => orderStyleData.textColor};
-  text-shadow: -1px 0px ${({ orderStyleData }) => orderStyleData.borderColor},
-    0px 1px ${({ orderStyleData }) => orderStyleData.borderColor},
-    1px 0px ${({ orderStyleData }) => orderStyleData.borderColor},
-    0px -1px ${({ orderStyleData }) => orderStyleData.borderColor};
+  -webkit-text-stroke: 1px ${({ orderStyleData }) => orderStyleData.borderColor};
   background-color: ${({ orderStyleData }) => orderStyleData.backgroundColor};
   text-shadow: 2px 2px 2px ${({ orderStyleData }) => orderStyleData.shadowColor};
 `;

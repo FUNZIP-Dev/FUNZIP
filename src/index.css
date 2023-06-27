@@ -8,3 +8,15 @@
 
   margin: 2px !important;
 }
+
+.flexbox-fix:nth-child(2) div:nth-child(1) > div:nth-child(1) {
+  height: 25px !important;
+}
+
+.flexbox-fix:nth-child(2) div:nth-child(1) > div:nth-child(1) > div > div > div {
+  height: 23px !important;
+}
+
+.flexbox-fix:nth-child(2) > div > div:nth-child(2) {
+  display: none !important;
+}

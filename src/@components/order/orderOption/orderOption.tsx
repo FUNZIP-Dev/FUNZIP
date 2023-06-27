@@ -23,11 +23,13 @@ export default function OrderOption() {
   }, [selectOption]);
 
   const handleSelectBasic = (title: string) => {
-    if (selectOption.basic.includes(title)) {
-      const newBasic = selectOption.basic.filter((option) => option !== title);
-      setSelectOption({ ...selectOption, basic: [...newBasic] });
-    } else {
-      setSelectOption({ ...selectOption, basic: [...selectOption.basic, title] });
+    if (title !== "스타일 자막(오픈 준비 중)") {
+      if (selectOption.basic.includes(title)) {
+        const newBasic = selectOption.basic.filter((option) => option !== title);
+        setSelectOption({ ...selectOption, basic: [...newBasic] });
+      } else {
+        setSelectOption({ ...selectOption, basic: [...selectOption.basic, title] });
+      }
     }
   };
 

@@ -9,6 +9,8 @@ import SelectedOption from "./selectedOption/selectedOption";
 import Step1 from "./step1/step1";
 import Step2 from "./step2/step2";
 import Step3 from "./step3/step3";
+import Step4 from "./step4/step4";
+import Step5 from "./step5/step5";
 import * as S from "./style";
 
 export default function OrderStyle() {
@@ -16,10 +18,15 @@ export default function OrderStyle() {
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
 
   useEffect(() => {
-    if (orderStyleData.mood !== "" && orderStyleData.link !== "") {
+    if (
+      orderStyleData.mood !== "" &&
+      orderStyleData.link !== "" &&
+      orderStyleData.driveLink !== "" &&
+      orderStyleData.time !== ""
+    ) {
       setIsNext(true);
     }
-  }, [orderStyleData.mood, orderStyleData.link]);
+  }, [orderStyleData.mood, orderStyleData.link, orderStyleData.driveLink, orderStyleData.time]);
 
   return (
     <S.OrderStyleWrapper>
@@ -32,6 +39,8 @@ export default function OrderStyle() {
         <RandomStyle />
         <Step2 />
         <Step3 />
+        <Step4 />
+        <Step5 />
       </S.RightSection>
     </S.OrderStyleWrapper>
   );

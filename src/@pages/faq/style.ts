@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { FaqRepresentativeIc } from "../../assets";
+import { theme } from "../../style/theme";
 
 export const FaqRepresentativeIcon = styled(FaqRepresentativeIc)`
   margin-top: 65px;
@@ -12,14 +13,12 @@ export const OrderTutorialWrapper = styled.section`
   align-items: center;
 `;
 
-export const CategoryBox = styled.button`
+export const CategoryBox = styled.button<{ $isSelected: boolean }>`
   padding: 13px 25px;
 
   box-sizing: border-box;
 
-  height: 50px;
-
-  background: #f8f8fa;
+  background-color: ${({ $isSelected }) => ($isSelected ? theme.colors.sub1 : "#f8f8fa")};
 
   border: 2px solid #eeeff3;
   border-radius: 28px;
@@ -30,7 +29,9 @@ export const CategoryBox = styled.button`
   font-size: 15px;
   line-height: 160%;
 
-  color: #606067;
+  color: ${({ $isSelected }) => ($isSelected ? theme.colors.primary1 : "#606067")};
+
+  border: 2px solid ${({ $isSelected }) => ($isSelected ? theme.colors.primary1 : "#EEEFF3")};
 
   margin: 0px 8px;
 `;

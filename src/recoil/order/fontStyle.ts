@@ -12,6 +12,7 @@ export const orderStyle = atom<orderStyleDataType>({
     shadowColor: "transparent",
     mood: "",
     link: "",
-    price: 0,
+    driveLink: "",
+    time: "",
   },
 });

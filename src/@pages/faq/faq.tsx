@@ -10,6 +10,7 @@ export default function Faq() {
   // const [data, setData] = useState(FAQ_DATA);
   const [fullData, setFullData] = useState<any>();
   const [data, setData] = useState<any>();
+  const [selectedCateg, setSelectedCateg] = useState<string>("");
 
   const handleToggleOpen = (id: number) => {
     if (checkisOpenIdSame(id)) {
@@ -19,19 +20,22 @@ export default function Faq() {
     }
   };
 
-  console.log(isOpenId);
-
   const checkisOpenIdSame = (id: number) => {
     return isOpenId === id;
   };
 
   const handleSelectCateg = (categ: string) => {
+    setSelectedCateg(categ);
     if (categ !== "전체") {
       const newData = [...fullData];
       setData(newData.filter(({ category }) => category === categ));
     } else {
       setData(fullData);
     }
+  };
+
+  const checkIsSelected = (categ: string) => {
+    return selectedCateg === categ;
   };
 
   const handleInputText = (e: any) => {
@@ -56,8 +60,6 @@ export default function Faq() {
     return () => getFaqData();
   }, []);
 
-  console.log(fullData);
-
   return (
     <S.OrderTutorialWrapper>
       <Nav />
@@ -66,7 +68,9 @@ export default function Faq() {
       <S.Input type="text" placeholder="궁금한 점을 검색해보세요" onChange={handleInputText} />
       <S.CategoryBoxWrapper>
         {FAQ_CATEGORY.map((categ) => (
-          <S.CategoryBox onClick={() => handleSelectCateg(categ)}>{categ}</S.CategoryBox>
+          <S.CategoryBox onClick={() => handleSelectCateg(categ)} $isSelected={checkIsSelected(categ)}>
+            {categ}
+          </S.CategoryBox>
         ))}
       </S.CategoryBoxWrapper>
       <S.CategoryTitleBox>
