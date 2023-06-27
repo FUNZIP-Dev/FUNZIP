@@ -6,8 +6,7 @@ import * as S from "./style";
 
 export default function Preview() {
   const [orderStyleData, setOrderStyleData] = useRecoilState<orderStyleDataType>(orderStyle);
-  // const { font, size, textColor, borderColor, backgroundColor, shadowColor } = orderStyleData;
-  console.log(orderStyleData.borderColor);
+
   return (
     <S.PreviewWrapper>
       <S.Text orderStyleData={orderStyleData}>
