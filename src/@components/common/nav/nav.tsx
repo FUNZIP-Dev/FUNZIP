@@ -39,7 +39,7 @@ export default function Nav() {
   const handleMoveToOrder = () => {
     if (localStorage.getItem("tutorialOpen") === "false") {
       setStep(ORDER_STEP.CATEGORY);
-    } else if (localStorage.getItem("tutorialOpen") === "true") {
+    } else {
       setStep(ORDER_STEP.TUTORIAL);
     }
     navigate("/order");

@@ -67,16 +67,20 @@ export default function OrderFooter(props: StepProps) {
   };
 
   const checkIsTutorialExist = () => {
-    return localStorage.getItem("tutorialOpen") !== "false";
+    return localStorage.getItem("tutorialOpen") === "false" && step === ORDER_STEP.CATEGORY;
   };
 
   return (
     <>
       {checkStep() && (
         <S.ButtonWrapper>
-          <S.PreviousButton onClick={handelMoveToPrev}>
-            {checkIsTutorialExist() ? <OrderPreviousBtnIc /> : <EmpthyBtn />}
-          </S.PreviousButton>
+          {!checkIsTutorialExist() ? (
+            <S.PreviousButton onClick={handelMoveToPrev}>
+              <OrderPreviousBtnIc />
+            </S.PreviousButton>
+          ) : (
+            <EmpthyBtn />
+          )}
           <S.NextButton onClick={handelMoveToNext}>
             {!checkFinalStep() ? <OrderNextBtnIc /> : <OrderSuccessBtnIc />}
           </S.NextButton>
