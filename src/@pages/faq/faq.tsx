@@ -41,8 +41,7 @@ export default function Faq() {
     const db = getFirestore();
     const faqRef = collection(db, "faq");
 
-    // Fetch the initial reviews data
-    const unsubscribe = onSnapshot(faqRef, (snapshot: any) => {
+    const getFaqData = onSnapshot(faqRef, (snapshot: any) => {
       const faqDatas: any[] = [];
       snapshot.forEach((doc: any) => {
         faqDatas.push({ id: doc.id, ...doc.data() });
@@ -50,8 +49,7 @@ export default function Faq() {
       setData(faqDatas);
     });
 
-    // Clean up the listener
-    return () => unsubscribe();
+    return () => getFaqData();
   }, []);
 
   // console.log(data);
