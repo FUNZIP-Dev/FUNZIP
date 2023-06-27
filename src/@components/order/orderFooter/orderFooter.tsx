@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { styled } from "styled-components";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
 import { ORDER_STEP } from "../../../core/order/orderStep";
 import { orderStyle } from "../../../recoil/order/fontStyle";
@@ -65,12 +66,16 @@ export default function OrderFooter(props: StepProps) {
     }
   };
 
+  const checkIsTutorialExist = () => {
+    return localStorage.getItem("tutorialOpen") !== "false";
+  };
+
   return (
     <>
       {checkStep() && (
         <S.ButtonWrapper>
           <S.PreviousButton onClick={handelMoveToPrev}>
-            <OrderPreviousBtnIc />
+            {checkIsTutorialExist() ? <OrderPreviousBtnIc /> : <EmpthyBtn />}
           </S.PreviousButton>
           <S.NextButton onClick={handelMoveToNext}>
             {!checkFinalStep() ? <OrderNextBtnIc /> : <OrderSuccessBtnIc />}
@@ -80,3 +85,8 @@ export default function OrderFooter(props: StepProps) {
     </>
   );
 }
+
+const EmpthyBtn = styled.div`
+  width: 209px;
+  height: 128px;
+`;
