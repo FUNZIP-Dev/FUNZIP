@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { collection, getFirestore, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import { FaqToggleIc, FaqToggleOpenIc } from "../../assets";
 import { FAQ_CATEGORY, FAQ_DATA } from "../../core/faq/faqData";
@@ -6,7 +7,8 @@ import * as S from "./style";
 
 export default function Faq() {
   const [isOpenId, setIsOpenId] = useState(-1);
-  const [data, setData] = useState(FAQ_DATA);
+  // const [data, setData] = useState(FAQ_DATA);
+  const [data, setData] = useState<any>();
 
   const handleToggleOpen = (id: number) => {
     if (checkisOpenIdSame(id)) {
@@ -35,6 +37,25 @@ export default function Faq() {
     setData(newData.filter(({ title, comment }) => title.includes(input) || comment.includes(input)));
   };
 
+  useEffect(() => {
+    const db = getFirestore();
+    const faqRef = collection(db, "faq");
+
+    // Fetch the initial reviews data
+    const unsubscribe = onSnapshot(faqRef, (snapshot: any) => {
+      const faqDatas: any[] = [];
+      snapshot.forEach((doc: any) => {
+        faqDatas.push({ id: doc.id, ...doc.data() });
+      });
+      setData(faqDatas);
+    });
+
+    // Clean up the listener
+    return () => unsubscribe();
+  }, []);
+
+  // console.log(data);
+
   return (
     <S.OrderTutorialWrapper>
       <Nav />
@@ -54,19 +75,21 @@ export default function Faq() {
           질문내용
         </S.CategoryTitle>
       </S.CategoryTitleBox>
-      {data.map(({ faqId, category, title, comment }) => (
-        <>
-          <S.QBox key={faqId}>
-            <S.Q>Q</S.Q>
-            <S.Category>{category}</S.Category>
-            <S.TitleWrapper onClick={() => handleToggleOpen(faqId)}>
-              <S.Title>{title}</S.Title>
-              {checkisOpenIdSame(faqId) ? <FaqToggleOpenIc /> : <FaqToggleIc />}
-            </S.TitleWrapper>
-          </S.QBox>
-          {checkisOpenIdSame(faqId) && <S.Comment>{comment}</S.Comment>}
-        </>
-      ))}
+      <S.QBoxWrapper>
+        {data?.map(({ id, category, title, comment }: any) => (
+          <>
+            <S.QBox key={id}>
+              <S.Q>Q</S.Q>
+              <S.Category>{category}</S.Category>
+              <S.TitleWrapper onClick={() => handleToggleOpen(id)}>
+                <S.Title>{title}</S.Title>
+                {checkisOpenIdSame(id) ? <FaqToggleOpenIc /> : <FaqToggleIc />}
+              </S.TitleWrapper>
+            </S.QBox>
+            {checkisOpenIdSame(id) && <S.Comment>{comment}</S.Comment>}
+          </>
+        ))}
+      </S.QBoxWrapper>
     </S.OrderTutorialWrapper>
   );
 }
