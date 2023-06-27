@@ -56,3 +56,5 @@ export { ReactComponent as CouponIcon } from "./icon/couponIcon.svg";
 export { ReactComponent as AlertIcon } from "./icon/alertIcon.svg";
 export { ReactComponent as BackIcon } from "./icon/backIcon.svg";
 export { ReactComponent as ErrorLogo } from "./icon/errorLogo.svg";
+
+export { ReactComponent as StaffNavIcon } from "./icon/staffNavIcon.svg";

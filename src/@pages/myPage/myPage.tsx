@@ -72,6 +72,9 @@ export default function MyPage() {
             // 유저 정보를 userProfile에 저장
             const userData = userSnapshot.data();
             // userProfile에 저장된 유저 정보를 setUserProfile로 넘겨줌
+            if(userData.status != 0){
+              navigate("/staff");
+            }
             setUserProfile(userData);
           }
           setLoading(false); // Set loading to false once user profile is available

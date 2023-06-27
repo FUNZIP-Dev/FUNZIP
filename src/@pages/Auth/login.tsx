@@ -199,26 +199,6 @@ const alertError = (err:any) => {
           };
 
 
-          // 디비 끌고오기
-          const db = getFirestore();
-          // order 컬렉션 선택하기 
-          const orderRef = collection(db, "order");
-
-          // order 컬렉션에 추가할 데이터
-          const orderData = {
-            email: user.email,
-            order: basic,
-            price : totalPrice
-          };
-          
-          
-          // order 컬렉션에 orderData 추가하기
-          await addDoc(orderRef, {
-            category:"브이로그",
-            startedAt: "2021/10/10  23:00",
-            price: "60,000 원",
-            
-          })
 
           // await setDoc(doc(orderRef, ), orderData);
           // Use the UID as the key for the user document
