@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { DocumentData, collection, doc, getDoc, getFirestore } from 'firebase/firestore';
 import MainLogo from "../../@components/myPage/mainLogo";
 import Loading from "../../@components/common/loading";
-import { MypageLogo } from "../../assets";
+import DetailProfileBox from "../../@components/myPage/detailProfileBox";
+
 
 export default function MyPage() {
   const userInfo = useContext(AuthContext);
@@ -59,11 +60,22 @@ export default function MyPage() {
       // Fetch user profile data from Firestore
       const fetchUserProfile = async () => {
         try {
+
+          // DB 가져오기
           const db = getFirestore();
+          // 'users' collection 정보 가져오기, doc 두번째 인자는 userInfo.uid는 현재 로그인한 유저의 uid
           const userRef = doc(collection(db, 'users'), userInfo.uid);
+          // userRef를 통해 해당 유저의 정보 가져오기
           const userSnapshot = await getDoc(userRef);
+          // 유저 정보가 있다면
           if (userSnapshot.exists()) {
+            // 유저 정보를 userProfile에 저장
             const userData = userSnapshot.data();
+            // userProfile에 저장된 유저 정보를 setUserProfile로 넘겨줌
+            console.log(userData)
+            if(userData.staff != 0){
+              navigate("/staff");
+            }
             setUserProfile(userData);
           }
           setLoading(false); // Set loading to false once user profile is available
@@ -81,7 +93,7 @@ export default function MyPage() {
   // isDoing 체크하기
 
   if (loading) {
-    return <div>404NOTFOUND...</div>;
+    return <div></div>;
   }
 
   return (
@@ -112,7 +124,7 @@ export default function MyPage() {
                     <S.MypageProcessingContentTitle>카테고리</S.MypageProcessingContentTitle>
                     <S.MypageProcessingContentTitle>등록 일시</S.MypageProcessingContentTitle>
                     <S.MypageProcessingContentTitle>결제 정보</S.MypageProcessingContentTitle>
-                    {/* <S.MypageProcessingContentTitle style={{justifyContent:"center"}}>진행 상황</S.MypageProcessingContentTitle> */}
+                    <S.MypageProcessingContentTitle style={{justifyContent:"center"}}>진행 상황</S.MypageProcessingContentTitle>
                   </S.MypageProcessingTitleWrapper>
                   <S.MypageProcessingSeparator/>
 
@@ -148,6 +160,9 @@ export default function MyPage() {
             </S.MypageProcessing>
 
           </S.MypageProcessingWrapper>
+          <DetailProfileBox/>
+
+
         </S.MypageWrapper>
       ) : (
         <>

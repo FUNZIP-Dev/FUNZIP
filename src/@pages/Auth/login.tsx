@@ -1,18 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Nav from "../../@components/common/nav/nav";
 import * as S from "./style";
-import { authService, dbService } from "../../fbase";
+import { authService } from "../../fbase";
 import { AuthContext } from "../../context/authContext";
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,GoogleAuthProvider } from "firebase/auth";
-import { getFirestore,getDoc, collection, setDoc, onSnapshot, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { getFirestore,getDoc, collection, setDoc, doc, addDoc } from "firebase/firestore";
 
 
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../@components/Auth/loginForm";
 import SignUpForm from "../../@components/Auth/signUpForm";
-import {GoogleIcon, LoginLogo} from "../../assets";
+import {GoogleIcon} from "../../assets";
 import LoginTitle from "../../@components/Auth/loginTitle";
-import SignUpGoogleForm from "../../@components/Auth/signUpGoogleForm";
 
 export default function Login() {
 
@@ -161,6 +160,9 @@ const alertError = (err:any) => {
   if (err.code == 'auth/too-many-requests') {
     alert('잠시 후 다시 시도해 주세요');
   }
+  if(err.code == 'auth/email-already-in-use'){
+    alert('이미 존재하는 이메일 주소 입니다.');
+  }
 
 };
   // 회원가입, 로그인 페이지 전환
@@ -182,6 +184,7 @@ const alertError = (err:any) => {
     if (isCreate) {
       const db = getFirestore();
       const userRef = collection(db, "users");
+      
   
       try {
         const userCredential = await createUserWithEmailAndPassword(authService, email, pwd);
@@ -194,6 +197,10 @@ const alertError = (err:any) => {
             displayName: nickname,
             staff : 0
           };
+
+
+
+          // await setDoc(doc(orderRef, ), orderData);
           // Use the UID as the key for the user document
           await setDoc(doc(userRef, user.uid), userData);
           alert("회원가입 하셨습니다.");

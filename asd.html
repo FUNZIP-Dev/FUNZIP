@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Add the Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    .swiper-wrapper{
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide{
+      text-align: center;
+      font-size: 30px;
+      width: 100px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="swiper-container" style="margin-top: 400px;">
+
+    
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Card 1</div>
+      <div class="swiper-slide">Card 2</div>
+      <div class="swiper-slide">Card 3</div>
+      <div class="swiper-slide">Card 4</div>
+      <div class="swiper-slide">Card 5</div>
+      <div class="swiper-slide">Card 6</div>
+      <div class="swiper-slide">Card 7</div>
+      <div class="swiper-slide">Card 8</div>
+      <div class="swiper-slide">Card 9</div>
+      <div class="swiper-slide">Card 10</div>
+    </div>
+
+    <!-- Add navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+
+  <!-- Add the Swiper JavaScript -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 2, // Display 2 cards at a time
+      spaceBetween: 10, // Adjust spacing between cards if needed
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+</body>
+</html>

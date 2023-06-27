@@ -1,6 +1,17 @@
-import { addDoc, collection, deleteDoc, doc, getFirestore, onSnapshot, updateDoc } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import * as S from "./style";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  updateDoc,
+  getDocs,
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import Nav from "../../@components/common/nav/nav";
 import { AuthContext } from "../../context/authContext";
 import { storageService } from "../../fbase";
@@ -22,12 +33,16 @@ export default function Review() {
     const db = getFirestore();
     const reviewRef = collection(db, "reviews");
 
-    // Fetch the initial reviews data
+    // snapshot으로 데이터베이스의 변화를 실시간으로 감지
     const unsubscribe = onSnapshot(reviewRef, (snapshot) => {
+      // 데이터베이스에서 받아온 데이터를 배열로 변환
       const reviewsData: any[] = [];
+      // snapshot의 데이터를 순회하며 배열에 추가
       snapshot.forEach((doc) => {
+        // doc.data() 함수를 통해 데이터를 가져올 수 있음
         reviewsData.push({ id: doc.id, ...doc.data() });
       });
+      // reviews state를 업데이트
       setReviews(reviewsData);
     });
 
