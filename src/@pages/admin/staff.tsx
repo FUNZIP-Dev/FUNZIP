@@ -9,6 +9,7 @@ export default function Staff() {
   const navigate = useNavigate();
   const [waitEdit, setWaitEdit] = useState(0);
   const [doingEdit, setDoingEdit] = useState(0);
+  const [filter, setFilter] = useState('');
 
   const [order, setOrder] = useState(
     [
@@ -69,6 +70,11 @@ export default function Staff() {
     };
 
 
+    const handleFilter = (status: string) => {
+      setFilter(prevFilter => prevFilter === status ? '' : status);
+    };
+    
+
 
   return (
     <>
@@ -78,26 +84,21 @@ export default function Staff() {
 
     <S.StaffMainWrapper>
 
-      <S.StaffEditWrapper>
-        {/* 편집 현황 카운팅 박스 */}
-        
-        <S.StaffEditContainer isOn={true}>
-          <S.StaffEditContainerTitle>
-            편집 대기
-          </S.StaffEditContainerTitle>
-          <S.StaffEditContainerNum>
-            {waitEdit}건
-          </S.StaffEditContainerNum>
-        </S.StaffEditContainer>
-        <S.StaffEditContainer isOn={false}>
-          <S.StaffEditContainerTitle>
-            편집 중
-          </S.StaffEditContainerTitle>
-          <S.StaffEditContainerNum>
-            {doingEdit}건
-          </S.StaffEditContainerNum>
-        </S.StaffEditContainer>
-      </S.StaffEditWrapper>
+    
+        <S.StaffEditWrapper>
+          {/* 편집 현황 카운팅 박스 */}
+          <S.StaffEditContainer isEdit={false} isOn={filter === 'waitEdit'} onClick={() => handleFilter('waitEdit')}>
+  <S.StaffEditContainerTitle>편집 대기</S.StaffEditContainerTitle>
+  <S.StaffEditContainerNum>{waitEdit}건</S.StaffEditContainerNum>
+</S.StaffEditContainer>
+<S.StaffEditContainer isEdit={true} isOn={filter === 'doingEdit'} onClick={() => handleFilter('doingEdit')}>
+  <S.StaffEditContainerTitle>편집 중</S.StaffEditContainerTitle>
+  <S.StaffEditContainerNum>{doingEdit}건</S.StaffEditContainerNum>
+</S.StaffEditContainer>
+
+        </S.StaffEditWrapper>
+
+
 
       <S.MypageProcessingContentWrapper3>
           <MypageProcessingContentTitle>번호</MypageProcessingContentTitle>
@@ -108,8 +109,8 @@ export default function Staff() {
       </S.MypageProcessingContentWrapper3>
 
       {order.length > 0 ? (
-            order.map((item, index) => (
-              <S.MypageProcessingContentWrapper3 key={index} onClick={()=>{navigate(`/mypage/orderList/${item.id}`)}}>
+               order.filter((item) => (filter === 'waitEdit' ? item.status === 0 : filter === 'doingEdit' ? item.status === 1 : true)).map((item, index) => (
+               <S.MypageProcessingContentWrapper3 key={index} onClick={()=>{navigate(`/mypage/orderList/${item.id}`)}}>
                     <ProcessName>{order.length-index}</ProcessName>
                     <ProcessName>{item.orderName}</ProcessName>
                     <ProcessName>{item.category}</ProcessName>

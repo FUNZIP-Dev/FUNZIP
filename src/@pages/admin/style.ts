@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 interface IStaffEditClick {
     isOn: Boolean;
+    isEdit: Boolean;
 }
 
 export const StaffMainWrapper = styled.div`
@@ -26,23 +27,24 @@ export const StaffEditWrapper = styled.div`
     
 `
 export const StaffEditContainer = styled.div<IStaffEditClick>`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin : 10px;
-    width: 378px;
-    height: 106px;
-    border-radius: 8px;
-    background: #AEAFB9;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+  width: 378px;
+  height: 106px;
+  border-radius: 8px;
 
-    // props에 따라서 background 색 변경
-    
-    &:hover {
-        background: ${props => (props.isOn ? '#FF5D47' : '#7230FF')};
-    }
-`
+  background-color: #AEAFB9;
+  background: ${props => (props.isOn ? props.isEdit ? '#7230FF' : '#FF5D47' : '#AEAFB9')};
+  cursor: pointer;
+  
+
+  &:hover {
+    background: ${props => (props.isEdit ? '#7230FF' : '#FF5D47')};
+  }
+`;
 export const StaffEditContainerTitle = styled.h1`
     color: #FFF;
     font-size: 28px;
