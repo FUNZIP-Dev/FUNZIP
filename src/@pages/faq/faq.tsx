@@ -20,8 +20,6 @@ export default function Faq() {
     }
   };
 
-  console.log(isOpenId);
-
   const checkisOpenIdSame = (id: number) => {
     return isOpenId === id;
   };

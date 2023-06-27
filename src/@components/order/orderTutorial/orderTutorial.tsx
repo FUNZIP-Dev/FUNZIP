@@ -21,7 +21,6 @@ export default function OrderTutorial(props: SetStepProp) {
     setStep(ORDER_STEP.CATEGORY);
   };
 
-  console.log(isOpen);
   return (
     <S.OrderTutorialWrapper>
       <S.OrderTutorialXIcon onClick={() => handelMoveToCategory("true")} />

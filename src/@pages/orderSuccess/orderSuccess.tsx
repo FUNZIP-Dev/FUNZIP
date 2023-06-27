@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { addDoc, collection, doc, getFirestore, updateDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import Nav from "../../@components/common/nav/nav";
@@ -17,6 +18,10 @@ export default function OrderSuccess() {
   const options = useRecoilValue<SelectOptionTypes>(selectOptions);
   const style = useRecoilValue<orderStyleDataType>(orderStyle);
   const price = useRecoilValue<number>(orderMoney);
+  const [orderList, setOrderList] = useState<any>();
+  const [isPost, setIsPost] = useState<boolean>(true);
+
+  console.log(options);
 
   const hanldeMoveToMypage = () => {
     navigate("/mypage");
@@ -26,22 +31,127 @@ export default function OrderSuccess() {
     navigate("/");
   };
 
-  useEffect(() => {
-    let today = new Date();
-    let year = today.getFullYear(); // 년도
-    let month = today.getMonth() + 1; // 월
-    let date = today.getDate();
+  const submitOrder = async () => {
+    try {
+      let today = new Date();
+      let year = today.getFullYear(); // 년도
+      let month = today.getMonth() + 1; // 월
+      let date = today.getDate();
 
-    console.log({
-      category: category,
-      options,
-      style,
-      price: price,
-      status: 0,
-      createdAt: year + "." + month + "." + date,
-      endAt: "",
-    });
+      // console.log({
+      //   uid: localStorage.getItem("uid"),
+      //   category: category,
+      //   options,
+      //   style,
+      //   price: price,
+      //   status: 0,
+      //   createdAt: year + "." + month + "." + date,
+      //   endAt: "",
+      // });
+      const db = getFirestore();
+
+      const orderRef = collection(db, "order");
+      await addDoc(orderRef, {
+        uid: localStorage.getItem("uid"),
+        category: category,
+        options,
+        style,
+        price: price,
+        status: 0,
+        createdAt: year + "." + month + "." + date,
+        endAt: "",
+      });
+
+      // const userRef = collection(db, "users");
+      // const userDatas: any[] = [];
+
+      // onSnapshot(userRef, (snapshot: any) => {
+      //   snapshot.forEach((doc: any) => {
+      //     userDatas.push({ id: doc.id, ...doc.data() });
+      //   });
+      //   setOrderList(userDatas);
+      // });
+
+      // const myId: any = localStorage.getItem("uid");
+      // const orderLists = userDatas?.filter(({ id }: any) => id === myId);
+      // const lists = [...orderLists[0]?.orderList];
+      // lists.push({
+      //   uid: localStorage.getItem("uid"),
+      //   category: category,
+      //   options,
+      //   style,
+      //   price: price,
+      //   status: 0,
+      //   createdAt: year + "." + month + "." + date,
+      //   endAt: "",
+      // });
+      // console.log(lists);
+      // // const db = getFirestore();
+      // const userDoc = doc(db, "users", myId);
+
+      // //Update the review document
+
+      // try {
+      //   updateDoc(userDoc, {
+      //     orderList: [...lists],
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
+
+      alert("주문되었습니다.");
+    } catch (error) {
+      console.error("Error updating document: ", error);
+      alert("주문 안됨.");
+    }
+  };
+
+  const updateOrderListInUser = async () => {
+    try {
+      let today = new Date();
+      let year = today.getFullYear(); // 년도
+      let month = today.getMonth() + 1; // 월
+      let date = today.getDate();
+
+      const myId: any = localStorage.getItem("uid");
+      const orderLists = orderList?.filter(({ id }: any) => id === myId);
+      const lists = [...orderLists[0]?.orderList];
+      lists.push({
+        uid: localStorage.getItem("uid"),
+        category: category,
+        options,
+        style,
+        price: price,
+        status: 0,
+        createdAt: year + "." + month + "." + date,
+        endAt: "",
+      });
+      console.log(lists);
+      const db = getFirestore();
+      const userDoc = doc(db, "users", myId);
+
+      //Update the review document
+
+      updateDoc(userDoc, {
+        orderList: [...lists],
+      });
+
+      console.log("유저테이블 변경 성공");
+    } catch (error) {
+      console.log("에러" + error);
+    }
+  };
+
+  useEffect(() => {
+    submitOrder();
   }, []);
+
+  // useEffect(() => {
+  //   if (isPost) {
+  //     updateOrderListInUser();
+  //     setIsPost(false);
+  //   }
+  // }, [orderList]);
 
   return (
     <S.OrderPageWrapper>
