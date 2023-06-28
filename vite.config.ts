@@ -19,8 +19,8 @@ export default defineConfig({
       "/api": {
         target: "https://kapi.kakao.com",
         changeOrigin: true,
-        secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false,
         ws: true,
       },
     },

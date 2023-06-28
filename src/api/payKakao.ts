@@ -7,7 +7,7 @@ export const payKakao = async (params: any) => {
     const data = await axios.post("/api/v1/payment/ready", null, {
       params, // config 설정에 데이터를 담아 넘겨준다.
       headers: {
-        withCredentials: true,
+        // withCredentials: true,
         Authorization: `KakaoAK ${import.meta.env.VITE_APP_KAKAO_API_KEY}`,
         "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
       },
