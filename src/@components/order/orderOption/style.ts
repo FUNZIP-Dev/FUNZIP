@@ -17,7 +17,7 @@ export const BoxWrapper = styled.section`
   display: flex;
 `;
 
-export const Box = styled.article<{ $isClick: boolean }>`
+export const Box = styled.article<{ $isClick: any }>`
   display: flex;
   align-items: center;
 
