@@ -21,7 +21,7 @@ export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
   position: absolute;
 
   width: 400px;
-  bottom: 400px;
+  bottom: 340px;
 
   padding: 2px 13px;
 
