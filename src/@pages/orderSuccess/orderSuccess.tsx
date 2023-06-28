@@ -1,6 +1,6 @@
 import { addDoc, collection, doc, getFirestore, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import Nav from "../../@components/common/nav/nav";
 import { SelectOptionTypes } from "../../@components/order/orderOption/orderOption";
@@ -20,8 +20,7 @@ export default function OrderSuccess() {
   const price = useRecoilValue<number>(orderMoney);
   const [orderList, setOrderList] = useState<any>();
   const [isPost, setIsPost] = useState<boolean>(true);
-
-  console.log(options);
+  const [searchParams] = useSearchParams();
 
   const hanldeMoveToMypage = () => {
     navigate("/mypage");
