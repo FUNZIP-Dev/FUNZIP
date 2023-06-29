@@ -30,6 +30,7 @@ export default function OrderSuccess() {
     navigate("/");
   };
 
+  // order테이블에 post
   const submitOrder = async () => {
     try {
       let today = new Date();
@@ -37,16 +38,16 @@ export default function OrderSuccess() {
       let month = today.getMonth() + 1; // 월
       let date = today.getDate();
 
-      // console.log({
-      //   uid: localStorage.getItem("uid"),
-      //   category: category,
-      //   options,
-      //   style,
-      //   price: price,
-      //   status: 0,
-      //   createdAt: year + "." + month + "." + date,
-      //   endAt: "",
-      // });
+      console.log({
+        uid: localStorage.getItem("uid"),
+        category: category,
+        options,
+        style,
+        price: price,
+        status: 0,
+        createdAt: year + "." + month + "." + date,
+        endAt: "",
+      });
       const db = getFirestore();
 
       const orderRef = collection(db, "order");
@@ -60,6 +61,8 @@ export default function OrderSuccess() {
         createdAt: year + "." + month + "." + date,
         endAt: "",
       });
+
+      alert("주문되었습니다.");
 
       // const userRef = collection(db, "users");
       // const userDatas: any[] = [];
@@ -97,14 +100,13 @@ export default function OrderSuccess() {
       // } catch (error) {
       //   console.log(error);
       // }
-
-      alert("주문되었습니다.");
     } catch (error) {
       console.error("Error updating document: ", error);
       alert("주문 안됨.");
     }
   };
 
+  // 유저 테이블에도 Post해주기
   const updateOrderListInUser = async () => {
     try {
       let today = new Date();

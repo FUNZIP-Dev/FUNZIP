@@ -1,5 +1,8 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 import { orderStyleDataType } from "../../type/order/orderStyleData";
+
+const { persistAtom } = recoilPersist();
 
 export const orderStyle = atom<orderStyleDataType>({
   key: "orderStyle",
@@ -15,4 +18,5 @@ export const orderStyle = atom<orderStyleDataType>({
     driveLink: "",
     time: "",
   },
+  effects_UNSTABLE: [persistAtom],
 });
