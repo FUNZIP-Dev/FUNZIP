@@ -49,13 +49,13 @@ const fonts = {
   option_content: FONT({ weight: 500, size: 13, lineHeight: 13 }),
   user: FONT({ weight: 500, size: 18, lineHeight: 18 }),
   PretendardMedium: css`
-    font-family: "Pretendard-Regular";
+    font-family: "Pretendard";
     font-style: normal;
     font-weight: 500;
     letter-spacing: 20;
   `,
   PretendardBold: css`
-    font-family: "Pretendard-Regular";
+    font-family: "Pretendard";
     font-style: normal;
     font-weight: 900;
     letter-spacing: 20;
