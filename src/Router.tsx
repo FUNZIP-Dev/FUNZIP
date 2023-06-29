@@ -13,7 +13,7 @@ import Setting from "./@pages/myPage/setting";
 import Order from "./@pages/order/order";
 import OrderCancel from "./@pages/orderCancel/orderCancel";
 import OrderFail from "./@pages/orderFail/orderFail";
-import OrderSuccess from "./@pages/orderSuccess/orderSuccess";
+import PaymentResult from "./@pages/orderSuccess/orderSuccess";
 import Review from "./@pages/review/review";
 import TutorialPage from "./@pages/tutorial/tutorialPage";
 
@@ -26,7 +26,7 @@ export default function Router() {
         <Route path="/staff" element={<Staff />} />
 
         <Route path="/order" element={<Order />} />
-        <Route path="/order-success" element={<OrderSuccess />} />
+        {/* <Route path="/order-success" element={<OrderSuccess />} /> */}
         <Route path="/tutorial" element={<TutorialPage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/review" element={<Review />} />
@@ -43,6 +43,9 @@ export default function Router() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-fail" element={<OrderFail />} />
         <Route path="/order-cancel" element={<OrderCancel />} />
+
+        {/* <Route path="/payment" element={<Payment />} /> */}
+        <Route path="/payment/result" element={<PaymentResult />} />
       </Routes>
     </BrowserRouter>
   );

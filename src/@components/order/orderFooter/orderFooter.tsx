@@ -67,7 +67,7 @@ export default function OrderFooter(props: StepProps) {
           break;
         default:
           //결제페이지로 이동
-          navigate("/checkout");
+          navigate("/payment");
         //navigate("/order-success");
       }
       setIsNext(false);

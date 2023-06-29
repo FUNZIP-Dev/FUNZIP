@@ -13,6 +13,17 @@ export const PreviewImg = styled.img`
   margin-bottom: 16px;
 `;
 
+export const TextWrapper = styled.section`
+  position: absolute;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  width: 400px;
+  height: 230px;
+`;
+
 export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
   display: flex;
   /* align-items: flex-end; */
@@ -20,8 +31,7 @@ export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
 
   position: absolute;
 
-  width: 400px;
-  bottom: 340px;
+  max-width: 400px;
 
   padding: 2px 13px;
 
