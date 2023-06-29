@@ -38,6 +38,7 @@ export const ColorPreview = styled.div<{ color: string }>`
   height: 12px;
 
   border-radius: 4px;
+  border: 1px solid black;
 
   background-color: ${({ color }) => color};
 `;
