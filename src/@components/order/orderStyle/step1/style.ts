@@ -104,7 +104,18 @@ export const Box = styled.article<{ fontFamily: string; $isClicked: boolean }>`
 
   padding: 5px 16px;
 
-  font-family: ${({ fontFamily }) => fontFamily};
+  ${({ theme, fontFamily }) => fontFamily === "Pretendard Bold" && theme.fonts.PretendardBold};
+  ${({ theme, fontFamily }) => fontFamily === "Pretendard Medium" && theme.fonts.PretendardMedium};
+  ${({ theme, fontFamily }) => fontFamily === "G마켓산스 Medium" && theme.fonts.GmarketSansMedium};
+
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 1" && theme.fonts.SCoreDream1};
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 2" && theme.fonts.SCoreDream2};
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 3" && theme.fonts.SCoreDream3};
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 4" && theme.fonts.SCoreDream4};
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 5" && theme.fonts.SCoreDream5};
+  ${({ theme, fontFamily }) => fontFamily === "에스코어 드림 6" && theme.fonts.SCoreDream6};
+
+  ${({ theme, fontFamily }) => fontFamily === "KCC 은영체" && theme.fonts.KCCEunyoung};
 
   /* grey2 */
   background-color: ${({ $isClicked }) => $isClicked && "#f8f8fa"};
