@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { styled } from "styled-components";
 import { RequestPayParams, RequestPayResponse } from "../../../@pages/payment/type";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
+import { AuthContext } from "../../../context/authContext";
 import { ORDER_STEP } from "../../../core/order/orderStep";
 import { orderStyle } from "../../../recoil/order/fontStyle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
@@ -23,6 +25,7 @@ export default function OrderFooter(props: StepProps) {
   const options = useRecoilValue<SelectOptionTypes>(selectOptions);
   const style = useRecoilValue<orderStyleDataType>(orderStyle);
   const price = useRecoilValue<number>(orderMoney);
+  const userInfo = useContext(AuthContext);
 
   const checkStep = () => {
     return step !== "";
@@ -95,8 +98,9 @@ export default function OrderFooter(props: StepProps) {
       pg: "html5_inicis",
       pay_method: "card",
       merchant_uid: `mid_${new Date().getTime()}`,
+      name: "funzip 주문",
       amount: amount,
-      buyer_tel: "00-000-0000",
+      buyer_tel: `${userInfo?.phoneNumber}`,
     };
     const callback = (response: RequestPayResponse) => {
       const { success, merchant_uid, error_msg, imp_uid, error_code } = response;
