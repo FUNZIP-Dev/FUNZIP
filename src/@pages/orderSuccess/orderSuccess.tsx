@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getFirestore, onSnapshot, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import Nav from "../../@components/common/nav/nav";
 import { SelectOptionTypes } from "../../@components/order/orderOption/orderOption";
 import { OrderSuccessIc } from "../../assets";
@@ -14,12 +14,13 @@ import * as S from "./style";
 
 export default function OrderSuccess() {
   const navigate = useNavigate();
-  const category = useRecoilValue<string>(selectCategory);
-  const options = useRecoilValue<SelectOptionTypes>(selectOptions);
-  const style = useRecoilValue<orderStyleDataType>(orderStyle);
-  const price = useRecoilValue<number>(orderMoney);
   const [orderList, setOrderList] = useState<any>();
   const [isPost, setIsPost] = useState<boolean>(false);
+  const [category, setCategory] = useRecoilState<string>(selectCategory);
+  const [options, setOptions] = useRecoilState<SelectOptionTypes>(selectOptions);
+  const [style, setStyle] = useRecoilState<orderStyleDataType>(orderStyle);
+  const [price, setPrice] = useRecoilState<number>(orderMoney);
+
   // const [searchParams] = useSearchParams();
 
   const hanldeMoveToMypage = () => {
@@ -66,16 +67,42 @@ export default function OrderSuccess() {
         setIsPost(true);
       });
 
-      alert("주문이 완료되었습니다.");
+      if (confirm("주문이 완료되었습니다.")) {
+        resetLogic();
+      } else {
+        resetLogic();
+      }
     } catch (error) {
       console.error("Error updating document: ", error);
+      resetLogic();
       alert("주문에 실패했습니다.");
     }
   };
 
+  const resetLogic = () => {
+    setCategory("");
+    setOptions({
+      basic: [],
+      plus: [],
+      cam: "",
+    });
+    setStyle({
+      font: "Pretendard Medium",
+      size: 10,
+      textColor: "#000000",
+      borderColor: "transparent",
+      backgroundColor: "transparent",
+      shadowColor: "transparent",
+      mood: "",
+      link: "",
+      driveLink: "",
+      time: "",
+    });
+    setPrice(0);
+  };
+
   useEffect(() => {
     if (isPost) {
-      console.log("들어옴");
       updateOrderListInUser();
     }
   }, [orderList]);
