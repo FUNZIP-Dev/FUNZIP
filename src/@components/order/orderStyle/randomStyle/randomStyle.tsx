@@ -36,6 +36,54 @@ export default function RandomStyle() {
           : { ...selectCateg, isSelected: false },
       ),
     );
+    switch (selectedId) {
+      case 1:
+        setOrderStyleData({
+          ...orderStyleData,
+          font: "Pretendard Medium",
+          textColor: "white",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          size: 10,
+          borderColor: "transparent",
+          shadowColor: "transparent",
+        });
+        break;
+      case 2:
+        setOrderStyleData({
+          ...orderStyleData,
+          font: "G마켓산스 Medium",
+          textColor: "black",
+          backgroundColor: "rgba(255,255,255, 0.5)",
+          size: 10,
+          borderColor: "transparent",
+          shadowColor: "transparent",
+        });
+        break;
+      case 3:
+        setOrderStyleData({
+          ...orderStyleData,
+          font: "에스코어 드림 4",
+          textColor: "white",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          size: 10,
+          borderColor: "transparent",
+          shadowColor: "transparent",
+        });
+        break;
+      case 4:
+        setOrderStyleData({
+          ...orderStyleData,
+          font: "KCC 은영체",
+          textColor: "white",
+          shadowColor: "black",
+          size: 10,
+          borderColor: "transparent",
+          backgroundColor: "transparent",
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   return (

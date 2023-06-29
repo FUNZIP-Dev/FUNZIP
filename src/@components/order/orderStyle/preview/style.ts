@@ -35,7 +35,22 @@ export const Text = styled.p<{ orderStyleData: orderStyleDataType }>`
 
   padding: 2px 13px;
 
-  font-family: ${({ orderStyleData }) => orderStyleData.font};
+  font-family: ${({ theme, orderStyleData }) =>
+    orderStyleData.font === "Pretendard Bold" && theme.fonts.PretendardBold};
+  font-family: ${({ theme, orderStyleData }) =>
+    orderStyleData.font === "Pretendard Medium" && theme.fonts.PretendardMedium};
+  font-family: ${({ theme, orderStyleData }) =>
+    orderStyleData.font === "G마켓산스 Medium" && theme.fonts.GmarketSansMedium};
+
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 1" && theme.fonts.SCoreDream1};
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 2" && theme.fonts.SCoreDream2};
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 3" && theme.fonts.SCoreDream3};
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 4" && theme.fonts.SCoreDream4};
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 5" && theme.fonts.SCoreDream5};
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "에스코어 드림 6" && theme.fonts.SCoreDream6};
+
+  font-family: ${({ theme, orderStyleData }) => orderStyleData.font === "KCC 은영체" && theme.fonts.KCCEunyoung};
+
   font-size: ${({ orderStyleData }) => orderStyleData.size}px;
   color: ${({ orderStyleData }) => orderStyleData.textColor};
   -webkit-text-stroke: 1px ${({ orderStyleData }) => orderStyleData.borderColor};
