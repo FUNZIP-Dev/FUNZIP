@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme, css } from "styled-components";
 
 const colors = {
   primary1: "#FF5D47",
@@ -48,6 +48,66 @@ const fonts = {
   category_sub: FONT({ weight: 500, size: 20, lineHeight: 28 }),
   option_content: FONT({ weight: 500, size: 13, lineHeight: 13 }),
   user: FONT({ weight: 500, size: 18, lineHeight: 18 }),
+  PretendardMedium: css`
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 20;
+  `,
+  PretendardBold: css`
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: 20;
+  `,
+  KCCEunyoung: css`
+    font-family: "KCC-eunyoung";
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 20;
+  `,
+  GmarketSansMedium: css`
+    font-family: "GmarketSansMedium";
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 20;
+  `,
+  SCoreDream1: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 200;
+    letter-spacing: 20;
+  `,
+  SCoreDream2: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 20;
+  `,
+  SCoreDream3: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 20;
+  `,
+  SCoreDream4: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 20;
+  `,
+  SCoreDream5: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 20;
+  `,
+  SCoreDream6: css`
+    font-family: "S-CoreDream-3Light";
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 20;
+  `,
 };
 
 export type FontsTypes = typeof fonts;

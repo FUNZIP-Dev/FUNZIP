@@ -14,6 +14,7 @@ import Order from "./@pages/order/order";
 import OrderCancel from "./@pages/orderCancel/orderCancel";
 import OrderFail from "./@pages/orderFail/orderFail";
 import OrderSuccess from "./@pages/orderSuccess/orderSuccess";
+import Payment from "./@pages/payment/payment";
 import Review from "./@pages/review/review";
 import TutorialPage from "./@pages/tutorial/tutorialPage";
 
@@ -43,6 +44,8 @@ export default function Router() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-fail" element={<OrderFail />} />
         <Route path="/order-cancel" element={<OrderCancel />} />
+
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </BrowserRouter>
   );
