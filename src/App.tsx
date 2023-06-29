@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
-import Loading from "./@components/common/loading";
-import Router from "./Router.tsx";
-import { AuthContext } from "./context/authContext";
-import { GlobalStyle } from "./style/globalStyle";
-import { theme } from "./style/theme";
+import Loading from "./@components/common/loading.js";
+import Router from "./Router.jsx";
+import { AuthContext } from "./context/authContext.js";
+import { GlobalStyle } from "./style/globalStyle.js";
+import { theme } from "./style/theme.js";
 
 export default function App() {
   // 프로그램 초기화 기다리기

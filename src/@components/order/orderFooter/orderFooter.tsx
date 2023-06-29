@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { styled } from "styled-components";
+import { RequestPayParams, RequestPayResponse } from "../../../@pages/payment/type";
 import { OrderNextBtnIc, OrderPreviousBtnIc, OrderSuccessBtnIc } from "../../../assets";
 import { ORDER_STEP } from "../../../core/order/orderStep";
 import { orderStyle } from "../../../recoil/order/fontStyle";
@@ -67,8 +68,9 @@ export default function OrderFooter(props: StepProps) {
           break;
         default:
           //결제페이지로 이동
-          navigate("/payment");
-        //navigate("/order-success");
+          // navigate("/payment");
+          //navigate("/order-success");
+          break;
       }
       setIsNext(false);
     }
@@ -76,6 +78,39 @@ export default function OrderFooter(props: StepProps) {
 
   const checkIsTutorialExist = () => {
     return localStorage.getItem("tutorialOpen") === "false" && step === ORDER_STEP.CATEGORY;
+  };
+
+  const IMP = window.IMP; // 생략 가능
+  IMP?.init("imp44561238"); // 가맹점
+
+  const amount = 100;
+
+  const handlePayment = () => {
+    window.IMP?.init("iamport");
+    if (!amount) {
+      alert("결제 금액을 확인해주세요");
+      return;
+    }
+    const data: RequestPayParams = {
+      pg: "html5_inicis",
+      pay_method: "card",
+      merchant_uid: `mid_${new Date().getTime()}`,
+      amount: amount,
+      buyer_tel: "00-000-0000",
+    };
+    const callback = (response: RequestPayResponse) => {
+      const { success, merchant_uid, error_msg, imp_uid, error_code } = response;
+      if (success) {
+        //결제 성공 시 로직
+        navigate("/order-success");
+        // console.log(response);
+      } else {
+        //결제 실패 시 로직
+        navigate("/order-fail");
+        // console.log(response);
+      }
+    };
+    window.IMP?.request_pay(data, callback);
   };
 
   return (
@@ -89,8 +124,12 @@ export default function OrderFooter(props: StepProps) {
           ) : (
             <EmpthyBtn />
           )}
-          <S.NextButton onClick={handelMoveToNext}>
-            {!checkFinalStep() ? <OrderNextBtnIc /> : <OrderSuccessBtnIc />}
+          <S.NextButton>
+            {!checkFinalStep() ? (
+              <OrderNextBtnIc onClick={handelMoveToNext} />
+            ) : (
+              <OrderSuccessBtnIc onClick={handlePayment} />
+            )}
           </S.NextButton>
         </S.ButtonWrapper>
       )}

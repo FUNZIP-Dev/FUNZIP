@@ -1,5 +1,5 @@
-declare namespace global {
-  export interface Window {
-    Cypress: unknown;
-  }
-}
+// declare namespace global {
+//   interface Window {
+//     IMP: any;
+//   }
+// }
