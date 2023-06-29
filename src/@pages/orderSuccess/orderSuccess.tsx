@@ -80,8 +80,6 @@ export default function OrderSuccess() {
     }
   }, [orderList]);
 
-  // console.log(orderList);
-
   // 유저 테이블에도 Post해주기
   const updateOrderListInUser = async () => {
     try {
@@ -101,18 +99,15 @@ export default function OrderSuccess() {
         endAt: "",
       };
       const myId: any = localStorage.getItem("uid");
-      // console.log(orderList);
       const orderLists = orderList?.filter(({ id }: any) => id === myId);
-      // console.log(orderLists[0]);
+
       const lists = [...orderLists[0]?.orderList];
-      // console.log(lists);
+
       lists.push(postData);
-      // console.log(lists);
       const db = getFirestore();
       const userDoc = doc(db, "users", myId);
 
       //Update the review document
-
       await updateDoc(userDoc, {
         orderList: [...lists],
       });
