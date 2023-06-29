@@ -5,7 +5,6 @@ import { EmptyColorIc, OrderReceiptCheckIc } from "../../../assets";
 import { AuthContext } from "../../../context/authContext";
 import { orderStyle } from "../../../recoil/order/fontStyle";
 import { moveNextPage } from "../../../recoil/order/moveNextPage";
-import { orderMoney } from "../../../recoil/order/orderMoney";
 import { selectOptions } from "../../../recoil/order/selectOptions";
 import { orderStyleDataType } from "../../../type/order/orderStyleData";
 import { SelectOptionTypes } from "../../order/orderOption/orderOption";
@@ -16,12 +15,8 @@ export default function OrderReceipt() {
   const orderStyleData = useRecoilValue<orderStyleDataType>(orderStyle);
   const [isCheckedBuy, setIsCheckedBuy] = useState(false);
   const [isNext, setIsNext] = useRecoilState(moveNextPage);
-  const [totalPrice, setTotalPrice] = useRecoilState<number>(orderMoney);
-
   const userInfo = useContext(AuthContext);
   const [userData, setUserData] = useState<any>([]);
-
-  console.log(userInfo);
 
   useEffect(() => {
     const db = getFirestore();
@@ -36,7 +31,6 @@ export default function OrderReceipt() {
       setUserData(usersData?.filter(({ id }: any) => id === myId));
     });
 
-    // Clean up the listener
     return () => getUser();
   }, []);
 
